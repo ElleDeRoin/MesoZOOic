@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgb(102, 143, 87);">
+        <ui:Image name="TitleImage" style="height: 165px; width: 878px; position: absolute; top: 82px; left: 0; background-color: rgb(135, 68, 33);"/>
+        <ui:Button text="Play" name="PlayButton" style="height: 69px; width: 297px; flex-direction: row; position: absolute; top: 309px; left: 292px; font-size: 46px;"/>
+        <ui:Button text="Button" name="SettingsButton" style="position: absolute; top: 10px; left: 7px; width: 53px;"/>
+    </ui:VisualElement>
+</ui:UXML>

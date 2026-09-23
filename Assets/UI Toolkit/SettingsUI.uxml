@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Image style="height: 338px; width: 686px; position: absolute; top: 45px; left: 91px; background-color: rgb(44, 89, 44);"/>
+        <ui:Button text="Button" style="width: 46px; position: absolute; top: 15px; left: 15px;"/>
+        <ui:Label text="Settings" name="Pause" style="position: absolute; top: 78px; left: 189px; height: 57px; width: 481px; font-size: 58px; -unity-text-align: upper-center;"/>
+        <ui:Button text="Main Menu" name="MenuButton" style="position: absolute; top: 255px; left: 170px; width: 176px;"/>
+        <ui:Button text="Settings" name="SettingsButton" style="position: absolute; top: 252px; left: 497px; width: 176px;"/>
+    </ui:VisualElement>
+</ui:UXML>
