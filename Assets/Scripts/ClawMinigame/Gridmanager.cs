@@ -1,6 +1,6 @@
-
 using System.Collections.Generic;
 using UnityEngine;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -24,9 +24,9 @@ namespace DinoDig
         [SerializeField] private int startingHeightMin = 1;
         [SerializeField] private int startingHeightMax = 2;
 
-        [Header("Egg Placement")]
-        [SerializeField] private int eggColumn = 3;
-        [SerializeField] private int eggDepthFromBottom = 0;
+        [Header("Egg Settings")]
+        [Range(0f, 1f)]
+        [SerializeField] private float eggSpawnChance = 0.05f;
 
         private List<List<GridPiece>> _stacks;
 
@@ -44,17 +44,26 @@ namespace DinoDig
 
             for (int col = 0; col < columnCount; col++)
             {
-                var list = new List<GridPiece>();
-                int height = Random.Range(startingHeightMin, startingHeightMax + 1);
+                List<GridPiece> list = new List<GridPiece>();
 
-                if (col == eggColumn)
-                    height = Mathf.Max(height, eggDepthFromBottom + 2);
+                int height = Random.Range(
+                    startingHeightMin,
+                    startingHeightMax + 1
+                );
 
                 for (int row = 0; row < height; row++)
                 {
-                    bool isEgg = col == eggColumn && row == eggDepthFromBottom;
-                    BlockType type = (BlockType)Random.Range(0, blockSprites.Length);
-                    GridPiece piece = SpawnPiece(col, row, isEgg, type);
+                    bool isEgg = ShouldSpawnEgg();
+
+                    BlockType type = GetRandomBlockType();
+
+                    GridPiece piece = SpawnPiece(
+                        col,
+                        row,
+                        isEgg,
+                        type
+                    );
+
                     list.Add(piece);
                 }
 
@@ -62,9 +71,29 @@ namespace DinoDig
             }
         }
 
-        private GridPiece SpawnPiece(int col, int row, bool isEgg, BlockType type)
+        private bool ShouldSpawnEgg()
         {
-            GridPiece prefab = isEgg ? eggPrefab : blockPrefab;
+            return Random.value < eggSpawnChance;
+        }
+
+        private BlockType GetRandomBlockType()
+        {
+            return (BlockType)Random.Range(
+                0,
+                blockSprites.Length
+            );
+        }
+
+        private GridPiece SpawnPiece(
+            int col,
+            int row,
+            bool isEgg,
+            BlockType type
+        )
+        {
+            GridPiece prefab = isEgg
+                ? eggPrefab
+                : blockPrefab;
 
             GridPiece piece = Instantiate(
                 prefab,
@@ -78,34 +107,91 @@ namespace DinoDig
             piece.Column = col;
             piece.RowIndex = row;
 
-            if (!isEgg && piece.SpriteRenderer != null && blockSprites.Length > (int)type)
-                piece.SpriteRenderer.sprite = blockSprites[(int)type];
+            if (
+                !isEgg &&
+                piece.SpriteRenderer != null &&
+                blockSprites.Length > (int)type
+            )
+            {
+                piece.SpriteRenderer.sprite =
+                    blockSprites[(int)type];
+            }
 
             piece.SetSortingOrder(row);
 
             return piece;
         }
 
+        public void SpawnNewBottomRow()
+        {
+            for (int col = 0; col < columnCount; col++)
+            {
+                List<GridPiece> list = _stacks[col];
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    list[i].RowIndex = i + 1;
+                }
+
+                bool isEgg = ShouldSpawnEgg();
+
+                BlockType type = GetRandomBlockType();
+
+                GridPiece newPiece = SpawnPiece(
+                    col,
+                    0,
+                    isEgg,
+                    type
+                );
+
+                list.Insert(0, newPiece);
+
+                for (int row = 0; row < list.Count; row++)
+                {
+                    GridPiece piece = list[row];
+
+                    piece.Column = col;
+                    piece.RowIndex = row;
+
+                    piece.transform.position =
+                        GetWorldPosition(col, row);
+
+                    piece.SetSortingOrder(row);
+                }
+            }
+        }
+
         public Vector3 GetWorldPosition(int col, int row)
         {
-            Vector3 origin = gridOrigin != null ? gridOrigin.position : Vector3.zero;
-            return origin + new Vector3(col * cellSize, row * cellSize, 0f);
+            Vector3 origin = gridOrigin != null
+                ? gridOrigin.position
+                : Vector3.zero;
+
+            return origin + new Vector3(
+                col * cellSize,
+                row * cellSize,
+                0f
+            );
         }
 
         public GridPiece PeekTop(int col)
         {
-            var list = _stacks[col];
-            return list.Count > 0 ? list[list.Count - 1] : null;
+            List<GridPiece> list = _stacks[col];
+
+            return list.Count > 0
+                ? list[list.Count - 1]
+                : null;
         }
 
         public GridPiece PopTop(int col)
         {
-            var list = _stacks[col];
+            List<GridPiece> list = _stacks[col];
 
             if (list.Count == 0)
                 return null;
 
             GridPiece piece = list[list.Count - 1];
+
             list.RemoveAt(list.Count - 1);
 
             return piece;
@@ -113,14 +199,17 @@ namespace DinoDig
 
         public bool PushTop(int col, GridPiece piece)
         {
-            var list = _stacks[col];
+            List<GridPiece> list = _stacks[col];
 
             if (list.Count >= rowCount)
                 return false;
 
-            piece.transform.position = GetWorldPosition(col, list.Count);
+            piece.transform.position =
+                GetWorldPosition(col, list.Count);
+
             piece.Column = col;
             piece.RowIndex = list.Count;
+
             piece.SetSortingOrder(list.Count);
 
             list.Add(piece);
@@ -138,7 +227,7 @@ namespace DinoDig
             if (col < 0 || col >= columnCount)
                 return null;
 
-            var list = _stacks[col];
+            List<GridPiece> list = _stacks[col];
 
             if (row < 0 || row >= list.Count)
                 return null;
@@ -149,47 +238,22 @@ namespace DinoDig
         public void RemovePiece(GridPiece piece)
         {
             _stacks[piece.Column].Remove(piece);
+
             Destroy(piece.gameObject);
         }
 
         public void CollapseColumn(int col)
         {
-            var list = _stacks[col];
+            List<GridPiece> list = _stacks[col];
 
             for (int i = 0; i < list.Count; i++)
             {
                 list[i].RowIndex = i;
+
                 list[i].SetSortingOrder(i);
-                list[i].transform.position = GetWorldPosition(col, i);
-            }
-        }
 
-        public void SpawnNewBottomRow()
-        {
-            for (int col = 0; col < columnCount; col++)
-            {
-                List<GridPiece> list = _stacks[col];
-
-                for (int i = 0; i < list.Count; i++)
-                {
-                    list[i].RowIndex = i + 1;
-                }
-
-                BlockType type = (BlockType)Random.Range(0, blockSprites.Length);
-
-                GridPiece newPiece = SpawnPiece(col, 0, false, type);
-
-                list.Insert(0, newPiece);
-
-                for (int row = 0; row < list.Count; row++)
-                {
-                    GridPiece piece = list[row];
-
-                    piece.Column = col;
-                    piece.RowIndex = row;
-                    piece.transform.position = GetWorldPosition(col, row);
-                    piece.SetSortingOrder(row);
-                }
+                list[i].transform.position =
+                    GetWorldPosition(col, i);
             }
         }
 
@@ -197,40 +261,70 @@ namespace DinoDig
         [ContextMenu("Generate Column Click Zones")]
         private void GenerateColumnClickZones()
         {
-            Transform existing = transform.Find("ColumnClickZones");
+            Transform existing =
+                transform.Find("ColumnClickZones");
 
             if (existing != null)
                 DestroyImmediate(existing.gameObject);
 
-            var container = new GameObject("ColumnClickZones");
+            GameObject container =
+                new GameObject("ColumnClickZones");
 
-            Undo.RegisterCreatedObjectUndo(container, "Generate Column Click Zones");
-            container.transform.SetParent(transform, worldPositionStays: false);
+            Undo.RegisterCreatedObjectUndo(
+                container,
+                "Generate Column Click Zones"
+            );
+
+            container.transform.SetParent(
+                transform,
+                worldPositionStays: false
+            );
 
             float extraHeadroom = 1f;
 
             for (int col = 0; col < columnCount; col++)
             {
-                var zone = new GameObject($"Column_{col}");
+                GameObject zone =
+                    new GameObject($"Column_{col}");
 
-                zone.transform.SetParent(container.transform, worldPositionStays: false);
+                zone.transform.SetParent(
+                    container.transform,
+                    worldPositionStays: false
+                );
 
-                Vector3 bottomCenter = GetWorldPosition(col, 0);
-                float height = rowCount * cellSize + extraHeadroom;
+                Vector3 bottomCenter =
+                    GetWorldPosition(col, 0);
+
+                float height =
+                    rowCount * cellSize + extraHeadroom;
 
                 zone.transform.position =
                     bottomCenter +
-                    new Vector3(0f, height / 2f - cellSize / 2f, 0f);
+                    new Vector3(
+                        0f,
+                        height / 2f - cellSize / 2f,
+                        0f
+                    );
 
-                var collider = zone.AddComponent<BoxCollider2D>();
+                BoxCollider2D collider =
+                    zone.AddComponent<BoxCollider2D>();
+
                 collider.isTrigger = true;
-                collider.size = new Vector2(cellSize, height);
 
-                var marker = zone.AddComponent<ColumnMarker>();
-                var serializedObject = new SerializedObject(marker);
+                collider.size =
+                    new Vector2(cellSize, height);
 
-                serializedObject.FindProperty("columnIndex").intValue = col;
-                serializedObject.ApplyModifiedProperties();
+                ColumnMarker marker =
+                    zone.AddComponent<ColumnMarker>();
+
+                SerializedObject serializedMarker =
+                    new SerializedObject(marker);
+
+                serializedMarker.FindProperty(
+                    "columnIndex"
+                ).intValue = col;
+
+                serializedMarker.ApplyModifiedProperties();
             }
 
             EditorUtility.SetDirty(gameObject);
