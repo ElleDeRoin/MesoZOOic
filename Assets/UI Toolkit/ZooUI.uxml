@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(121, 161, 108, 0);">
+        <ui:Label text="Dino Name" name="DinoNameText" style="position: absolute; font-size: 52px; top: -4px; left: 309px;"/>
+        <ui:Button text="" style="width: 57px; position: absolute; top: 341px; left: 806px; height: 58px; background-image: url(&quot;project://database/Assets/Art/UI/spr_shop_button.png?fileID=2800000&amp;guid=6f8232fc8303bda4190673a39c2abfe8&amp;type=3#spr_shop_button&quot;); background-color: rgba(188, 188, 188, 0);"/>
+        <ui:Label text="$0000" name="MoneyText" style="position: absolute; font-size: 28px; top: 12px; left: 757px;"/>
+        <ui:ProgressBar value="22" title="" name="HappinessBar" style="position: absolute; top: 364px; left: 156px; width: 217px;"/>
+        <ui:Label text="Happiness" name="HappinesssText" style="position: absolute; font-size: 28px; top: 354px; left: 11px;"/>
+        <ui:ProgressBar value="22" title="" name="HungerBar" style="position: absolute; top: 364px; left: 491px; width: 217px;"/>
+        <ui:Label text="Hunger" name="HungerText" style="position: absolute; font-size: 28px; top: 355px; left: 388px;"/>
+    </ui:VisualElement>
+</ui:UXML>
