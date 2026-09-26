@@ -14,5 +14,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Nursery_Blockout.unity
     guid: ab0bc63c6fca64c468ac925830200874
+  - enabled: 1
+    path: Assets/Scenes/Herbivore_Select.unity
+    guid: 43045ff6b96284b4282cfbeb19df6405
+  - enabled: 1
+    path: Assets/Scenes/Minigame_Blockout.unity
+    guid: 5c9de115cc0f4f242affe835884515bf
+  - enabled: 1
+    path: Assets/Scenes/Zoo.unity
+    guid: 88500c1fdd42c1c4fa9ad624397756b8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
