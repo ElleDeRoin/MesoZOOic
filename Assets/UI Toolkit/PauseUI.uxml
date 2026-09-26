@@ -1,9 +1,0 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; background-color: rgb(121, 161, 108);">
-        <ui:Image style="height: 358px; width: 686px; position: absolute; top: 27px; left: 91px; background-color: rgba(255, 255, 255, 0); background-image: url(&quot;project://database/Assets/Art/UI/spr_ui_background_crop.png?fileID=2800000&amp;guid=c793e8a8942db1b4d9a68fe461133a83&amp;type=3#spr_ui_background_crop&quot;);"/>
-        <ui:Button text="" style="width: 57px; position: absolute; top: 6px; left: 5px; height: 58px; background-image: url(&quot;project://database/Assets/Art/UI/spr_close_button.png?fileID=2800000&amp;guid=7f6b504f22c5e0c499bc0d55561dbf49&amp;type=3#spr_close_button&quot;); background-color: rgba(188, 188, 188, 0);"/>
-        <ui:Button text="Main Menu" name="MenuButton" style="position: absolute; top: 255px; left: 170px; width: 176px; background-image: url(&quot;project://database/Assets/Art/UI/spr_base_button_crop.png?fileID=2800000&amp;guid=dd2b4b1d6633f1f4b9b402874aa0d5f9&amp;type=3#spr_base_button_crop&quot;); height: 72px; background-color: rgba(188, 188, 188, 0);"/>
-        <ui:Button text="Settings" name="SettingsButton" style="position: absolute; top: 255px; left: 497px; width: 176px; background-image: url(&quot;project://database/Assets/Art/UI/spr_base_button_crop.png?fileID=2800000&amp;guid=dd2b4b1d6633f1f4b9b402874aa0d5f9&amp;type=3#spr_base_button_crop&quot;); height: 68px; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(188, 188, 188, 0);"/>
-        <ui:Label text="Pause&#10;" name="Pause" style="position: absolute; top: 56px; left: 193px; height: 57px; width: 481px; font-size: 58px; -unity-text-align: upper-center;"/>
-    </ui:VisualElement>
-</ui:UXML>

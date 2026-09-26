@@ -1,8 +1,0 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; background-color: rgb(121, 161, 108);">
-        <ui:Button text="" style="width: 57px; position: absolute; top: 6px; left: 5px; height: 58px; background-image: url(&quot;project://database/Assets/Art/UI/spr_pause_button.png?fileID=2800000&amp;guid=0b1c50aef16f10649871b5b83a89fa58&amp;type=3#spr_pause_button&quot;); background-color: rgba(188, 188, 188, 0);"/>
-        <ui:Button text="Excavate" name="ExcavateButton" style="position: absolute; top: 1px; left: 76px; width: 176px; background-image: url(&quot;project://database/Assets/Art/UI/spr_base_button_crop.png?fileID=2800000&amp;guid=dd2b4b1d6633f1f4b9b402874aa0d5f9&amp;type=3#spr_base_button_crop&quot;); height: 72px; background-color: rgba(188, 188, 188, 0); font-size: 30px;"/>
-        <ui:Image style="height: 322px; position: absolute; width: 686px; background-color: rgb(213, 209, 152); top: 77px; left: 99px;"/>
-        <ui:Label text="Zoo" style="font-size: 59px; position: absolute; top: -10px; left: 379px;"/>
-    </ui:VisualElement>
-</ui:UXML>
