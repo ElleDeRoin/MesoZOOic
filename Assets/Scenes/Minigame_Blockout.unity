@@ -462,7 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DinoDig.ClawController
   holdPoint: {fileID: 1895762488}
   horizontalSpeed: 8
-  verticalSpeed: 6
+  verticalSpeed: 8
   restY: 9
   grabOffsetY: 0.5
 --- !u!212 &799628913
@@ -615,8 +615,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 79f56cb8e2c3672459bcc858b8f0e4ae, type: 3}
   startingHeightMin: 1
   startingHeightMax: 2
-  eggColumn: 3
-  eggDepthFromBottom: 0
+  eggSpawnChance: 0.03
 --- !u!4 &877054922
 Transform:
   m_ObjectHideFlags: 0
