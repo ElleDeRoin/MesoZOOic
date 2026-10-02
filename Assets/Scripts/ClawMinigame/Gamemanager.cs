@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace DinoDig
 {
+
     public enum GameState
     {
         WaitingForSource,
@@ -17,6 +18,14 @@ namespace DinoDig
 
     public class GameManager : MonoBehaviour
     {
+
+        public enum GameEndState
+        {
+            None,
+            Win,
+            Lose
+        }
+
         public static GameManager Instance { get; private set; }
 
         [SerializeField] private GridManager grid;
@@ -25,12 +34,17 @@ namespace DinoDig
 
         public GameState State { get; private set; } = GameState.WaitingForSource;
 
+        public GameEndState EndState { get; private set; } = GameEndState.None;
+
         public event System.Action<int> OnScoreChanged;
         public event System.Action OnGameOver;
         public event System.Action<int> OnEggCollected;
+        public event System.Action<GameEndState> OnGameEnd;
 
         private int _sourceColumn = -1;
         private int _score;
+        private int _eggsCollected;
+        public int EggsCollected => _eggsCollected;
 
         private void Awake()
         {
@@ -48,6 +62,7 @@ namespace DinoDig
 
                 if (top == null)
                     return;
+
 
                 if (top.IsEgg)
                 {
@@ -120,9 +135,18 @@ namespace DinoDig
                 yield return new WaitForSeconds(cascadeStepDelay);
             }
 
+
             if (CheckGameOver())
             {
                 State = GameState.GameOver;
+
+
+                EndState = _eggsCollected > 0
+                    ? GameEndState.Win
+                    : GameEndState.Lose;
+
+
+                OnGameEnd?.Invoke(EndState);
                 OnGameOver?.Invoke();
             }
             else
@@ -148,6 +172,9 @@ namespace DinoDig
         private void CollectEgg(int column, GridPiece egg)
         {
             grid.RemovePiece(egg);
+
+            _eggsCollected++;
+
             OnEggCollected?.Invoke(column);
         }
     }
