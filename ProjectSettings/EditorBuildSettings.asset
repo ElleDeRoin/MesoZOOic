@@ -23,5 +23,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Zoo.unity
     guid: 88500c1fdd42c1c4fa9ad624397756b8
+  - enabled: 1
+    path: Assets/Scenes/Carnivore_Select.unity
+    guid: 226f8cd573702d1478937f4dd4c20c78
+  - enabled: 1
+    path: Assets/Scenes/Carno_Blockout.unity
+    guid: 91e920bf236f17b4e9252f29ab488ec9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

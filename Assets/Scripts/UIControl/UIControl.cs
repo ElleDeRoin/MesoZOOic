@@ -46,4 +46,15 @@ public class UIControl : MonoBehaviour
         SceneManager.LoadScene("Herbivore_Select");
     }
 
+    public void carnoSelect()
+    {
+        SceneManager.LoadScene("Carnivore_Select");
+    }
+
+    public void carnoPen()
+    {
+        SceneManager.LoadScene("Carno_Blockout");
+    }
+    
+
 }
