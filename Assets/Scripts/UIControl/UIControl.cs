@@ -18,7 +18,7 @@ public class UIControl : MonoBehaviour
     //Button scene changers
     public void startGame() //for art prototype
     {
-        SceneManager.LoadScene("Nursery_Blockout");
+        SceneManager.LoadScene("Zoo");
     }
 
     public void homeScreen()
