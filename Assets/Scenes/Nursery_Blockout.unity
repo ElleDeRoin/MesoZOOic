@@ -2352,7 +2352,7 @@ MonoBehaviour:
   happinessDecayRate: 0.5
   hungerDecayRate: 0.75
   hungerImpactOnHappiness: 1
-  baseMoneyPerSecond: 10
+  baseMoneyPerSecond: 1
   hungerMoneyFloor: 0.7
   currentMoneyRate: 0
   onAte:
@@ -5176,8 +5176,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1628974353}
   m_HandleRect: {fileID: 1628974352}
   m_Direction: 2
-  m_Value: 1.0000015
-  m_Size: 0.9356668
+  m_Value: 0.99999684
+  m_Size: 0.9356666
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
