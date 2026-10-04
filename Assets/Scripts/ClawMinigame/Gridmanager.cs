@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace DinoDig
         [SerializeField] private GridPiece blockPrefab;
         [SerializeField] private GridPiece eggPrefab;
         [SerializeField] private Sprite[] blockSprites;
+        [SerializeField] private Color[] blockColors;
 
         [Header("Initial Fill")]
         [SerializeField] private int startingHeightMin = 1;
@@ -107,14 +109,21 @@ namespace DinoDig
             piece.Column = col;
             piece.RowIndex = row;
 
-            if (
-                !isEgg &&
-                piece.SpriteRenderer != null &&
-                blockSprites.Length > (int)type
-            )
+            if (!isEgg && piece.SpriteRenderer != null)
             {
-                piece.SpriteRenderer.sprite =
-                    blockSprites[(int)type];
+                int typeIndex = (int)type;
+
+                if (typeIndex < blockSprites.Length)
+                {
+                    piece.SpriteRenderer.sprite =
+                        blockSprites[typeIndex];
+                }
+
+                if (typeIndex < blockColors.Length)
+                {
+                    piece.SpriteRenderer.color =
+                        blockColors[typeIndex];
+                }
             }
 
             piece.SetSortingOrder(row);

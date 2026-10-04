@@ -1841,7 +1841,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 149998691}
         m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
-        m_MethodName: herbSelect
+        m_MethodName: carnoSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

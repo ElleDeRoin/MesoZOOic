@@ -899,11 +899,17 @@ MonoBehaviour:
   blockPrefab: {fileID: 3199410399426242744, guid: 434f484e30ddda74c8679cb973782274, type: 3}
   eggPrefab: {fileID: 4175937476119238451, guid: 5aaee9d1ce7ff4445b04beb76ad421e2, type: 3}
   blockSprites:
-  - {fileID: 21300000, guid: c07fe7e2380d8ea429b634d19ebc33e3, type: 3}
-  - {fileID: 21300000, guid: 8d61854aa80ba9242a4e0559568294d6, type: 3}
-  - {fileID: 21300000, guid: fcaae1dd36b28b4419c0009f7bbc7843, type: 3}
-  - {fileID: 21300000, guid: c733de027eecbe3468ec7cb763a5a486, type: 3}
-  - {fileID: 21300000, guid: 79f56cb8e2c3672459bcc858b8f0e4ae, type: 3}
+  - {fileID: 21300000, guid: ff452271d50807240889f25783237eb9, type: 3}
+  - {fileID: 21300000, guid: 932293bdd9325934d91e9861addd5ed5, type: 3}
+  - {fileID: 21300000, guid: 5465a7bd6a1299f45b55b7385c14f6b0, type: 3}
+  - {fileID: 21300000, guid: f3c9824f5e8bd284d95396da6a035f49, type: 3}
+  - {fileID: 21300000, guid: 034077456e8c2cc46a3ab9df1f340dcb, type: 3}
+  blockColors:
+  - {r: 0.60784316, g: 0.20000002, b: 0.19607845, a: 1}
+  - {r: 0.909804, g: 0.64705884, b: 0.18823531, a: 1}
+  - {r: 0.49803925, g: 0.6, b: 0.3372549, a: 1}
+  - {r: 0.30980393, g: 0.5176471, b: 0.47450984, a: 1}
+  - {r: 0.82745105, g: 0.48627454, b: 0.42352945, a: 1}
   startingHeightMin: 1
   startingHeightMax: 2
   eggSpawnChance: 0.03
@@ -1217,7 +1223,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 1fbe2eaa2b6e343448697a8d745f5435, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
