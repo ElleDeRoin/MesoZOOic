@@ -2,6 +2,7 @@
 
 # Install Instructions
 Download Mesozooic project files from GitHub at https://github.com/ElleDeRoin/MesoZOOic
+
 From Canvas:
 1. Download ZIP
 2. Unzip file
@@ -12,6 +13,8 @@ From Canvas:
 COMPUTER: Mouse Left Click for navigation and minigame playing
 ANDROID: Tap the screen for navication and minigame playing
 
+Minigame Instructions:
+Tap/Click the rock you want to pick up and tap/click the row where you want to place it. When an egg is unconvered tap/click that to collected.
 # Features Present
 - Excavation Minigame
 - Decor menu and adding decor to scene
