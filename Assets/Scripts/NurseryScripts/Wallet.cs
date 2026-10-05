@@ -1,12 +1,10 @@
 using System;
-using TMPro;
 using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
     public static Wallet Instance { get; private set; }
 
-    [SerializeField] private TMP_Text moneyText;
     [SerializeField] private float startingMoney = 0f;
 
     public float Money { get; private set; }
@@ -14,14 +12,23 @@ public class Wallet : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         Money = startingMoney;
-        Refresh();
+        Changed?.Invoke(Money);
     }
 
     private void OnDestroy()
     {
-        if (Instance == this) Instance = null;
+        if (Instance == this)
+            Instance = null;
     }
 
     public bool CanAfford(float amount) => Money >= amount;
@@ -29,21 +36,16 @@ public class Wallet : MonoBehaviour
     public void Add(float amount)
     {
         Money += amount;
-        Refresh();
+        Changed?.Invoke(Money);
     }
 
     public bool TrySpend(float amount)
     {
         if (Money < amount) return false;
-        Money -= amount;
-        Refresh();
-        return true;
-    }
 
-    private void Refresh()
-    {
-        if (moneyText != null)
-            moneyText.text = "$" + Mathf.FloorToInt(Money).ToString("D4");
+        Money -= amount;
         Changed?.Invoke(Money);
+
+        return true;
     }
 }

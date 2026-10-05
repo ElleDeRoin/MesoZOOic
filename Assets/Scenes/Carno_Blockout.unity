@@ -1080,6 +1080,7 @@ GameObject:
   - component: {fileID: 290079500}
   - component: {fileID: 290079502}
   - component: {fileID: 290079501}
+  - component: {fileID: 290079503}
   m_Layer: 5
   m_Name: MoneyText
   m_TagString: Untagged
@@ -1206,6 +1207,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290079499}
   m_CullTransparentMesh: 1
+--- !u!114 &290079503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290079499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c0b981697e0a14aa355b4e88fc40ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyDisplay
+  moneyText: {fileID: 290079501}
 --- !u!1 &291342881
 GameObject:
   m_ObjectHideFlags: 0
@@ -6340,7 +6354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24f6713fdcf3754d9c1d61d61f2355b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wallet
-  moneyText: {fileID: 290079501}
   startingMoney: 0
 --- !u!4 &1573542923
 Transform:
