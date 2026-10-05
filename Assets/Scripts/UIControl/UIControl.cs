@@ -56,5 +56,9 @@ public class UIControl : MonoBehaviour
         SceneManager.LoadScene("Carno_Blockout");
     }
     
+    public void gachaScreen()
+    {
+        SceneManager.LoadScene("Gacha_Screen");
+    }
 
 }
