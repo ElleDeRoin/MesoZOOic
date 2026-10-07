@@ -14,7 +14,6 @@ namespace DinoDig
             {
                 GameManager.Instance.OnEggCollected += UpdateEggCounter;
 
-                // Initialize the counter
                 UpdateEggCounter(0);
             }
         }

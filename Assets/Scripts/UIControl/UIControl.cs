@@ -61,4 +61,14 @@ public class UIControl : MonoBehaviour
         SceneManager.LoadScene("Gacha_Screen");
     }
 
+    public void gachaSelect()
+    {
+        SceneManager.LoadScene("Minigame_Select");
+    }
+
+    public void paidGacha()
+    {
+        SceneManager.LoadScene("Minigame_Paid");
+    }
+
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5706727684027755310}
   - component: {fileID: 4175937476119238451}
   m_Layer: 0
-  m_Name: ReplaceEgg
+  m_Name: Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
