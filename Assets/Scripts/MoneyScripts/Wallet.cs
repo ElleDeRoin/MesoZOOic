@@ -6,9 +6,13 @@ public class Wallet : MonoBehaviour
     public static Wallet Instance { get; private set; }
 
     [SerializeField] private float startingMoney = 0f;
+    [SerializeField] private int startingAmber = 0;
 
     public float Money { get; private set; }
+    public int Amber { get; private set; }
+
     public event Action<float> Changed;
+    public event Action<int> AmberChanged;
 
     private void Awake()
     {
@@ -22,7 +26,9 @@ public class Wallet : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         Money = startingMoney;
+        Amber = startingAmber;
         Changed?.Invoke(Money);
+        AmberChanged?.Invoke(Amber);
     }
 
     private void OnDestroy()
@@ -45,7 +51,23 @@ public class Wallet : MonoBehaviour
 
         Money -= amount;
         Changed?.Invoke(Money);
+        return true;
+    }
 
+    public bool CanAffordAmber(int amount) => Amber >= amount;
+
+    public void AddAmber(int amount)
+    {
+        Amber += amount;
+        AmberChanged?.Invoke(Amber);
+    }
+
+    public bool TrySpendAmber(int amount)
+    {
+        if (Amber < amount) return false;
+
+        Amber -= amount;
+        AmberChanged?.Invoke(Amber);
         return true;
     }
 }

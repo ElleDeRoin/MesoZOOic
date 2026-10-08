@@ -1,0 +1,1 @@
+public enum CurrencyType { Money, Amber }
