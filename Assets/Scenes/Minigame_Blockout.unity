@@ -505,8 +505,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinoDig.ClawController
   holdPoint: {fileID: 1895762488}
-  horizontalSpeed: 8
-  verticalSpeed: 8
+  horizontalSpeed: 14
+  verticalSpeed: 14
   restY: 9
   grabOffsetY: 0.5
 --- !u!212 &799628913
