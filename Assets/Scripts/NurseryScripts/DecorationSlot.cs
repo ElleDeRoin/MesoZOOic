@@ -29,6 +29,15 @@ public class DecorationSlot : MonoBehaviour
     }
     public bool IsEmpty => Current == null;
 
+    private string StoreKey
+    {
+        get
+        {
+            string dinoId = GameSession.SelectedDino != null ? GameSession.SelectedDino.instanceId : "none";
+            return dinoId + "/" + name;
+        }
+    }
+
     private void Awake()
     {
         col = GetComponent<Collider>();
@@ -39,9 +48,22 @@ public class DecorationSlot : MonoBehaviour
     private void OnEnable() => All.Add(this);
     private void OnDisable() => All.Remove(this);
 
+    private void Start()
+    {
+        if (DecorationStore.TryGet(StoreKey, out var saved))
+            PlaceInternal(saved);
+    }
+
     public bool CanAccept(DecorationData data) => data != null && IsEmpty && data.size == size;
 
     public bool Place(DecorationData data)
+    {
+        if (!PlaceInternal(data)) return false;
+        DecorationStore.Set(StoreKey, data);
+        return true;
+    }
+
+    private bool PlaceInternal(DecorationData data)
     {
         if (!CanAccept(data)) return false;
 
@@ -60,11 +82,12 @@ public class DecorationSlot : MonoBehaviour
         if (instance != null) Destroy(instance);
         instance = null;
         Current = null;
+        DecorationStore.Remove(StoreKey);
     }
 
     public void SetMarkerVisible(bool visible)
     {
-        if (marker != null) marker.enabled = visible; 
+        if (marker != null) marker.enabled = visible;
     }
 
     public static void ShowMarkersFor(DecorationData data)

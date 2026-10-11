@@ -29,7 +29,6 @@ public class DinoState
         float hungerFactor = Mathf.Lerp(hungerMoneyFloor, 1f, hunger / 100f);
         currentMoneyRate = baseMoneyPerSecond * happinessFactor * hungerFactor;
 
-        if (Wallet.Instance != null)
-            Wallet.Instance.Add(currentMoneyRate * dt);
+        PlayerMoney.Add(currentMoneyRate * dt);
     }
 }

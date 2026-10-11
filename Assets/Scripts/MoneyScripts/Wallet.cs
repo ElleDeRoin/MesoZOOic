@@ -8,66 +8,49 @@ public class Wallet : MonoBehaviour
     [SerializeField] private float startingMoney = 100f;
     [SerializeField] private int startingAmber = 0;
 
-    public float Money { get; private set; }
-    public int Amber { get; private set; }
+    public float Money => PlayerMoney.Balance;
+    public int Amber => PlayerMoney.Amber;
 
     public event Action<float> Changed;
     public event Action<int> AmberChanged;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        PlayerMoney.EnsureInitialized(startingMoney, startingAmber);
+    }
 
-        Money = startingMoney;
-        Amber = startingAmber;
+    private void OnEnable()
+    {
+        PlayerMoney.OnChanged += HandleMoneyChanged;
+        PlayerMoney.OnAmberChanged += HandleAmberChanged;
+    }
+
+    private void OnDisable()
+    {
+        PlayerMoney.OnChanged -= HandleMoneyChanged;
+        PlayerMoney.OnAmberChanged -= HandleAmberChanged;
+    }
+
+    private void Start()
+    {
         Changed?.Invoke(Money);
         AmberChanged?.Invoke(Amber);
     }
 
     private void OnDestroy()
     {
-        if (Instance == this)
-            Instance = null;
+        if (Instance == this) Instance = null;
     }
+
+    private void HandleMoneyChanged(float value) => Changed?.Invoke(value);
+    private void HandleAmberChanged(int value) => AmberChanged?.Invoke(value);
 
     public bool CanAfford(float amount) => Money >= amount;
-
-    public void Add(float amount)
-    {
-        Money += amount;
-        Changed?.Invoke(Money);
-    }
-
-    public bool TrySpend(float amount)
-    {
-        if (Money < amount) return false;
-
-        Money -= amount;
-        Changed?.Invoke(Money);
-        return true;
-    }
+    public void Add(float amount) => PlayerMoney.Add(amount);
+    public bool TrySpend(float amount) => PlayerMoney.TrySpend(amount);
 
     public bool CanAffordAmber(int amount) => Amber >= amount;
-
-    public void AddAmber(int amount)
-    {
-        Amber += amount;
-        AmberChanged?.Invoke(Amber);
-    }
-
-    public bool TrySpendAmber(int amount)
-    {
-        if (Amber < amount) return false;
-
-        Amber -= amount;
-        AmberChanged?.Invoke(Amber);
-        return true;
-    }
+    public void AddAmber(int amount) => PlayerMoney.AddAmber(amount);
+    public bool TrySpendAmber(int amount) => PlayerMoney.TrySpendAmber(amount);
 }
