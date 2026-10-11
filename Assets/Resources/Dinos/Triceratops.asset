@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4736a43b05ee5b94a9b905b08defd7e0, type: 3}
+  m_Name: Triceratops
+  m_EditorClassIdentifier: Assembly-CSharp::DinoData
+  id: triceratops
+  displayName: Triceratops
+  diet: 0
+  icon: {fileID: 21300000, guid: b8ca090ae32407b47a36d297c8f205bf, type: 3}
+  penPrefab: {fileID: 4936181797622902649, guid: 1639c4a9da0eca24abc936e40ed134ec, type: 3}
+  happinessDecayRate: 0.5
+  hungerDecayRate: 0.75
+  hungerImpactOnHappiness: 1
+  baseMoneyPerSecond: 1
+  hungerMoneyFloor: 0.7

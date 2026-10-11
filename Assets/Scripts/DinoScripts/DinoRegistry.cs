@@ -37,4 +37,11 @@ public class DinoRegistry : MonoBehaviour
         foreach (var state in states.Values)
             state.Tick(dt);
     }
+
+    public void Register(string id, DinoState state)
+    {
+        states[id] = state;
+    }
+
+    public bool TryGet(string id, out DinoState state) => states.TryGetValue(id, out state);
 }
