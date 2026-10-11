@@ -5,7 +5,7 @@ public class Wallet : MonoBehaviour
 {
     public static Wallet Instance { get; private set; }
 
-    [SerializeField] private float startingMoney = 0f;
+    [SerializeField] private float startingMoney = 100f;
     [SerializeField] private int startingAmber = 0;
 
     public float Money { get; private set; }

@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24f6713fdcf3754d9c1d61d61f2355b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wallet
-  startingMoney: 0
+  startingMoney: 100
   startingAmber: 0
 --- !u!4 &243443271
 Transform:
