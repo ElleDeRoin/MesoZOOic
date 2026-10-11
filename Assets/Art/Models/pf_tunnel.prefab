@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 67df7da2ebbf07b46835bca33aa72b60, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.43596184
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67df7da2ebbf07b46835bca33aa72b60, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,19 +18,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67df7da2ebbf07b46835bca33aa72b60, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.52926147
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67df7da2ebbf07b46835bca33aa72b60, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9280512
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67df7da2ebbf07b46835bca33aa72b60, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67df7da2ebbf07b46835bca33aa72b60, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.37245286
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67df7da2ebbf07b46835bca33aa72b60, type: 3}
       propertyPath: m_LocalRotation.z
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67df7da2ebbf07b46835bca33aa72b60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 43.734
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67df7da2ebbf07b46835bca33aa72b60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 67df7da2ebbf07b46835bca33aa72b60, type: 3}
       propertyPath: m_Name
-      value: tunnel_low
+      value: pf_tunnel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
