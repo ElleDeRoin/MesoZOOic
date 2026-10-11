@@ -5,6 +5,16 @@ public class PenManager : MonoBehaviour
     public Transform penRoot;
     private GameObject currentPen;
 
+    private void Start()
+    {
+        if (GameSession.SelectedDino == null)
+        {
+            Debug.LogWarning("No dino selected");
+            return;
+        }
+        ShowPen(GameSession.SelectedDino);
+    }
+
     public void ShowPen(OwnedDino owned)
     {
         if (currentPen != null) Destroy(currentPen);
@@ -14,10 +24,5 @@ public class PenManager : MonoBehaviour
 
         var stats = currentPen.GetComponentInChildren<DinoStats>();
         stats.Initialize(owned.instanceId, data);
-    }
-
-    public void ClosePen()
-    {
-        if (currentPen != null) Destroy(currentPen);
     }
 }
