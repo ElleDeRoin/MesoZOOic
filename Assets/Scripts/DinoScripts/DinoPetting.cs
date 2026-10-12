@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.VFX;
+
 
 public class DinoPetting : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class DinoPetting : MonoBehaviour
     [Header("Animation")]
     public Animator animator;
     public float cuddleLingerTime = 0.5f;
+    
 
     private static readonly int IsPettingHash = Animator.StringToHash("IsPetting");
 
@@ -19,6 +22,7 @@ public class DinoPetting : MonoBehaviour
     private float cooldownTimer;
     private float cuddleTimer;
     private bool isPetting;
+    [SerializeField] ParticleSystem heartVFX = null;
 
     void Awake()
     {
@@ -96,6 +100,7 @@ public class DinoPetting : MonoBehaviour
 
         cuddleTimer = cuddleLingerTime;
         SetCuddleAnimation(true);
+        heartVFX.Play();
 
         if (dinoStats == null)
             return;
