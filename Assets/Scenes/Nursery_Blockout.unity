@@ -2356,19 +2356,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1bd426e1507e24aacad0daef0e007f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinoStats
-  dinoId: e97ffb51-6f1b-440b-a0e9-e62d4c5114dd
   happinessSlider: {fileID: 828013287}
   hungerSlider: {fileID: 782560007}
   diet: 0
   fullThreshold: 99
   wrongFoodHappinessPenalty: 5
-  initialHappiness: 100
-  initialHunger: 100
-  happinessDecayRate: 0.5
-  hungerDecayRate: 0.75
-  hungerImpactOnHappiness: 1
-  baseMoneyPerSecond: 1
-  hungerMoneyFloor: 0.7
   onAte:
     m_PersistentCalls:
       m_Calls: []
@@ -2434,6 +2426,9 @@ MonoBehaviour:
   happinessPerRub: 10
   movementRequired: 30
   petCooldown: 2
+  animator: {fileID: 0}
+  cuddleLingerTime: 0.5
+  heartVFX: {fileID: 0}
 --- !u!1 &716322675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,6 +2714,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6374424974970785463, guid: 712505dc946573946be804fc637d177d, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -6948270692460269938, guid: 9427f9ec126b3d545a1d69852aa81706, type: 3}
     - target: {fileID: -8679921383154817045, guid: 04080e2a723b8684bbd9e3516d3bc474, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.028631976
@@ -2767,10 +2766,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 6374424974970785463, guid: 712505dc946573946be804fc637d177d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -6948270692460269938, guid: 9427f9ec126b3d545a1d69852aa81706, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
