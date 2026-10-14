@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.VFX;
+
 
 public class DinoPetting : MonoBehaviour
 {
@@ -9,13 +11,35 @@ public class DinoPetting : MonoBehaviour
     public float movementRequired = 30f;
     public float petCooldown = 0.1f;
 
+    [Header("Animation")]
+    public Animator animator;
+    public float cuddleLingerTime = 0.5f;
+    
+
+    private static readonly int IsPettingHash = Animator.StringToHash("IsPetting");
+
     private Vector2 lastTouchPosition;
     private float cooldownTimer;
+    private float cuddleTimer;
     private bool isPetting;
+    [SerializeField] ParticleSystem heartVFX = null;
+
+    void Awake()
+    {
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
+    }
 
     void Update()
     {
         cooldownTimer -= Time.deltaTime;
+
+        if (cuddleTimer > 0f)
+        {
+            cuddleTimer -= Time.deltaTime;
+            if (cuddleTimer <= 0f)
+                SetCuddleAnimation(false);
+        }
 
         if (Input.touchCount == 0)
         {
@@ -73,10 +97,20 @@ public class DinoPetting : MonoBehaviour
     private void PetDino()
     {
         Debug.Log("Petting");
-        if (dinoStats == null)
 
+        cuddleTimer = cuddleLingerTime;
+        SetCuddleAnimation(true);
+        heartVFX.Play();
+
+        if (dinoStats == null)
             return;
 
         dinoStats.Play(happinessPerRub);
+    }
+
+    private void SetCuddleAnimation(bool value)
+    {
+        if (animator != null)
+            animator.SetBool(IsPettingHash, value);
     }
 }
