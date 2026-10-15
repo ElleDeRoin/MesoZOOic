@@ -2274,6 +2274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridFree
       objectReference: {fileID: 0}
+    - target: {fileID: 9139169318800852991, guid: d46c7338dc935f848bb9969d6e96d172, type: 3}
+      propertyPath: matchDestroyEffect
+      value: 
+      objectReference: {fileID: 4899516781778571948, guid: a07e8b431b57ea24489a5edd10571aee, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

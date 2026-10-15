@@ -21,6 +21,7 @@ namespace DinoDig
         [SerializeField] private GridPiece eggPrefab;
         [SerializeField] private Sprite[] blockSprites;
         [SerializeField] private Color[] blockColors;
+        [SerializeField] private ParticleSystem matchDestroyEffect;
 
         [Header("Initial Fill")]
         [SerializeField] private int startingHeightMin = 1;
@@ -244,12 +245,48 @@ namespace DinoDig
             return list[row];
         }
 
+
+
         public void RemovePiece(GridPiece piece)
         {
-            _stacks[piece.Column].Remove(piece);
+            if (piece == null)
+                return;
 
+            Vector3 destroyPosition = piece.transform.position;
+
+            if (matchDestroyEffect != null)
+            {
+                ParticleSystem effect = Instantiate(
+                    matchDestroyEffect,
+                    destroyPosition,
+                    Quaternion.identity
+                );
+
+                effect.transform.position = new Vector3(
+                    destroyPosition.x,
+                    destroyPosition.y,
+                    destroyPosition.z - 1f
+                );
+                ParticleSystemRenderer psRenderer =
+                    effect.GetComponent<ParticleSystemRenderer>();
+
+                if (psRenderer != null)
+                {
+                    psRenderer.sortingOrder = 100;
+                }
+
+                var main = effect.main;
+                main.simulationSpace = ParticleSystemSimulationSpace.World;
+                main.stopAction = ParticleSystemStopAction.None;
+
+                effect.Play();
+                Destroy(effect.gameObject, 1f);
+            }
+
+            _stacks[piece.Column].Remove(piece);
             Destroy(piece.gameObject);
         }
+
 
         public void CollapseColumn(int col)
         {
