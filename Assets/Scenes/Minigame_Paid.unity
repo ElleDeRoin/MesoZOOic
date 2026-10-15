@@ -1007,6 +1007,7 @@ MonoBehaviour:
   - {r: 0.49803925, g: 0.6, b: 0.3372549, a: 1}
   - {r: 0.30980393, g: 0.5176471, b: 0.47450984, a: 1}
   - {r: 0.82745105, g: 0.48627454, b: 0.42352945, a: 1}
+  matchDestroyEffect: {fileID: 4899516781778571948, guid: a07e8b431b57ea24489a5edd10571aee, type: 3}
   startingHeightMin: 1
   startingHeightMax: 2
   eggSpawnChance: 0.06
