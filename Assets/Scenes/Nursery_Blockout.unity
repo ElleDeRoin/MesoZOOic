@@ -2714,10 +2714,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6374424974970785463, guid: 712505dc946573946be804fc637d177d, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -6948270692460269938, guid: 9427f9ec126b3d545a1d69852aa81706, type: 3}
     - target: {fileID: -8679921383154817045, guid: 04080e2a723b8684bbd9e3516d3bc474, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.028631976
@@ -2766,6 +2762,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6374424974970785463, guid: 712505dc946573946be804fc637d177d, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -6948270692460269938, guid: 9427f9ec126b3d545a1d69852aa81706, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
