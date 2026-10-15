@@ -2356,19 +2356,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1bd426e1507e24aacad0daef0e007f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinoStats
-  dinoId: e97ffb51-6f1b-440b-a0e9-e62d4c5114dd
   happinessSlider: {fileID: 828013287}
   hungerSlider: {fileID: 782560007}
   diet: 0
   fullThreshold: 99
   wrongFoodHappinessPenalty: 5
-  initialHappiness: 100
-  initialHunger: 100
-  happinessDecayRate: 0.5
-  hungerDecayRate: 0.75
-  hungerImpactOnHappiness: 1
-  baseMoneyPerSecond: 1
-  hungerMoneyFloor: 0.7
   onAte:
     m_PersistentCalls:
       m_Calls: []
@@ -2434,6 +2426,9 @@ MonoBehaviour:
   happinessPerRub: 10
   movementRequired: 30
   petCooldown: 2
+  animator: {fileID: 0}
+  cuddleLingerTime: 0.5
+  heartVFX: {fileID: 0}
 --- !u!1 &716322675
 GameObject:
   m_ObjectHideFlags: 0
@@ -4400,63 +4395,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048255887}
   m_CullTransparentMesh: 1
---- !u!1001 &1060445034
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 538560305863381961, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.37412
-      objectReference: {fileID: 0}
-    - target: {fileID: 538560305863381961, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.664
-      objectReference: {fileID: 0}
-    - target: {fileID: 538560305863381961, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.8180585
-      objectReference: {fileID: 0}
-    - target: {fileID: 538560305863381961, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.0925413
-      objectReference: {fileID: 0}
-    - target: {fileID: 538560305863381961, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 538560305863381961, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9957089
-      objectReference: {fileID: 0}
-    - target: {fileID: 538560305863381961, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 538560305863381961, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 538560305863381961, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 169.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 538560305863381961, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 878915588560030067, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
-      propertyPath: m_Name
-      value: pf_tunnel
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 81895bb4b09bd414ab3fb3741220ae59, type: 3}
 --- !u!1 &1066790461
 GameObject:
   m_ObjectHideFlags: 0
@@ -9225,5 +9163,4 @@ SceneRoots:
   - {fileID: 3268110522926811910}
   - {fileID: 2134725368}
   - {fileID: 7222604523679062599}
-  - {fileID: 1060445034}
   - {fileID: 1877176457633641504}
