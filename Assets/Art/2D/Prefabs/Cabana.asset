@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cabana
   m_EditorClassIdentifier: Assembly-CSharp::DecorationData
   displayName: Cabana
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1f67cc170a87d554c8aa7436d37d3aaa, type: 3}
   prefab: {fileID: 76330047085553195, guid: 27ad39060e763bc4cb673c1a51daced8, type: 3}
   size: 1
   price: 75
