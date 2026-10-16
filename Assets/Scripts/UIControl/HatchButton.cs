@@ -25,6 +25,6 @@ public class HatchButton : MonoBehaviour
         if (eggs <= 0) return;
 
         hatched = true;
-        EggHatcher.Hatch(eggs);
+        EggHatcher.Hatch(eggs, GameManager.Instance.LastEggsWerePaid);
     }
 }

@@ -31,6 +31,7 @@ namespace DinoDig
         [SerializeField] private GridManager grid;
         [SerializeField] private ClawController claw;
         [SerializeField] private float cascadeStepDelay = 0.15f;
+        public bool LastEggsWerePaid { get; set; }
 
         public GameState State { get; private set; } = GameState.WaitingForSource;
 
