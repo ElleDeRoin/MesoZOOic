@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: Assembly-CSharp::FoodData
   displayName: Fish
-  icon: {fileID: 21300000, guid: fd058b21a3dbe6147b90ceacb040d37c, type: 3}
+  icon: {fileID: 21300000, guid: d83274ca5e7d4314ba612674ac8c578d, type: 3}
   type: 1
   hungerRestored: 40
   happinessBonus: 0
