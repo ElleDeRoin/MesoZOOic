@@ -73,8 +73,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 97.35175, y: 10.7}
-  m_SizeDelta: {x: 188.0965, y: 41.0588}
+  m_AnchoredPosition: {x: 133.3, y: 18.4}
+  m_SizeDelta: {x: 131.4359, y: 50.5756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1649258679829207862
 MonoBehaviour:
@@ -536,8 +536,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00037956, y: -0.00011063}
-  m_SizeDelta: {x: 188.1, y: 20.529}
+  m_AnchoredPosition: {x: -31.551804, y: -0.00009536743}
+  m_SizeDelta: {x: 205.0579, y: 69.6147}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5622660165082754388
 CanvasRenderer:
@@ -567,8 +567,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5cb448c65928d8549b0b4c9f03d743ee, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a0b19a8019fabe043b4c2c54a8c979bf, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -905,14 +905,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.53396225, b: 0.69101226, a: 1}
+  m_Color: {r: 1, g: 0.5113207, b: 0.6792697, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4759ef3989711d4499b00a52b0e94330, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e4bbe05ad8803f4899c1d71acb09fd5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2670,7 +2670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6666667, g: 0.18431373, b: 0.08627451, a: 1}
+  m_Color: {r: 0.5529412, g: 0.2784314, b: 0.2392157, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2831,7 +2831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.39999962}
+  m_AnchoredPosition: {x: 0, y: -0.40000153}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3310733524758373230
@@ -4634,6 +4634,9 @@ MonoBehaviour:
   marker: {fileID: 8084743230603909185}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &4570281725876144300
 GameObject:
   m_ObjectHideFlags: 0
@@ -4872,6 +4875,9 @@ MonoBehaviour:
   marker: {fileID: 4353137474533908229}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &4736220709954361401
 GameObject:
   m_ObjectHideFlags: 0
@@ -5310,6 +5316,9 @@ MonoBehaviour:
   marker: {fileID: 8750974529931227054}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &4859525593850393113
 GameObject:
   m_ObjectHideFlags: 0
@@ -6933,7 +6942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4759ef3989711d4499b00a52b0e94330, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e4bbe05ad8803f4899c1d71acb09fd5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7474,8 +7483,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 138.4, y: 10.7}
-  m_SizeDelta: {x: 188.0965, y: 41.0588}
+  m_AnchoredPosition: {x: 171.7, y: 15.4584}
+  m_SizeDelta: {x: 131.4359, y: 50.5756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1615188243180295831
 MonoBehaviour:
@@ -7809,7 +7818,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 24, y: -178}
+  m_AnchoredPosition: {x: 17.7, y: -174.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &790836277919552387
@@ -8222,6 +8231,9 @@ MonoBehaviour:
   marker: {fileID: 6967980391794744236}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &6754945783481287382
 GameObject:
   m_ObjectHideFlags: 0
@@ -8393,8 +8405,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.3, y: -0.1}
-  m_SizeDelta: {x: 188.1, y: 20.529}
+  m_AnchoredPosition: {x: -32.184494, y: 1.3415928}
+  m_SizeDelta: {x: 205.0579, y: 69.6147}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4011553593114780916
 CanvasRenderer:
@@ -8424,8 +8436,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5cb448c65928d8549b0b4c9f03d743ee, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c67db85d2c3511d408901b320fb4b699, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9705,6 +9717,9 @@ MonoBehaviour:
   marker: {fileID: 1661082206833344396}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &7661463094876974967
 GameObject:
   m_ObjectHideFlags: 0
@@ -9834,6 +9849,9 @@ MonoBehaviour:
   marker: {fileID: 3918616779483764533}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &7718882291433569087
 GameObject:
   m_ObjectHideFlags: 0
@@ -10365,6 +10383,9 @@ MonoBehaviour:
   marker: {fileID: 8268076071106511566}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &8542870157156250694
 GameObject:
   m_ObjectHideFlags: 0
@@ -10892,7 +10913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6666667, g: 0.18431373, b: 0.08627451, a: 1}
+  m_Color: {r: 0.5529412, g: 0.2784314, b: 0.2392157, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11303,6 +11324,9 @@ MonoBehaviour:
   marker: {fileID: 2260748117557828729}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &8967038465726017064
 GameObject:
   m_ObjectHideFlags: 0
