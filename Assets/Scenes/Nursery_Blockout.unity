@@ -1711,6 +1711,7 @@ MonoBehaviour:
   food: {fileID: 11400000, guid: e1021415ce847084d89b547f620988af, type: 2}
   priceLabel: {fileID: 0}
   unaffordableTint: {r: 1, g: 1, b: 1, a: 0.4}
+  preferenceBadge: {fileID: 0}
 --- !u!1 &559618312
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,6 +2366,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRejectedFood:
+    m_PersistentCalls:
+      m_Calls: []
+  onLovedFood:
+    m_PersistentCalls:
+      m_Calls: []
+  onDislikedFood:
+    m_PersistentCalls:
+      m_Calls: []
+  onDecorationTick:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &692645398
@@ -3075,6 +3085,9 @@ MonoBehaviour:
   marker: {fileID: 891022238}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &901240152
 GameObject:
   m_ObjectHideFlags: 0
@@ -3963,6 +3976,7 @@ MonoBehaviour:
   food: {fileID: 11400000, guid: 952205927500e8e4ab36da9714f4ff67, type: 2}
   priceLabel: {fileID: 0}
   unaffordableTint: {r: 1, g: 1, b: 1, a: 0.4}
+  preferenceBadge: {fileID: 0}
 --- !u!1 &999203308
 GameObject:
   m_ObjectHideFlags: 0
@@ -4183,6 +4197,7 @@ MonoBehaviour:
   nameLabel: {fileID: 0}
   priceLabel: {fileID: 0}
   unaffordableTint: {r: 1, g: 1, b: 1, a: 0.4}
+  preferenceBadge: {fileID: 0}
 --- !u!1 &1045434100
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,6 +4686,9 @@ MonoBehaviour:
   marker: {fileID: 1218986564}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &1220982419
 GameObject:
   m_ObjectHideFlags: 0
@@ -5017,6 +5035,9 @@ MonoBehaviour:
   marker: {fileID: 1265294752}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1001 &1293283166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5377,6 +5398,9 @@ MonoBehaviour:
   marker: {fileID: 1472657861}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &1505320425
 GameObject:
   m_ObjectHideFlags: 0
@@ -5638,6 +5662,9 @@ MonoBehaviour:
   marker: {fileID: 1521895017}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &1568021291
 GameObject:
   m_ObjectHideFlags: 0
@@ -5767,6 +5794,9 @@ MonoBehaviour:
   marker: {fileID: 1568021293}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &1573542921
 GameObject:
   m_ObjectHideFlags: 0
@@ -6626,6 +6656,9 @@ MonoBehaviour:
   marker: {fileID: 1785824256}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &1810578777
 GameObject:
   m_ObjectHideFlags: 0
@@ -7628,6 +7661,9 @@ MonoBehaviour:
   marker: {fileID: 1960070726}
   spawnPoint: {fileID: 0}
   inheritRotation: 1
+  minTickInterval: 3
+  maxTickInterval: 10
+  chancePerHappiness: 2
 --- !u!1 &1964630182
 GameObject:
   m_ObjectHideFlags: 0
@@ -8282,6 +8318,7 @@ MonoBehaviour:
   nameLabel: {fileID: 0}
   priceLabel: {fileID: 0}
   unaffordableTint: {r: 1, g: 1, b: 1, a: 0.4}
+  preferenceBadge: {fileID: 0}
 --- !u!1 &2112310701
 GameObject:
   m_ObjectHideFlags: 0
@@ -9137,6 +9174,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5df1a413e09a1349924610fb281d722, type: 3}
+--- !u!1001 &8323574277528534262
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3785713491463686455, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.85974
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785713491463686455, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785713491463686455, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.37027
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785713491463686455, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785713491463686455, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785713491463686455, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785713491463686455, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785713491463686455, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785713491463686455, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785713491463686455, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795278736629355940, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+      propertyPath: m_Name
+      value: MinigameRocksVFX
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -9164,3 +9258,4 @@ SceneRoots:
   - {fileID: 2134725368}
   - {fileID: 7222604523679062599}
   - {fileID: 1877176457633641504}
+  - {fileID: 8323574277528534262}

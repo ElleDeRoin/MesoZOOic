@@ -2106,6 +2106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577ffe8ac5ba25d4b9d49d19184f07db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggTypeMarker
+  paidMinigame: 0
 --- !u!4 &2016951819
 Transform:
   m_ObjectHideFlags: 0
@@ -2321,7 +2322,7 @@ PrefabInstance:
     - target: {fileID: 9139169318800852991, guid: d46c7338dc935f848bb9969d6e96d172, type: 3}
       propertyPath: matchDestroyEffect
       value: 
-      objectReference: {fileID: 4899516781778571948, guid: a07e8b431b57ea24489a5edd10571aee, type: 3}
+      objectReference: {fileID: 5050804220206302247, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
