@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public enum Preference { Neutral, Favorite, Disliked }
 
@@ -32,25 +32,8 @@ public class DinoData : ScriptableObject
     public List<DecorationData> favoriteDecorations = new List<DecorationData>();
     public List<DecorationData> dislikedDecorations = new List<DecorationData>();
     public float favoriteDecorationMultiplier = 2f;
-
-    [Tooltip("Y'all can set this to a number below 1 for reduced bennefit and to a negative number if you want it to actively take away happiness")]
+   [Tooltip("Y'all can set this to a number below 1 for reduced bennefit and to a negative number if you want it to actively take away happiness")]
     public float dislikedDecorationMultiplier = 0.25f;
-
-    public Preference GetPreference(FoodData food)
-    {
-        if (food == null) return Preference.Neutral;
-        if (favoriteFoods.Contains(food)) return Preference.Favorite;
-        if (dislikedFoods.Contains(food)) return Preference.Disliked;
-        return Preference.Neutral;
-    }
-
-    public Preference GetPreference(DecorationData deco)
-    {
-        if (deco == null) return Preference.Neutral;
-        if (favoriteDecorations.Contains(deco)) return Preference.Favorite;
-        if (dislikedDecorations.Contains(deco)) return Preference.Disliked;
-        return Preference.Neutral;
-    }
 
     public DinoState CreateState() => new DinoState
     {
@@ -61,8 +44,35 @@ public class DinoData : ScriptableObject
         hungerDecayRate = hungerDecayRate,
         hungerImpactOnHappiness = hungerImpactOnHappiness,
         baseMoneyPerSecond = baseMoneyPerSecond,
-        hungerMoneyFloor = hungerMoneyFloor
+        hungerMoneyFloor = hungerMoneyFloor,
+        data = this
     };
+
+    public Preference GetPreference(FoodData food)
+    {
+        if (food == null) return Preference.Neutral;
+        if (favoriteFoods.Contains(food)) return Preference.Favorite;
+        if (dislikedFoods.Contains(food)) return Preference.Disliked;
+        return Preference.Neutral;
+    }
+
+    public float GetDecorationMultiplier(DecorationData deco)
+    {
+        switch (GetPreference(deco))
+        {
+            case Preference.Favorite: return favoriteDecorationMultiplier;
+            case Preference.Disliked: return dislikedDecorationMultiplier;
+            default: return 1f;
+        }
+    }
+
+    public Preference GetPreference(DecorationData deco)
+    {
+        if (deco == null) return Preference.Neutral;
+        if (favoriteDecorations.Contains(deco)) return Preference.Favorite;
+        if (dislikedDecorations.Contains(deco)) return Preference.Disliked;
+        return Preference.Neutral;
+    }
 
 #if UNITY_EDITOR
     private void OnValidate()

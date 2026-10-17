@@ -17,6 +17,8 @@ public class DinoState
     public float decorationBonus;
     public float currentMoneyRate;
 
+    [NonSerialized] public DinoData data;
+
     public void Tick(float dt)
     {
         hunger = Mathf.Clamp(hunger - hungerDecayRate * dt, 0f, 100f);

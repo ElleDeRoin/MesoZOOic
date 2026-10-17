@@ -23,6 +23,8 @@ public class DinoStats : MonoBehaviour
     public UnityEvent onRejectedFood;
     public UnityEvent onLovedFood;
     public UnityEvent onDislikedFood;
+    [Tooltip("Idk if we need this but i added it incase. It shows when the dino gains happiness from decor")]
+    public UnityEvent onDecorationTick;
 
     private DinoState state;
     private DinoData data;
@@ -65,21 +67,10 @@ public class DinoStats : MonoBehaviour
         if (GameSession.SelectedDino.instanceId != instanceId)
             return;
 
-        if (data != null)
-        {
-            switch (data.GetPreference(deco))
-            {
-                case Preference.Favorite:
-                    amount *= data.favoriteDecorationMultiplier;
-                    break;
+        if (data != null && data.GetPreference(deco) == Preference.Disliked)
+            return;
 
-                case Preference.Disliked:
-                    amount *= data.dislikedDecorationMultiplier;
-                    break;
-            }
-        }
-
-        Play(amount);
+        onDecorationTick?.Invoke();
     }
 
     private void UpdateUI()
