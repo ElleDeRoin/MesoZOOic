@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,50 +24,100 @@ public class DinoStats : MonoBehaviour
     public UnityEvent onRejectedFood;
 
     private DinoState state;
+    private string instanceId;
 
-    public float happiness => state.happiness;
-    public float hunger => state.hunger;
-    public float currentMoneyRate => state.currentMoneyRate;
+    public float happiness => state != null ? state.happiness : 0f;
+    public float hunger => state != null ? state.hunger : 0f;
+    public float currentMoneyRate =>
+        state != null ? state.currentMoneyRate : 0f;
 
-    private void OnEnable() => All.Add(this);
+    private void OnEnable()
+    {
+        if (!All.Contains(this))
+            All.Add(this);
 
-    private void OnDisable() => All.Remove(this);
+        DecorationSlot.HappinessGenerated += OnDecorationHappiness;
+    }
+
+    private void OnDisable()
+    {
+        All.Remove(this);
+        DecorationSlot.HappinessGenerated -= OnDecorationHappiness;
+    }
 
     private void Update()
     {
         if (state == null) return;
-        state.decorationBonus = DecorationSlot.TotalHappinessPerSecond;
+
         UpdateUI();
     }
-    
+
+    private void OnDecorationHappiness(float amount)
+    {
+        if (state == null) return;
+
+        if (GameSession.SelectedDino == null) return;
+
+        if (GameSession.SelectedDino.instanceId != instanceId)
+            return;
+
+        Play(amount);
+    }
+
     private void UpdateUI()
     {
-        if (happinessSlider != null) happinessSlider.value = state.happiness;
-        if (hungerSlider != null) hungerSlider.value = state.hunger;
+        if (happinessSlider != null)
+            happinessSlider.value = state.happiness;
+
+        if (hungerSlider != null)
+            hungerSlider.value = state.hunger;
     }
 
     public void Initialize(string instanceId, DinoData data)
     {
-        diet = data.diet;
-        DinoRegistry.Instance.TryGet(instanceId, out state);
+        this.instanceId = instanceId;
+
+        if (data != null)
+            diet = data.diet;
+
+        if (DinoRegistry.Instance != null)
+            DinoRegistry.Instance.TryGet(instanceId, out state);
+
+        UpdateUI();
     }
 
     public bool CanEat(FoodType type)
     {
         switch (diet)
         {
-            case Diet.Herbivore: return type == FoodType.Veggie;
-            case Diet.Carnivore: return type == FoodType.Meat;
-            default: return true;
+            case Diet.Herbivore:
+                return type == FoodType.Veggie;
+
+            case Diet.Carnivore:
+                return type == FoodType.Meat;
+
+            case Diet.Omnivore:
+            default:
+                return true;
         }
     }
 
     public FeedResult TryFeed(FoodData food)
     {
+        if (state == null || food == null)
+            return FeedResult.Full;
+
         if (!CanEat(food.type))
         {
-            state.happiness = Mathf.Clamp(state.happiness - wrongFoodHappinessPenalty, 0f, 100f);
+            state.happiness = Mathf.Clamp(
+                state.happiness - wrongFoodHappinessPenalty,
+                0f,
+                100f
+            );
+
             onRejectedFood?.Invoke();
+            UpdateUI();
+
             return FeedResult.WrongDiet;
         }
 
@@ -76,15 +127,34 @@ public class DinoStats : MonoBehaviour
             return FeedResult.Full;
         }
 
-        state.hunger = Mathf.Clamp(state.hunger + food.hungerRestored, 0f, 100f);
-        state.happiness = Mathf.Clamp(state.happiness + food.happinessBonus, 0f, 100f);
+        state.hunger = Mathf.Clamp(
+            state.hunger + food.hungerRestored,
+            0f,
+            100f
+        );
+
+        state.happiness = Mathf.Clamp(
+            state.happiness + food.happinessBonus,
+            0f,
+            100f
+        );
+
         onAte?.Invoke();
+        UpdateUI();
+
         return FeedResult.Ate;
     }
 
     public void Play(float amount)
     {
-        state.happiness = Mathf.Clamp(state.happiness + amount, 0f, 100f);
-    }
+        if (state == null) return;
 
+        state.happiness = Mathf.Clamp(
+            state.happiness + amount,
+            0f,
+            100f
+        );
+
+        UpdateUI();
+    }
 }

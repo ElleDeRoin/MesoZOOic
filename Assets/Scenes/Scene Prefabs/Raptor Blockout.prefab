@@ -358,8 +358,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3497368981742036925}
   m_HandleRect: {fileID: 6388892840401647540}
   m_Direction: 2
-  m_Value: 1.0000002
-  m_Size: 0.5282703
+  m_Value: 1
+  m_Size: 0.52827024
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4279,7 +4279,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4549066537611224540}
   m_HandleRect: {fileID: 8310142782944089133}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5548,7 +5548,7 @@ Transform:
   m_GameObject: {fileID: 4846796892482031685}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -691.3147, y: -299.88895, z: -22.78215}
+  m_LocalPosition: {x: -692.89, y: -299.88895, z: -22.78215}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
