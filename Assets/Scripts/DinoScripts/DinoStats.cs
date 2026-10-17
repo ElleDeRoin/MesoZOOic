@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,14 +21,19 @@ public class DinoStats : MonoBehaviour
     [Header("Animations")]
     public UnityEvent onAte;
     public UnityEvent onRejectedFood;
+    public UnityEvent onLovedFood;
+    public UnityEvent onDislikedFood;
 
     private DinoState state;
+    private DinoData data;
     private string instanceId;
 
     public float happiness => state != null ? state.happiness : 0f;
     public float hunger => state != null ? state.hunger : 0f;
     public float currentMoneyRate =>
         state != null ? state.currentMoneyRate : 0f;
+
+    public DinoData Data => data;
 
     private void OnEnable()
     {
@@ -52,7 +56,7 @@ public class DinoStats : MonoBehaviour
         UpdateUI();
     }
 
-    private void OnDecorationHappiness(float amount)
+    private void OnDecorationHappiness(float amount, DecorationData deco)
     {
         if (state == null) return;
 
@@ -60,6 +64,20 @@ public class DinoStats : MonoBehaviour
 
         if (GameSession.SelectedDino.instanceId != instanceId)
             return;
+
+        if (data != null)
+        {
+            switch (data.GetPreference(deco))
+            {
+                case Preference.Favorite:
+                    amount *= data.favoriteDecorationMultiplier;
+                    break;
+
+                case Preference.Disliked:
+                    amount *= data.dislikedDecorationMultiplier;
+                    break;
+            }
+        }
 
         Play(amount);
     }
@@ -76,6 +94,7 @@ public class DinoStats : MonoBehaviour
     public void Initialize(string instanceId, DinoData data)
     {
         this.instanceId = instanceId;
+        this.data = data;
 
         if (data != null)
             diet = data.diet;
@@ -127,14 +146,35 @@ public class DinoStats : MonoBehaviour
             return FeedResult.Full;
         }
 
+        float hungerGain = food.hungerRestored;
+        float happinessGain = food.happinessBonus;
+
+        if (data != null)
+        {
+            switch (data.GetPreference(food))
+            {
+                case Preference.Favorite:
+                    hungerGain *= data.favoriteFoodHungerMultiplier;
+                    happinessGain += data.favoriteFoodExtraHappiness;
+                    onLovedFood?.Invoke();
+                    break;
+
+                case Preference.Disliked:
+                    hungerGain *= data.dislikedFoodHungerMultiplier;
+                    happinessGain -= data.dislikedFoodHappinessPenalty;
+                    onDislikedFood?.Invoke();
+                    break;
+            }
+        }
+
         state.hunger = Mathf.Clamp(
-            state.hunger + food.hungerRestored,
+            state.hunger + hungerGain,
             0f,
             100f
         );
 
         state.happiness = Mathf.Clamp(
-            state.happiness + food.happinessBonus,
+            state.happiness + happinessGain,
             0f,
             100f
         );

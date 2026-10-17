@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +8,14 @@ public class DecorationSlot : MonoBehaviour
     private static readonly List<DecorationSlot> All =
         new List<DecorationSlot>();
 
-    public static event Action<float> HappinessGenerated;
+    public static event Action<float, DecorationData> HappinessGenerated;
 
     [SerializeField] private PropSize size = PropSize.Large;
     [SerializeField] private Renderer marker;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private bool inheritRotation = true;
 
-    [Header("Happiness Ticks")]
+    [Header("Happiness per sec")]
     [SerializeField] private float minTickInterval = 3f;
     [SerializeField] private float maxTickInterval = 10f;
 
@@ -110,7 +109,7 @@ public class DecorationSlot : MonoBehaviour
 
         float amount = hps * interval / chance;
 
-        HappinessGenerated?.Invoke(amount);
+        HappinessGenerated?.Invoke(amount, Current);
     }
 
     private void RollNextInterval()

@@ -22,3 +22,17 @@ MonoBehaviour:
   hungerImpactOnHappiness: 1
   baseMoneyPerSecond: 1
   hungerMoneyFloor: 0.7
+  favoriteFoods:
+  - {fileID: 11400000, guid: 5c4191e10f5c3b34aaf031f405ca9b31, type: 2}
+  dislikedFoods:
+  - {fileID: 11400000, guid: e1021415ce847084d89b547f620988af, type: 2}
+  favoriteFoodHungerMultiplier: 1.5
+  favoriteFoodExtraHappiness: 10
+  dislikedFoodHungerMultiplier: 0.5
+  dislikedFoodHappinessPenalty: 5
+  favoriteDecorations:
+  - {fileID: 11400000, guid: 50fd8c51d5a62f54d8e57dc2703916b5, type: 2}
+  dislikedDecorations:
+  - {fileID: 11400000, guid: 85862f132ac1d6d46abc0b341510904e, type: 2}
+  favoriteDecorationMultiplier: 2
+  dislikedDecorationMultiplier: 0.25
