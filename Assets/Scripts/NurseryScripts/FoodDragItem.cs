@@ -6,6 +6,7 @@ public class FoodDragItem : WorldDragSource
     [SerializeField] private FoodData food;
     [SerializeField] private TMP_Text priceLabel;
     [SerializeField] private Color unaffordableTint = new Color(1f, 1f, 1f, 0.4f);
+    [SerializeField] private PreferenceBadge preferenceBadge;
 
     protected override void Awake()
     {
@@ -21,6 +22,9 @@ public class FoodDragItem : WorldDragSource
     {
         if (Wallet.Instance != null) Wallet.Instance.Changed += Refresh;
         Refresh(Wallet.Instance != null ? Wallet.Instance.Money : 0f);
+
+        if (preferenceBadge != null)
+            preferenceBadge.Show(SelectedDinoPreferences.Get(food));
     }
 
     private void OnDestroy()
