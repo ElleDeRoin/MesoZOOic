@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb9492aafe7e114d90356d269b5d2f5, type: 3}
   m_Name: Steak
   m_EditorClassIdentifier: Assembly-CSharp::FoodData
-  displayName: 
-  icon: {fileID: 0}
+  displayName: Steak
+  icon: {fileID: 21300000, guid: 16684fca5e2e80446b64d6384a50aa8f, type: 3}
   type: 1
   hungerRestored: 50
   happinessBonus: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blueberries
   m_EditorClassIdentifier: Assembly-CSharp::FoodData
   displayName: 
-  icon: {fileID: 21300000, guid: fd058b21a3dbe6147b90ceacb040d37c, type: 3}
+  icon: {fileID: 21300000, guid: a75961b358ee9554bb25d16eda901882, type: 3}
   type: 0
   hungerRestored: 20
   happinessBonus: 0
