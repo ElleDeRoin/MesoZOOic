@@ -31,6 +31,14 @@ namespace DinoDig
         [SerializeField] private GridManager grid;
         [SerializeField] private ClawController claw;
         [SerializeField] private float cascadeStepDelay = 0.15f;
+
+        [Header("Audio")]
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip winSound;
+        [SerializeField] private AudioClip loseSound;
+        [Range(0f, 1f)]
+        [SerializeField] private float endSoundVolume = 1f;
+
         public bool LastEggsWerePaid { get; set; }
 
         public GameState State { get; private set; } = GameState.WaitingForSource;
@@ -50,6 +58,13 @@ namespace DinoDig
         private void Awake()
         {
             Instance = this;
+
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.playOnAwake = false;
+                audioSource.spatialBlend = 0f;
+            }
         }
 
         public void OnColumnClicked(int column)
@@ -120,6 +135,8 @@ namespace DinoDig
                 _score += matches.Count * 10;
                 OnScoreChanged?.Invoke(_score);
 
+                grid.PlayRockBreakSound();
+
                 var affectedColumns = new HashSet<int>();
 
                 foreach (GridPiece piece in matches)
@@ -141,11 +158,11 @@ namespace DinoDig
             {
                 State = GameState.GameOver;
 
-
                 EndState = _eggsCollected > 0
                     ? GameEndState.Win
                     : GameEndState.Lose;
 
+                PlayEndSound(EndState);
 
                 OnGameEnd?.Invoke(EndState);
                 OnGameOver?.Invoke();
@@ -168,6 +185,21 @@ namespace DinoDig
             }
 
             return false;
+        }
+
+        private void PlayEndSound(GameEndState endState)
+        {
+            if (audioSource == null)
+                return;
+
+            AudioClip clip = endState == GameEndState.Win
+                ? winSound
+                : loseSound;
+
+            if (clip == null)
+                return;
+
+            audioSource.PlayOneShot(clip, endSoundVolume);
         }
 
         private void CollectEgg(int column, GridPiece egg)

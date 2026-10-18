@@ -19,6 +19,12 @@ public class HatchResultScreen : MonoBehaviour
     public Sprite[] paidEggFrames;
     public float framesPerSecond = 12f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip hatchSound;
+    [Range(0f, 1f)]
+    [SerializeField] private float hatchSoundVolume = 1f;
+
     private int index;
     private bool revealed;
     private bool hatching;
@@ -34,6 +40,16 @@ public class HatchResultScreen : MonoBehaviour
         nextButton.onClick.AddListener(OnNext);
         nextButton.interactable = true;
         ShowEgg();
+    }
+
+    private void Awake()
+    {
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.spatialBlend = 0f;
+        }
     }
 
     private void OnNext()
@@ -72,6 +88,8 @@ public class HatchResultScreen : MonoBehaviour
         hatching = true;
         nextButton.interactable = false;
 
+        PlayHatchSound();
+
         var frames = CurrentFrames;
         if (frames != null && frames.Length > 0)
         {
@@ -88,6 +106,14 @@ public class HatchResultScreen : MonoBehaviour
         hatching = false;
     }
 
+    private void PlayHatchSound()
+    {
+        if (audioSource == null || hatchSound == null)
+            return;
+
+        audioSource.PlayOneShot(hatchSound, hatchSoundVolume);
+    }
+    
     private void Reveal()
     {
         var dino = EggHatcher.LastHatch[index];

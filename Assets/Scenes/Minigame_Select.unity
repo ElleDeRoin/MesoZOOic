@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 434191470}
   - component: {fileID: 434191469}
   - component: {fileID: 434191468}
+  - component: {fileID: 434191471}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -524,6 +525,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434191466}
   m_CullTransparentMesh: 1
+--- !u!114 &434191471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434191466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df4634c5120e74bbc9fcbc215302d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSoundOnButton
+  clickSound: {fileID: 8300000, guid: afb07f9282f0c794486bbac19a9f3be9, type: 3}
+  volume: 1
 --- !u!1 &468987587
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,6 +689,7 @@ GameObject:
   - component: {fileID: 549215303}
   - component: {fileID: 549215302}
   - component: {fileID: 549215305}
+  - component: {fileID: 549215306}
   m_Layer: 5
   m_Name: FreePlay
   m_TagString: Untagged
@@ -811,6 +827,20 @@ MonoBehaviour:
   sceneName: Minigame_Blockout
   currency: 0
   cost: 50
+--- !u!114 &549215306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549215300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df4634c5120e74bbc9fcbc215302d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSoundOnButton
+  clickSound: {fileID: 8300000, guid: afb07f9282f0c794486bbac19a9f3be9, type: 3}
+  volume: 1
 --- !u!1 &646756922
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,6 +1014,7 @@ GameObject:
   - component: {fileID: 747563431}
   - component: {fileID: 747563430}
   - component: {fileID: 747563433}
+  - component: {fileID: 747563434}
   m_Layer: 5
   m_Name: PaidPlay
   m_TagString: Untagged
@@ -1121,6 +1152,20 @@ MonoBehaviour:
   sceneName: Minigame_Paid
   currency: 1
   cost: 5
+--- !u!114 &747563434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747563428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df4634c5120e74bbc9fcbc215302d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSoundOnButton
+  clickSound: {fileID: 8300000, guid: afb07f9282f0c794486bbac19a9f3be9, type: 3}
+  volume: 1
 --- !u!1 &751891079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,6 +1422,7 @@ GameObject:
   - component: {fileID: 790003599}
   - component: {fileID: 790003598}
   - component: {fileID: 790003601}
+  - component: {fileID: 790003602}
   m_Layer: 5
   m_Name: Get Amber
   m_TagString: Untagged
@@ -1511,6 +1557,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmberRewardButton
   amount: 5
+--- !u!114 &790003602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790003596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df4634c5120e74bbc9fcbc215302d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSoundOnButton
+  clickSound: {fileID: 8300000, guid: afb07f9282f0c794486bbac19a9f3be9, type: 3}
+  volume: 1
 --- !u!1 &999219717
 GameObject:
   m_ObjectHideFlags: 0

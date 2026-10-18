@@ -21,7 +21,15 @@ namespace DinoDig
         [SerializeField] private GridPiece eggPrefab;
         [SerializeField] private Sprite[] blockSprites;
         [SerializeField] private Color[] blockColors;
+        [SerializeField] private ParticleSystem eggCollectEffect;
         [SerializeField] private ParticleSystem matchDestroyEffect;
+
+        [Header("Audio")]
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip rockBreakSound;
+        [SerializeField] private AudioClip eggCollectSound;
+        [Range(0f, 1f)]
+        [SerializeField] private float soundVolume = 1f;
 
         [Header("Initial Fill")]
         [SerializeField] private int startingHeightMin = 1;
@@ -38,6 +46,13 @@ namespace DinoDig
 
         private void Awake()
         {
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.playOnAwake = false;
+                audioSource.spatialBlend = 0f;
+            }
+
             BuildInitialGrid();
         }
 
@@ -246,45 +261,62 @@ namespace DinoDig
         }
 
 
-
         public void RemovePiece(GridPiece piece)
         {
             if (piece == null)
                 return;
 
-            Vector3 destroyPosition = piece.transform.position;
+            ParticleSystem effectPrefab = piece.IsEgg
+                ? eggCollectEffect
+                : matchDestroyEffect;
 
-            if (matchDestroyEffect != null)
-            {
-                ParticleSystem effect = Instantiate(
-                    matchDestroyEffect,
-                    destroyPosition,
-                    Quaternion.identity
-                );
+            PlayEffect(effectPrefab, piece.transform.position);
 
-                effect.transform.position = new Vector3(
-                    destroyPosition.x,
-                    destroyPosition.y,
-                    destroyPosition.z - 1f
-                );
-                ParticleSystemRenderer psRenderer =
-                    effect.GetComponent<ParticleSystemRenderer>();
-
-                if (psRenderer != null)
-                {
-                    psRenderer.sortingOrder = 100;
-                }
-
-                var main = effect.main;
-                main.simulationSpace = ParticleSystemSimulationSpace.World;
-                main.stopAction = ParticleSystemStopAction.None;
-
-                effect.Play();
-                Destroy(effect.gameObject, 1f);
-            }
+            if (piece.IsEgg)
+                PlaySound(eggCollectSound);
 
             _stacks[piece.Column].Remove(piece);
             Destroy(piece.gameObject);
+        }
+
+        public void PlayRockBreakSound()
+        {
+            PlaySound(rockBreakSound);
+        }
+
+        private void PlaySound(AudioClip clip)
+        {
+            if (audioSource == null || clip == null)
+                return;
+
+            audioSource.PlayOneShot(clip, soundVolume);
+        }
+
+        private void PlayEffect(ParticleSystem prefab, Vector3 position)
+        {
+            if (prefab == null)
+                return;
+
+            ParticleSystem effect = Instantiate(
+                prefab,
+                new Vector3(position.x, position.y, position.z - 1f),
+                Quaternion.identity
+            );
+
+            ParticleSystemRenderer psRenderer =
+                effect.GetComponent<ParticleSystemRenderer>();
+
+            if (psRenderer != null)
+            {
+                psRenderer.sortingOrder = 100;
+            }
+
+            var main = effect.main;
+            main.simulationSpace = ParticleSystemSimulationSpace.World;
+            main.stopAction = ParticleSystemStopAction.None;
+
+            effect.Play();
+            Destroy(effect.gameObject, 1f);
         }
 
 

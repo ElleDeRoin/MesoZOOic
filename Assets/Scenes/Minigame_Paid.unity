@@ -792,6 +792,9 @@ MonoBehaviour:
   verticalSpeed: 14
   restY: 9
   grabOffsetY: 0.5
+  moveAudioSource: {fileID: 0}
+  moveClip: {fileID: 8300000, guid: 5472eff511fcec04cb91e8c0b6464972, type: 3}
+  moveVolume: 1
 --- !u!212 &799628913
 SpriteRenderer:
   serializedVersion: 3
@@ -1052,7 +1055,12 @@ MonoBehaviour:
   - {r: 0.49803925, g: 0.6, b: 0.3372549, a: 1}
   - {r: 0.30980393, g: 0.5176471, b: 0.47450984, a: 1}
   - {r: 0.82745105, g: 0.48627454, b: 0.42352945, a: 1}
-  matchDestroyEffect: {fileID: 4899516781778571948, guid: a07e8b431b57ea24489a5edd10571aee, type: 3}
+  eggCollectEffect: {fileID: 374528602519496184, guid: e0eba87545d161541881b6a003ede1a8, type: 3}
+  matchDestroyEffect: {fileID: 5050804220206302247, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+  audioSource: {fileID: 0}
+  rockBreakSound: {fileID: 8300000, guid: 16adfce4fcd7a21469f14adc5e92d19d, type: 3}
+  eggCollectSound: {fileID: 8300000, guid: d4fc4cee5c0a1de42a96f0c00477edad, type: 3}
+  soundVolume: 1
   startingHeightMin: 1
   startingHeightMax: 2
   eggSpawnChance: 0.06
@@ -2223,6 +2231,10 @@ MonoBehaviour:
   grid: {fileID: 877054921}
   claw: {fileID: 799628912}
   cascadeStepDelay: 0.15
+  audioSource: {fileID: 0}
+  winSound: {fileID: 8300000, guid: d009072074927a648b62ebbc86379919, type: 3}
+  loseSound: {fileID: 8300000, guid: 55264574ca62b494a8271a76aae2049d, type: 3}
+  endSoundVolume: 1
 --- !u!1 &1756657236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2838,7 +2850,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 9073a41837f991f429defe8ed10a2831, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

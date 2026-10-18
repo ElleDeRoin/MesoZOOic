@@ -275,6 +275,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d9f27b52c99f61f47b9e0153cf58e564, type: 3}
   - {fileID: 21300000, guid: 46ed3b9c434379c45b3cb5fe6314f558, type: 3}
   framesPerSecond: 12
+  audioSource: {fileID: 0}
+  hatchSound: {fileID: 8300000, guid: d009072074927a648b62ebbc86379919, type: 3}
+  hatchSoundVolume: 1
 --- !u!1 &92743520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,6 +1091,7 @@ GameObject:
   - component: {fileID: 1360110182}
   - component: {fileID: 1360110181}
   - component: {fileID: 1360110180}
+  - component: {fileID: 1360110183}
   m_Layer: 5
   m_Name: NextButton
   m_TagString: Untagged
@@ -1197,6 +1201,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360110178}
   m_CullTransparentMesh: 1
+--- !u!114 &1360110183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360110178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df4634c5120e74bbc9fcbc215302d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSoundOnButton
+  clickSound: {fileID: 8300000, guid: afb07f9282f0c794486bbac19a9f3be9, type: 3}
+  volume: 1
 --- !u!1001 &1503117049
 PrefabInstance:
   m_ObjectHideFlags: 0
