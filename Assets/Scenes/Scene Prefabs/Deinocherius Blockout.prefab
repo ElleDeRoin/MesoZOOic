@@ -4761,7 +4761,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lovedFoodEffect: {fileID: 4104962549541647660, guid: cbf0cbc0a615322469d8217715f946c7, type: 3}
-  dislikedFoodEffect: {fileID: 5050804220206302247, guid: 0aabe250d3465b341bb4bc0915651595, type: 3}
+  dislikedFoodEffect: {fileID: 1251256731834090431, guid: dd8753f67c12b2a42aed92db19c338dc, type: 3}
   effectSpawnPoint: {fileID: 5181539052563037054}
   effectLifetime: 2
   audioSource: {fileID: 1905655166389887909}
@@ -5021,6 +5021,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1984861511165806015, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
       propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984861511165806015, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
+      propertyPath: m_Value
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2669168543647939540, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
