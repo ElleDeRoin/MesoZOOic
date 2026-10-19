@@ -26,6 +26,21 @@ public class DinoStats : MonoBehaviour
     [Tooltip("Idk if we need this but i added it incase. It shows when the dino gains happiness from decor")]
     public UnityEvent onDecorationTick;
 
+    [Header("Food Reaction VFX")]
+    [SerializeField] private ParticleSystem lovedFoodEffect;
+    [SerializeField] private ParticleSystem dislikedFoodEffect;
+    [SerializeField] private Transform effectSpawnPoint;
+    [SerializeField] private float effectLifetime = 2f;
+
+    [Header("Eating Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip eatClip;
+    [SerializeField] private float eatClipDuration = 1f;
+
+    [Header("Petting Audio")]
+    [SerializeField] private AudioSource pettingAudioSource;
+    [SerializeField] private AudioClip pettingClip;
+
     private DinoState state;
     private DinoData data;
     private string instanceId;
@@ -36,6 +51,12 @@ public class DinoStats : MonoBehaviour
         state != null ? state.currentMoneyRate : 0f;
 
     public DinoData Data => data;
+
+    private void Awake()
+    {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnEnable()
     {
@@ -49,6 +70,7 @@ public class DinoStats : MonoBehaviour
     {
         All.Remove(this);
         DecorationSlot.HappinessGenerated -= OnDecorationHappiness;
+        StopPetting();
     }
 
     private void Update()
@@ -148,12 +170,14 @@ public class DinoStats : MonoBehaviour
                     hungerGain *= data.favoriteFoodHungerMultiplier;
                     happinessGain += data.favoriteFoodExtraHappiness;
                     onLovedFood?.Invoke();
+                    PlayFoodEffect(lovedFoodEffect);
                     break;
 
                 case Preference.Disliked:
                     hungerGain *= data.dislikedFoodHungerMultiplier;
                     happinessGain -= data.dislikedFoodHappinessPenalty;
                     onDislikedFood?.Invoke();
+                    PlayFoodEffect(dislikedFoodEffect);
                     break;
             }
         }
@@ -171,6 +195,7 @@ public class DinoStats : MonoBehaviour
         );
 
         onAte?.Invoke();
+        PlayEatSound();
         UpdateUI();
 
         return FeedResult.Ate;
@@ -187,5 +212,58 @@ public class DinoStats : MonoBehaviour
         );
 
         UpdateUI();
+    }
+
+    public void StartPetting()
+    {
+        if (pettingAudioSource == null || pettingClip == null)
+            return;
+
+        if (pettingAudioSource.isPlaying)
+            return;
+
+        pettingAudioSource.clip = pettingClip;
+        pettingAudioSource.loop = true;
+        pettingAudioSource.Play();
+    }
+
+    public void StopPetting()
+    {
+        if (pettingAudioSource == null)
+            return;
+
+        pettingAudioSource.Stop();
+    }
+
+    private void PlayEatSound()
+    {
+        if (audioSource == null || eatClip == null)
+            return;
+
+        audioSource.Stop();
+        audioSource.clip = eatClip;
+
+        double startTime = AudioSettings.dspTime;
+        audioSource.PlayScheduled(startTime);
+        audioSource.SetScheduledEndTime(startTime + eatClipDuration);
+    }
+
+    private void PlayFoodEffect(ParticleSystem prefab)
+    {
+        if (prefab == null)
+            return;
+
+        Vector3 position = effectSpawnPoint != null
+            ? effectSpawnPoint.position
+            : transform.position;
+
+        ParticleSystem effect = Instantiate(
+            prefab,
+            position,
+            Quaternion.identity
+        );
+
+        effect.Play();
+        Destroy(effect.gameObject, effectLifetime);
     }
 }

@@ -16,8 +16,76 @@ namespace DinoDig
         [SerializeField] private float restY = 5f;
         [SerializeField] private float grabOffsetY = 0.5f;
 
+        [Header("Audio")]
+        [SerializeField] private AudioSource moveAudioSource;
+        [SerializeField] private AudioClip moveClip;
+        [Range(0f, 1f)]
+        [SerializeField] private float moveVolume = 1f;
+
         public bool IsBusy { get; private set; }
         public GridPiece HeldPiece { get; private set; }
+
+        private float _lastY;
+        private bool _moveSoundPlaying;
+        private bool _moveSoundStarted;
+
+        private void Awake()
+        {
+            if (moveAudioSource == null)
+                moveAudioSource = gameObject.AddComponent<AudioSource>();
+
+            moveAudioSource.playOnAwake = false;
+            moveAudioSource.loop = true;
+            moveAudioSource.spatialBlend = 0f;
+            moveAudioSource.clip = moveClip;
+            moveAudioSource.volume = moveVolume;
+        }
+
+        private void Start()
+        {
+            _lastY = transform.position.y;
+        }
+
+        private void LateUpdate()
+        {
+            float y = transform.position.y;
+            bool movingVertically = Mathf.Abs(y - _lastY) > 0.0001f;
+            _lastY = y;
+
+            SetMoveSound(movingVertically);
+        }
+
+        private void SetMoveSound(bool shouldPlay)
+        {
+            if (moveAudioSource == null || moveClip == null)
+                return;
+
+            if (shouldPlay && !_moveSoundPlaying)
+            {
+                if (_moveSoundStarted)
+                    moveAudioSource.UnPause();
+                else
+                    moveAudioSource.Play();
+
+                _moveSoundStarted = true;
+                _moveSoundPlaying = true;
+            }
+            else if (!shouldPlay && _moveSoundPlaying)
+            {
+                moveAudioSource.Pause();
+                _moveSoundPlaying = false;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (moveAudioSource != null)
+                moveAudioSource.Stop();
+
+            _moveSoundPlaying = false;
+            _moveSoundStarted = false;
+        }
+
 
         public IEnumerator PickUp(GridManager grid, int column, System.Action<GridPiece> onComplete)
         {

@@ -1185,6 +1185,7 @@ GameObject:
   - component: {fileID: 860517258}
   - component: {fileID: 860517257}
   - component: {fileID: 860517256}
+  - component: {fileID: 860517259}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -1305,6 +1306,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860517254}
   m_CullTransparentMesh: 1
+--- !u!114 &860517259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860517254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df4634c5120e74bbc9fcbc215302d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSoundOnButton
+  clickSound: {fileID: 8300000, guid: afb07f9282f0c794486bbac19a9f3be9, type: 3}
+  volume: 1
 --- !u!1 &920364423
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,6 +2052,7 @@ GameObject:
   - component: {fileID: 1741764130}
   - component: {fileID: 1741764129}
   - component: {fileID: 1741764128}
+  - component: {fileID: 1741764131}
   m_Layer: 5
   m_Name: ZooButton
   m_TagString: Untagged
@@ -2158,6 +2174,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741764126}
   m_CullTransparentMesh: 1
+--- !u!114 &1741764131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741764126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df4634c5120e74bbc9fcbc215302d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSoundOnButton
+  clickSound: {fileID: 8300000, guid: afb07f9282f0c794486bbac19a9f3be9, type: 3}
+  volume: 1
 --- !u!1 &1946447727
 GameObject:
   m_ObjectHideFlags: 0

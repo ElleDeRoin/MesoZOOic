@@ -509,6 +509,9 @@ MonoBehaviour:
   verticalSpeed: 14
   restY: 9
   grabOffsetY: 0.5
+  moveAudioSource: {fileID: 0}
+  moveClip: {fileID: 8300000, guid: 5472eff511fcec04cb91e8c0b6464972, type: 3}
+  moveVolume: 1
 --- !u!212 &799628913
 SpriteRenderer:
   serializedVersion: 3
@@ -1253,15 +1256,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Eggs: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c015721d921b7147b5c37c61c64f037, type: 2}
+  m_sharedMaterial: {fileID: 401444510404746819, guid: 5c015721d921b7147b5c37c61c64f037, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1681,6 +1684,10 @@ MonoBehaviour:
   grid: {fileID: 877054921}
   claw: {fileID: 799628912}
   cascadeStepDelay: 0.15
+  audioSource: {fileID: 0}
+  winSound: {fileID: 8300000, guid: d009072074927a648b62ebbc86379919, type: 3}
+  loseSound: {fileID: 8300000, guid: 55264574ca62b494a8271a76aae2049d, type: 3}
+  endSoundVolume: 1
 --- !u!1 &1800153377
 GameObject:
   m_ObjectHideFlags: 0
@@ -2319,6 +2326,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridFree
       objectReference: {fileID: 0}
+    - target: {fileID: 9139169318800852991, guid: d46c7338dc935f848bb9969d6e96d172, type: 3}
+      propertyPath: rockBreakSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 16adfce4fcd7a21469f14adc5e92d19d, type: 3}
+    - target: {fileID: 9139169318800852991, guid: d46c7338dc935f848bb9969d6e96d172, type: 3}
+      propertyPath: eggCollectSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d4fc4cee5c0a1de42a96f0c00477edad, type: 3}
+    - target: {fileID: 9139169318800852991, guid: d46c7338dc935f848bb9969d6e96d172, type: 3}
+      propertyPath: eggCollectEffect
+      value: 
+      objectReference: {fileID: 374528602519496184, guid: e0eba87545d161541881b6a003ede1a8, type: 3}
     - target: {fileID: 9139169318800852991, guid: d46c7338dc935f848bb9969d6e96d172, type: 3}
       propertyPath: matchDestroyEffect
       value: 

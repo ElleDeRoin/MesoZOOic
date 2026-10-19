@@ -14,7 +14,7 @@ public class DinoPetting : MonoBehaviour
     [Header("Animation")]
     public Animator animator;
     public float cuddleLingerTime = 0.5f;
-    
+
 
     private static readonly int IsPettingHash = Animator.StringToHash("IsPetting");
 
@@ -100,7 +100,9 @@ public class DinoPetting : MonoBehaviour
 
         cuddleTimer = cuddleLingerTime;
         SetCuddleAnimation(true);
-        heartVFX.Play();
+
+        if (heartVFX != null)
+            heartVFX.Play();
 
         if (dinoStats == null)
             return;
@@ -112,5 +114,13 @@ public class DinoPetting : MonoBehaviour
     {
         if (animator != null)
             animator.SetBool(IsPettingHash, value);
+
+        if (dinoStats != null)
+        {
+            if (value)
+                dinoStats.StartPetting();
+            else
+                dinoStats.StopPetting();
+        }
     }
 }

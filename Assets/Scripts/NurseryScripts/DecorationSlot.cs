@@ -22,6 +22,11 @@ public class DecorationSlot : MonoBehaviour
     [Tooltip("Chance to add happiness")]
     [SerializeField] private float chancePerHappiness = 2f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip placeSound;
+    [Range(0f, 1f)]
+    [SerializeField] private float placeSoundVolume = 1f;
+
     private Collider col;
     private GameObject instance;
     private float tickTimer;
@@ -133,8 +138,26 @@ public class DecorationSlot : MonoBehaviour
             return false;
 
         DecorationStore.Set(StoreKey, data);
+        PlayPlaceSound();
 
         return true;
+    }
+
+    private void PlayPlaceSound()
+    {
+        if (placeSound == null)
+            return;
+
+        GameObject go = new GameObject("PlaceSound");
+        go.transform.position = transform.position;
+
+        AudioSource source = go.AddComponent<AudioSource>();
+        source.clip = placeSound;
+        source.volume = placeSoundVolume;
+        source.spatialBlend = 0f;
+        source.Play();
+
+        Destroy(go, placeSound.length);
     }
 
     private bool PlaceInternal(DecorationData data)
