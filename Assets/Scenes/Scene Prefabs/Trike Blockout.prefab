@@ -1511,6 +1511,7 @@ GameObject:
   - component: {fileID: 5029528278792530914}
   - component: {fileID: 962708217852270731}
   - component: {fileID: 2688639485258195693}
+  - component: {fileID: 3576576338234411513}
   m_Layer: 5
   m_Name: ShopButton
   m_TagString: Untagged
@@ -1619,7 +1620,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1590300219332650104}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1631,7 +1632,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5157657226634264358}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1643,7 +1644,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4409854439712220955}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1653,8 +1654,22 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &3576576338234411513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4328566122695318338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df4634c5120e74bbc9fcbc215302d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickSoundOnButton
+  clickSound: {fileID: 8300000, guid: afb07f9282f0c794486bbac19a9f3be9, type: 3}
+  volume: 1
 --- !u!1 &4402913536136893916
 GameObject:
   m_ObjectHideFlags: 0
@@ -5370,6 +5385,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
+--- !u!1 &1590300219332650104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5905483573870457423, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
+  m_PrefabInstance: {fileID: 5180722431156786743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4409854439712220955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8851663051276316972, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
+  m_PrefabInstance: {fileID: 5180722431156786743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5157657226634264358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 33269512161552657, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
+  m_PrefabInstance: {fileID: 5180722431156786743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8987339304888415047 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4277556396955280752, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
