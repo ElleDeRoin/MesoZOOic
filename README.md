@@ -33,7 +33,7 @@ Lauren Holloway - Creative Director
 Shania Clarke - UI/UX and 2D Artist
 Emily Martin - Level Design, 2D and 3D Artist
 Lizmariam Barban - 3D Artist
-Elle Deroin - Programming
+Elle DeRoin - Programming
 Adriana Hernandez Vincenti - 2D and 3D Artist
 
 # AI Disclosure
