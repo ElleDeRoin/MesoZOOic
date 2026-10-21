@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Preference { Neutral, Favorite, Disliked }
+public enum Rarity { Common, Uncommon, Rare, Legendary }
 
 [CreateAssetMenu(menuName = "Dino/Dino Data")]
 public class DinoData : ScriptableObject
@@ -10,6 +11,7 @@ public class DinoData : ScriptableObject
     public string id;
     public string displayName;
     public Diet diet;
+    public Rarity rarity;
     public Sprite icon;
     public GameObject penPrefab;
 
@@ -47,7 +49,7 @@ public class DinoData : ScriptableObject
         hungerMoneyFloor = hungerMoneyFloor,
         data = this
     };
-
+    
     public Preference GetPreference(FoodData food)
     {
         if (food == null) return Preference.Neutral;
