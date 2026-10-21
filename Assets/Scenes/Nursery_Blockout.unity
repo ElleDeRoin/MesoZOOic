@@ -2377,6 +2377,15 @@ MonoBehaviour:
   onDecorationTick:
     m_PersistentCalls:
       m_Calls: []
+  lovedFoodEffect: {fileID: 0}
+  dislikedFoodEffect: {fileID: 0}
+  effectSpawnPoint: {fileID: 0}
+  effectLifetime: 2
+  audioSource: {fileID: 0}
+  eatClip: {fileID: 0}
+  eatClipDuration: 1
+  pettingAudioSource: {fileID: 0}
+  pettingClip: {fileID: 0}
 --- !u!65 &692645398
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3088,6 +3097,8 @@ MonoBehaviour:
   minTickInterval: 3
   maxTickInterval: 10
   chancePerHappiness: 2
+  placeSound: {fileID: 0}
+  placeSoundVolume: 1
 --- !u!1 &901240152
 GameObject:
   m_ObjectHideFlags: 0
@@ -4689,6 +4700,8 @@ MonoBehaviour:
   minTickInterval: 3
   maxTickInterval: 10
   chancePerHappiness: 2
+  placeSound: {fileID: 0}
+  placeSoundVolume: 1
 --- !u!1 &1220982419
 GameObject:
   m_ObjectHideFlags: 0
@@ -5038,6 +5051,8 @@ MonoBehaviour:
   minTickInterval: 3
   maxTickInterval: 10
   chancePerHappiness: 2
+  placeSound: {fileID: 0}
+  placeSoundVolume: 1
 --- !u!1001 &1293283166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5401,6 +5416,8 @@ MonoBehaviour:
   minTickInterval: 3
   maxTickInterval: 10
   chancePerHappiness: 2
+  placeSound: {fileID: 0}
+  placeSoundVolume: 1
 --- !u!1 &1505320425
 GameObject:
   m_ObjectHideFlags: 0
@@ -5665,6 +5682,8 @@ MonoBehaviour:
   minTickInterval: 3
   maxTickInterval: 10
   chancePerHappiness: 2
+  placeSound: {fileID: 0}
+  placeSoundVolume: 1
 --- !u!1 &1568021291
 GameObject:
   m_ObjectHideFlags: 0
@@ -5797,6 +5816,8 @@ MonoBehaviour:
   minTickInterval: 3
   maxTickInterval: 10
   chancePerHappiness: 2
+  placeSound: {fileID: 0}
+  placeSoundVolume: 1
 --- !u!1 &1573542921
 GameObject:
   m_ObjectHideFlags: 0
@@ -6659,6 +6680,8 @@ MonoBehaviour:
   minTickInterval: 3
   maxTickInterval: 10
   chancePerHappiness: 2
+  placeSound: {fileID: 0}
+  placeSoundVolume: 1
 --- !u!1 &1810578777
 GameObject:
   m_ObjectHideFlags: 0
@@ -7664,6 +7687,8 @@ MonoBehaviour:
   minTickInterval: 3
   maxTickInterval: 10
   chancePerHappiness: 2
+  placeSound: {fileID: 0}
+  placeSoundVolume: 1
 --- !u!1 &1964630182
 GameObject:
   m_ObjectHideFlags: 0
