@@ -75,5 +75,11 @@ public class UIControl : MonoBehaviour
     {
         SceneManager.LoadScene("Minigame_Paid");
     }
+    
+    public void resetSaveData()
+    {
+        SaveSystem.ResetAll();
+        SceneManager.LoadScene("Home");
+    }
 
 }

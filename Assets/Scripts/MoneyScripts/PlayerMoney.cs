@@ -45,4 +45,14 @@ public static class PlayerMoney
         OnAmberChanged?.Invoke(Amber);
         return true;
     }
+
+    public static void Reset()
+    {
+        Balance = 0f;
+        Amber = 0;
+        initialized = false;
+
+        OnChanged?.Invoke(Balance);
+        OnAmberChanged?.Invoke(Amber);
+    }
 }
