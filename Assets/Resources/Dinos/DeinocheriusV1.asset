@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeinocheriusV1
   m_EditorClassIdentifier: Assembly-CSharp::DinoData
   id: deinocheriusV1
-  displayName: DeinocheriusV1
+  displayName: Rain Deinocherius
   diet: 2
   rarity: 2
   icon: {fileID: 21300000, guid: adc455ddcc799914db217705875a5e4f, type: 3}

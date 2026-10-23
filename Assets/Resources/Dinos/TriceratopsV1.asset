@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4736a43b05ee5b94a9b905b08defd7e0, type: 3}
+  m_Name: TriceratopsV1
+  m_EditorClassIdentifier: Assembly-CSharp::DinoData
+  id: triceratopsV1
+  displayName: Rain Triceratops
+  diet: 0
+  rarity: 1
+  icon: {fileID: 21300000, guid: b8ca090ae32407b47a36d297c8f205bf, type: 3}
+  penPrefab: {fileID: 4936181797622902649, guid: 3890dfcff5401ba4d8cacced8019e1a4, type: 3}
+  happinessDecayRate: 0.1
+  hungerDecayRate: 0.15
+  hungerImpactOnHappiness: 1
+  baseMoneyPerSecond: 1
+  hungerMoneyFloor: 0.7
+  favoriteFoods:
+  - {fileID: 11400000, guid: 5c4191e10f5c3b34aaf031f405ca9b31, type: 2}
+  dislikedFoods:
+  - {fileID: 11400000, guid: e1021415ce847084d89b547f620988af, type: 2}
+  favoriteFoodHungerMultiplier: 1.5
+  favoriteFoodExtraHappiness: 10
+  dislikedFoodHungerMultiplier: 0.5
+  dislikedFoodHappinessPenalty: 5
+  favoriteDecorations:
+  - {fileID: 11400000, guid: 50fd8c51d5a62f54d8e57dc2703916b5, type: 2}
+  dislikedDecorations:
+  - {fileID: 11400000, guid: 85862f132ac1d6d46abc0b341510904e, type: 2}
+  favoriteDecorationMultiplier: 2
+  dislikedDecorationMultiplier: 0.25
