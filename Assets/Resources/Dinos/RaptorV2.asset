@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RaptorV2
   m_EditorClassIdentifier: Assembly-CSharp::DinoData
   id: raptorV2
-  displayName: Grape Raptor
+  displayName: Rose Raptor
   diet: 1
   rarity: 1
   icon: {fileID: 21300000, guid: 45d40bef8c6789a4d9d9f7280fe4d5f0, type: 3}

@@ -4685,7 +4685,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: e860a0a395ddbe0429e099d82330b06f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 9200fb687e4833c43b796e564462b8a2, type: 2}
+      objectReference: {fileID: 2100000, guid: 385a4f6f6f372974aa2d7d162d8d67d8, type: 2}
     - target: {fileID: 919132149155446097, guid: e860a0a395ddbe0429e099d82330b06f, type: 3}
       propertyPath: m_Name
       value: Deinocheirus
@@ -5028,7 +5028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1567513893040805460, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
       propertyPath: m_Size
-      value: 0.27291468
+      value: 0.28944317
       objectReference: {fileID: 0}
     - target: {fileID: 1924238526103407578, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5056,7 +5056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2766056861705176290, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4277556396955280752, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
       propertyPath: m_Pivot.x
@@ -5200,11 +5200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6985908365298095651, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6985908365298095651, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8348095758898573014, guid: 6a1e7712fc8d94c47932d0148109c1ca, type: 3}
       propertyPath: m_AnchorMax.x
