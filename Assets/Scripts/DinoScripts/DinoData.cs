@@ -13,6 +13,7 @@ public class DinoData : ScriptableObject
     public Diet diet;
     public Rarity rarity;
     public Sprite icon;
+    public GameObject hatchModel;
     public GameObject penPrefab;
 
     [Header("Stats")]

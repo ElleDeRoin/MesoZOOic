@@ -17,6 +17,7 @@ MonoBehaviour:
   diet: 2
   rarity: 2
   icon: {fileID: 21300000, guid: adc455ddcc799914db217705875a5e4f, type: 3}
+  hatchModel: {fileID: 6147252015176411991, guid: 827f69a98ec54b24884b12ef58a3c5c6, type: 3}
   penPrefab: {fileID: 4936181797622902649, guid: b0f0c918abf932f48944386c706acb5e, type: 3}
   happinessDecayRate: 0.1
   hungerDecayRate: 0.15
