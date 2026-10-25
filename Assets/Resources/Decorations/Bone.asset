@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DecorationData
   displayName: Bone
   icon: {fileID: 21300000, guid: 34a51707691546e43905fe0985e2b9db, type: 3}
-  prefab: {fileID: 919132149155446097, guid: b22aaa0a6ce764941b10f058f731921b, type: 3}
+  prefab: {fileID: 1758159037124331458, guid: 0e86bc62f7be0a84db2c0b1a1f3fa306, type: 3}
   size: 0
   price: 15
   happinessPerSecond: 0.1
