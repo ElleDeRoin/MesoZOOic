@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4736a43b05ee5b94a9b905b08defd7e0, type: 3}
+  m_Name: T_Rex
+  m_EditorClassIdentifier: Assembly-CSharp::DinoData
+  id: trex
+  displayName: T-Rex
+  diet: 1
+  rarity: 1
+  icon: {fileID: 21300000, guid: fd058b21a3dbe6147b90ceacb040d37c, type: 3}
+  hatchModel: {fileID: 919132149155446097, guid: 63098ce782e024b4bb02dcc57e80d182, type: 3}
+  penPrefab: {fileID: 4936181797622902649, guid: 8ab8fa36f4a0d1949bc36da6cdb11702, type: 3}
+  happinessDecayRate: 0.5
+  hungerDecayRate: 0.75
+  hungerImpactOnHappiness: 1
+  baseMoneyPerSecond: 1
+  hungerMoneyFloor: 0.7
+  favoriteFoods:
+  - {fileID: 11400000, guid: 078a429d1a1579b49919b98947360c2d, type: 2}
+  dislikedFoods:
+  - {fileID: 11400000, guid: 8d8a50c3513f3654b9b6982dd37411b5, type: 2}
+  favoriteFoodHungerMultiplier: 1.5
+  favoriteFoodExtraHappiness: 10
+  dislikedFoodHungerMultiplier: 0.5
+  dislikedFoodHappinessPenalty: 5
+  favoriteDecorations:
+  - {fileID: 11400000, guid: 9f2e7d15bd8e09341a6b5e779d8d7d17, type: 2}
+  dislikedDecorations:
+  - {fileID: 11400000, guid: 85862f132ac1d6d46abc0b341510904e, type: 2}
+  favoriteDecorationMultiplier: 2
+  dislikedDecorationMultiplier: 0.25
