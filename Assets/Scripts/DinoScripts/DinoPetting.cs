@@ -41,6 +41,12 @@ public class DinoPetting : MonoBehaviour
                 SetCuddleAnimation(false);
         }
 
+        if (DinoWashing.IsWashing)
+        {
+            isPetting = false;
+            return;
+        }
+
         if (Input.touchCount == 0)
         {
             isPetting = false;
