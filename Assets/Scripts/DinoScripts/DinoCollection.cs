@@ -78,6 +78,9 @@ public class DinoCollection : MonoBehaviour
             {
                 state.happiness = saved.happiness;
                 state.hunger = saved.hunger;
+                state.cleanliness = saved.cleanliness;
+                state.isDirty = saved.isDirty;
+                state.dirtyCheckTimer = saved.dirtyCheckTimer;
             }
 
             DinoRegistry.Instance.Register(d.instanceId, state);

@@ -2515,6 +2515,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2669287478626770652}
   - {fileID: 2554095258318942554}
   - {fileID: 5432869022558117432}
   - {fileID: 3096496250020956502}
@@ -2594,6 +2595,41 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &5562525648281995765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3133274063966079847}
+  m_Layer: 5
+  m_Name: Nozzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3133274063966079847
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562525648281995765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2669287478626770652}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -17.5, y: 14.1}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5817360430608415082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2796,6 +2832,104 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5876026587857649134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2669287478626770652}
+  - component: {fileID: 3553003353417918579}
+  - component: {fileID: 5944257670613995254}
+  - component: {fileID: 4121540779042237541}
+  m_Layer: 5
+  m_Name: Shower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2669287478626770652
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876026587857649134}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.66054827, y: 0.66054827, z: 0.66054827}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3133274063966079847}
+  m_Father: {fileID: 6582989236357012474}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -77.70007, y: 59.999992}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 1, y: 0}
+--- !u!222 &3553003353417918579
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876026587857649134}
+  m_CullTransparentMesh: 1
+--- !u!114 &5944257670613995254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876026587857649134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ed337580823db3a46a6872353f0e88cf, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4121540779042237541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876026587857649134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb7a6246e78c7d4aa91797e6ba7c85c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShowerHose
+  nozzle: {fileID: 3133274063966079847}
+  canvas: {fileID: 0}
+  hoseImage: {fileID: 5944257670613995254}
+  idleSprite: {fileID: 21300000, guid: ed337580823db3a46a6872353f0e88cf, type: 3}
+  heldSprite: {fileID: 21300000, guid: 5b296f9fbc7d7d44d96f851d7f997a9f, type: 3}
+  grabRadius: 150
+  returnToRestOnRelease: 1
+  returnSpeed: 12
+  washRadius: 80
 --- !u!1 &6116092097172857767
 GameObject:
   m_ObjectHideFlags: 0
@@ -4441,6 +4575,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e860a0a395ddbe0429e099d82330b06f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5903653905046422813}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e860a0a395ddbe0429e099d82330b06f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1733925583961357697}
   m_SourcePrefab: {fileID: 100100000, guid: e860a0a395ddbe0429e099d82330b06f, type: 3}
 --- !u!1 &282107940129652097 stripped
 GameObject:
@@ -4482,6 +4619,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DinoStats
   happinessSlider: {fileID: 1615188243180295831}
   hungerSlider: {fileID: 1649258679829207862}
+  cleanlinessSlider: {fileID: 2018664065059867901}
+  dirtVisual: {fileID: 0}
+  onCleaned:
+    m_PersistentCalls:
+      m_Calls: []
   diet: 2
   fullThreshold: 99
   wrongFoodHappinessPenalty: 5
@@ -4722,6 +4864,49 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1733925583961357697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282107940129652097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b669a095ee295e24781be473e2d5583e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DinoWashing
+  dinoRoot: {fileID: 0}
+  dirtSprites:
+  - {fileID: 21300000, guid: 719f047cc081ba84481eea83bfcf7ffe, type: 3}
+  minDirt: 4
+  maxDirt: 12
+  dirtSize: 0.4
+  surfaceOffset: 0.05
+  minDirtSpacing: 0.15
+  sortingOrder: 10
+  secondsToWashDirt: 0.6
+  bubbleSprites:
+  - {fileID: 21300000, guid: 0d08e4148465b144aa3b08a5f3a9d356, type: 3}
+  - {fileID: 21300000, guid: c74bb5817f1efc443b3f91b4fbd2a7f2, type: 3}
+  - {fileID: 21300000, guid: d211b9faabb9a43449b56af76714a62b, type: 3}
+  bubbleCount: 15
+  bubbleLifetime: 1.5
+  bubbleRiseSpeed: 0.5
+  bubbleSway: 0.1
+  bubbleSizeRange: {x: 0.2, y: 0.45}
+  shineSprites:
+  - {fileID: 21300000, guid: c37fc05f391081c41baf4323a164ec08, type: 3}
+  - {fileID: 21300000, guid: 3fafe63b62b01f94f8f75956c08e82e4, type: 3}
+  - {fileID: 21300000, guid: 8f06c5c137586fc45a12810433597291, type: 3}
+  shineCount: 6
+  shineDuration: 0.8
+  shineMaxDelay: 0.6
+  shineSizeRange: {x: 0.2, y: 0.4}
+  shineSpin: 90
+  onWashed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &622041014836586299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e860a0a395ddbe0429e099d82330b06f, type: 3}
@@ -5739,7 +5924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9171557415057331990, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.113755
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9171557415057331990, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5787,3 +5972,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9171557415057331990, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
   m_PrefabInstance: {fileID: 8849921603846715810}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2018664065059867901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7409125670827849055, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
+  m_PrefabInstance: {fileID: 8849921603846715810}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider

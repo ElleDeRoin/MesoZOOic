@@ -23,6 +23,13 @@ public class DinoData : ScriptableObject
     public float baseMoneyPerSecond = 1f;
     [Range(0f, 1f)] public float hungerMoneyFloor = 0.7f;
 
+    [Header("Cleanliness")]
+    public float dirtyCheckInterval = 40f;
+    [Range(0f, 1f)] public float dirtyChance = 0.3f;
+    public float cleanlinessDecayRate = 2f;
+    public float cleanHappinessPerSecond = 0.25f;
+    public float dirtyHappinessPerSecond = 0.5f;
+
     [Header("Food Preferences")]
     public List<FoodData> favoriteFoods = new List<FoodData>();
     public List<FoodData> dislikedFoods = new List<FoodData>();
@@ -48,6 +55,11 @@ public class DinoData : ScriptableObject
         hungerImpactOnHappiness = hungerImpactOnHappiness,
         baseMoneyPerSecond = baseMoneyPerSecond,
         hungerMoneyFloor = hungerMoneyFloor,
+        dirtyCheckInterval = dirtyCheckInterval,
+        dirtyChance = dirtyChance,
+        cleanlinessDecayRate = cleanlinessDecayRate,
+        cleanHappinessPerSecond = cleanHappinessPerSecond,
+        dirtyHappinessPerSecond = dirtyHappinessPerSecond,
         data = this
     };
     
