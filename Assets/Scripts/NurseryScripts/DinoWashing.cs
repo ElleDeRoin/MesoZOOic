@@ -38,6 +38,12 @@ public class DinoWashing : MonoBehaviour
     [SerializeField] private Vector2 shineSizeRange = new Vector2(0.2f, 0.4f);
     [SerializeField] private float shineSpin = 90f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource cleanAudioSource;
+    [SerializeField] private AudioClip fullyCleanClip;
+    [Range(0f, 1f)]
+    [SerializeField] private float fullyCleanVolume = 1f;
+
     [Header("Events")]
     public UnityEvent onWashed;
 
@@ -65,6 +71,7 @@ public class DinoWashing : MonoBehaviour
     private void Awake()
     {
         if (dinoRoot == null) dinoRoot = transform;
+        if (cleanAudioSource == null) cleanAudioSource = GetComponent<AudioSource>();
 
         dino = GetComponent<DinoStats>();
         if (dino == null) dino = GetComponentInChildren<DinoStats>(true);
@@ -201,6 +208,7 @@ public class DinoWashing : MonoBehaviour
             dino.Clean(DinoState.MaxCleanliness);
             SpawnBubbles();
             SpawnShine();
+            PlayFullyCleanSound();
             onWashed?.Invoke();
             return true;
         }
@@ -208,6 +216,13 @@ public class DinoWashing : MonoBehaviour
         int countBefore = dirts.Count + 1;
         dino.Clean((DinoState.MaxCleanliness - dino.cleanliness) / countBefore);
         return false;
+    }
+
+    private void PlayFullyCleanSound()
+    {
+        if (cleanAudioSource == null || fullyCleanClip == null) return;
+
+        cleanAudioSource.PlayOneShot(fullyCleanClip, fullyCleanVolume);
     }
 
     private static float WorldSizeToScale(Sprite sprite, float worldWidth)
