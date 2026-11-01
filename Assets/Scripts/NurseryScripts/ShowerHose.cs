@@ -25,6 +25,12 @@ public class ShowerHose : MonoBehaviour
     [SerializeField] private float effectDepthOffset = -0.5f;
     [SerializeField] private float effectDistance = 5f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource showerAudioSource;
+    [SerializeField] private AudioClip showerLoopClip;
+    [Range(0f, 1f)]
+    [SerializeField] private float showerVolume = 1f;
+
     [Header("Washing")]
     [SerializeField] private float washRadius = 80f;
 
@@ -55,6 +61,13 @@ public class ShowerHose : MonoBehaviour
         canvasRect = (RectTransform)canvas.transform;
 
         restAnchoredPosition = rect.anchoredPosition;
+
+        if (showerAudioSource == null) showerAudioSource = GetComponent<AudioSource>();
+        if (showerAudioSource != null)
+        {
+            showerAudioSource.playOnAwake = false;
+            showerAudioSource.loop = true;
+        }
 
         if (nozzle == null) nozzle = transform;
         if (hoseImage == null) hoseImage = GetComponent<Image>();
@@ -102,6 +115,7 @@ public class ShowerHose : MonoBehaviour
         }
 
         StopSprayEffect();
+        StopShowerSound();
     }
 
     private void Update()
@@ -120,6 +134,7 @@ public class ShowerHose : MonoBehaviour
                 grabOffset = rect.position - point;
                 DinoWashing.IsWashing = true;
                 SetHeldSprite(true);
+                StartShowerSound();
             }
         }
         if (!pressed && dragging)
@@ -128,6 +143,7 @@ public class ShowerHose : MonoBehaviour
             DinoWashing.IsWashing = false;
             SetHeldSprite(false);
             StopSprayEffect();
+            StopShowerSound();
         }
 
         if (dragging)
@@ -193,6 +209,23 @@ public class ShowerHose : MonoBehaviour
 
         if (sprayEffect != null)
             sprayEffect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+    }
+
+    private void StartShowerSound()
+    {
+        if (showerAudioSource == null || showerLoopClip == null) return;
+        if (showerAudioSource.isPlaying) return;
+
+        showerAudioSource.clip = showerLoopClip;
+        showerAudioSource.volume = showerVolume;
+        showerAudioSource.loop = true;
+        showerAudioSource.Play();
+    }
+
+    private void StopShowerSound()
+    {
+        if (showerAudioSource != null && showerAudioSource.isPlaying)
+            showerAudioSource.Stop();
     }
 
     private void SetHeldSprite(bool held)

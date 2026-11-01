@@ -36,6 +36,13 @@ public class DinoBrush : MonoBehaviour
     [SerializeField] private int maxStrokesPerUse = 15;
     [SerializeField] private float cooldownSeconds = 30f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource brushAudioSource;
+    [SerializeField] private AudioClip[] brushStrokeClips;
+    [Range(0f, 1f)]
+    [SerializeField] private float brushVolume = 1f;
+    [SerializeField] private Vector2 pitchRange = new Vector2(0.95f, 1.05f);
+
     [Header("Events")]
     public UnityEvent onStroke;
     public UnityEvent onSessionEnded;
@@ -74,6 +81,9 @@ public class DinoBrush : MonoBehaviour
         canvasRect = (RectTransform)canvas.transform;
 
         restAnchoredPosition = rect.anchoredPosition;
+
+        if (brushAudioSource == null) brushAudioSource = GetComponent<AudioSource>();
+        if (brushAudioSource != null) brushAudioSource.playOnAwake = false;
 
         if (brushPoint == null) brushPoint = transform;
         if (brushImage == null) brushImage = GetComponent<Image>();
@@ -156,6 +166,7 @@ public class DinoBrush : MonoBehaviour
         if (Vector2.Distance(tip, lastStrokePosition) >= movementRequired && strokeTimer <= 0f)
         {
             petting.PetDino(happinessPerStroke);
+            PlayStrokeSound();
             onStroke?.Invoke();
 
             strokes++;
@@ -181,6 +192,18 @@ public class DinoBrush : MonoBehaviour
 
         strokes = 0;
         RefreshSprite();
+    }
+
+    private void PlayStrokeSound()
+    {
+        if (brushAudioSource == null || brushStrokeClips == null || brushStrokeClips.Length == 0)
+            return;
+
+        AudioClip clip = brushStrokeClips[Random.Range(0, brushStrokeClips.Length)];
+        if (clip == null) return;
+
+        brushAudioSource.pitch = Random.Range(pitchRange.x, pitchRange.y);
+        brushAudioSource.PlayOneShot(clip, brushVolume);
     }
 
     private void RefreshSprite()
