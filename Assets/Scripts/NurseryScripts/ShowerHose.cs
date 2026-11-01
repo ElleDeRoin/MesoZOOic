@@ -17,6 +17,14 @@ public class ShowerHose : MonoBehaviour
     [SerializeField] private bool returnToRestOnRelease = true;
     [SerializeField] private float returnSpeed = 12f;
 
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem sprayEffect;
+    [SerializeField] private bool effectIsChildOfNozzle = false;
+    [SerializeField] private float effectScale = 0.15f;
+    [SerializeField] private bool matchDinoDepth = true;
+    [SerializeField] private float effectDepthOffset = -0.5f;
+    [SerializeField] private float effectDistance = 5f;
+
     [Header("Washing")]
     [SerializeField] private float washRadius = 80f;
 
@@ -24,7 +32,9 @@ public class ShowerHose : MonoBehaviour
     private RectTransform canvasRect;
     private Vector2 restAnchoredPosition;
     private Vector3 grabOffset;
+    private Vector3 effectBaseScale = Vector3.one;
     private bool dragging;
+    private bool effectStarted;
 
     private Camera UICamera =>
         canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
@@ -36,7 +46,7 @@ public class ShowerHose : MonoBehaviour
         if (canvas == null) canvas = GetComponentInParent<Canvas>();
         if (canvas == null)
         {
-            Debug.LogError("SShower hose in wrong spot dawg.", this);
+            Debug.LogError("add showwer hose to canvas dawg", this);
             enabled = false;
             return;
         }
@@ -49,6 +59,37 @@ public class ShowerHose : MonoBehaviour
         if (nozzle == null) nozzle = transform;
         if (hoseImage == null) hoseImage = GetComponent<Image>();
         if (idleSprite == null && hoseImage != null) idleSprite = hoseImage.sprite;
+        if (sprayEffect != null && !sprayEffect.gameObject.scene.IsValid())
+        {
+            Camera mainCam = Camera.main;
+            sprayEffect = Instantiate(sprayEffect, mainCam != null ? mainCam.transform : null);
+        }
+
+        if (sprayEffect != null)
+        {
+            if (!effectIsChildOfNozzle)
+            {
+                Camera cam = Camera.main;
+                if (cam != null && sprayEffect.GetComponentInParent<Canvas>() != null)
+                {
+                    sprayEffect.transform.SetParent(cam.transform, false);
+                    sprayEffect.transform.localPosition = Vector3.zero;
+                }
+
+                effectBaseScale = sprayEffect.transform.localScale;
+                sprayEffect.transform.localScale = effectBaseScale * effectScale;
+            }
+
+            foreach (ParticleSystem ps in sprayEffect.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                ParticleSystem.MainModule main = ps.main;
+                main.loop = true;
+                main.playOnAwake = false;
+                main.simulationSpace = ParticleSystemSimulationSpace.World;
+                main.scalingMode = ParticleSystemScalingMode.Hierarchy;
+            }
+            sprayEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
     }
 
     private void OnDisable()
@@ -59,6 +100,8 @@ public class ShowerHose : MonoBehaviour
             DinoWashing.IsWashing = false;
             SetHeldSprite(false);
         }
+
+        StopSprayEffect();
     }
 
     private void Update()
@@ -79,12 +122,12 @@ public class ShowerHose : MonoBehaviour
                 SetHeldSprite(true);
             }
         }
-
         if (!pressed && dragging)
         {
             dragging = false;
             DinoWashing.IsWashing = false;
             SetHeldSprite(false);
+            StopSprayEffect();
         }
 
         if (dragging)
@@ -93,17 +136,63 @@ public class ShowerHose : MonoBehaviour
                 rect.position = point + grabOffset;
 
             Camera sceneCam = Camera.main;
+            Vector2 nozzleScreen = RectTransformUtility.WorldToScreenPoint(uiCam, nozzle.position);
+
+            UpdateSprayEffect(sceneCam, nozzleScreen);
+
             if (DinoWashing.Active != null && sceneCam != null)
-            {
-                Vector2 nozzleScreen = RectTransformUtility.WorldToScreenPoint(uiCam, nozzle.position);
                 DinoWashing.Active.Wash(nozzleScreen, sceneCam, washRadius, Time.deltaTime);
-            }
         }
         else if (returnToRestOnRelease)
         {
             float t = 1f - Mathf.Exp(-returnSpeed * Time.deltaTime);
             rect.anchoredPosition = Vector2.Lerp(rect.anchoredPosition, restAnchoredPosition, t);
         }
+    }
+
+    private void UpdateSprayEffect(Camera sceneCam, Vector2 nozzleScreen)
+    {
+        if (sprayEffect == null) return;
+
+        if (effectIsChildOfNozzle)
+        {
+            StartEffectOnce();
+            return;
+        }
+        if(sceneCam == null) return;
+
+        float depth = effectDistance;
+        if (matchDinoDepth && DinoWashing.Active != null)
+        {
+            Vector3 toDino = DinoWashing.Active.transform.position - sceneCam.transform.position;
+            depth = Vector3.Dot(toDino, sceneCam.transform.forward) + effectDepthOffset;
+        }
+        depth = Mathf.Max(depth, sceneCam.nearClipPlane + 0.1f);
+
+        sprayEffect.transform.localScale = effectBaseScale * effectScale;
+        sprayEffect.transform.position = sceneCam.ScreenToWorldPoint(
+            new Vector3(nozzleScreen.x, nozzleScreen.y, depth));
+
+        if (!sprayEffect.gameObject.activeSelf)
+            sprayEffect.gameObject.SetActive(true);
+
+        StartEffectOnce();
+    }
+
+    private void StartEffectOnce()
+    {
+        if (effectStarted) return;
+
+        effectStarted = true;
+        sprayEffect.Play(true);
+    }
+
+    private void StopSprayEffect()
+    {
+        effectStarted = false;
+
+        if (sprayEffect != null)
+            sprayEffect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 
     private void SetHeldSprite(bool held)
@@ -114,7 +203,6 @@ public class ShowerHose : MonoBehaviour
         if (wanted != null)
             hoseImage.sprite = wanted;
     }
-
     private bool TryGetCanvasPoint(Vector2 screenPos, Camera uiCam, out Vector3 worldPoint)
     {
         return RectTransformUtility.ScreenPointToWorldPointInRectangle(
