@@ -15468,8 +15468,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DinoStats
   happinessSlider: {fileID: 1615188243180295831}
   hungerSlider: {fileID: 1649258679829207862}
-  cleanlinessSlider: {fileID: 0}
-  dirtVisual: {fileID: 7894988347876339545}
+  cleanlinessSlider: {fileID: 238987620627313282}
+  dirtVisual: {fileID: 0}
   onCleaned:
     m_PersistentCalls:
       m_Calls: []
@@ -16152,14 +16152,20 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
+--- !u!114 &238987620627313282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7409125670827849055, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
+  m_PrefabInstance: {fileID: 7314845746197366749}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!224 &1928780421769236683 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9171557415057331990, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
-  m_PrefabInstance: {fileID: 7314845746197366749}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7894988347876339545 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 581860874778273924, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
   m_PrefabInstance: {fileID: 7314845746197366749}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8411015744398155938

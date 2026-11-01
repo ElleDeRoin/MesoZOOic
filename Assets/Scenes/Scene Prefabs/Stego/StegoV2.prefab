@@ -5856,8 +5856,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6706948, y: 0.6706948, z: 0.6706948}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7468331912846536948}
+  m_Children: []
   m_Father: {fileID: 6582989236357012474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5915,7 +5914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a369fc1870f781644b52688d05af9467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinoBrush
-  brushPoint: {fileID: 7468331912846536948}
+  brushPoint: {fileID: 0}
   canvas: {fileID: 0}
   brushImage: {fileID: 8145204497695043479}
   readySprite: {fileID: 21300000, guid: 6607018737dd2b54dbdfc56b06e3a655, type: 3}
@@ -7437,6 +7436,8 @@ RectTransform:
   - {fileID: 4968892159648407294}
   - {fileID: 8443883703619376382}
   - {fileID: 670140700386792816}
+  - {fileID: 1342805904985235883}
+  - {fileID: 7615016158024077068}
   m_Father: {fileID: 8164449512202004475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13527,7 +13528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2045522279301772763
@@ -14968,6 +14969,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
+--- !u!114 &3394243075222528517 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7409125670827849055, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
+  m_PrefabInstance: {fileID: 5316577001075382106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!224 &3931550654527144012 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9171557415057331990, guid: e0d6975fcca34864d98ca3212cdf4d73, type: 3}
@@ -15545,6 +15557,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DinoStats
   happinessSlider: {fileID: 1615188243180295831}
   hungerSlider: {fileID: 1649258679829207862}
+  cleanlinessSlider: {fileID: 3394243075222528517}
+  dirtVisual: {fileID: 0}
+  onCleaned:
+    m_PersistentCalls:
+      m_Calls: []
   diet: 0
   fullThreshold: 99
   wrongFoodHappinessPenalty: 5
@@ -15590,6 +15607,8 @@ MonoBehaviour:
   petCooldown: 0.1
   animator: {fileID: 1074057534455748027}
   cuddleLingerTime: 0.5
+  hand: {fileID: 1342805904985235883}
+  handOffset: {x: 0, y: 0}
   heartVFX: {fileID: 146218895643518653}
 --- !u!95 &1074057534455748027
 Animator:
