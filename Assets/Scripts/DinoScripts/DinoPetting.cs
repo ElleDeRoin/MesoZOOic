@@ -16,6 +16,11 @@ public class DinoPetting : MonoBehaviour
     public float cuddleLingerTime = 0.5f;
 
 
+    [Header("Hand")]
+    public RectTransform hand;
+    public Vector2 handOffset = Vector2.zero;
+    private Canvas handCanvas;
+
     private static readonly int IsPettingHash = Animator.StringToHash("IsPetting");
 
     private Vector2 lastTouchPosition;
@@ -28,8 +33,14 @@ public class DinoPetting : MonoBehaviour
     {
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
-    }
 
+        if (hand != null)
+        {
+            Canvas c = hand.GetComponentInParent<Canvas>();
+            if (c != null) handCanvas = c.rootCanvas;
+            hand.gameObject.SetActive(false);
+        }
+    }
     void Update()
     {
         cooldownTimer -= Time.deltaTime;
@@ -40,16 +51,17 @@ public class DinoPetting : MonoBehaviour
             if (cuddleTimer <= 0f)
                 SetCuddleAnimation(false);
         }
-
-        if (DinoWashing.IsWashing)
+        if (DinoWashing.IsWashing || DinoBrush.IsBrushing)
         {
             isPetting = false;
+            HideHand();
             return;
         }
 
         if (Input.touchCount == 0)
         {
             isPetting = false;
+            HideHand();
             return;
         }
 
@@ -85,9 +97,41 @@ public class DinoPetting : MonoBehaviour
         {
             isPetting = false;
         }
+
+        if (isPetting)
+            MoveHand(touch.position);
+        else
+            HideHand();
     }
 
-    private bool IsTouchingDino(Vector2 screenPosition)
+    private void MoveHand(Vector2 screenPosition)
+    {
+        if (hand == null || handCanvas == null) return;
+
+        if (!hand.gameObject.activeSelf)
+            hand.gameObject.SetActive(true);
+
+        Camera uiCam = handCanvas.renderMode == RenderMode.ScreenSpaceOverlay
+            ? null
+            : handCanvas.worldCamera;
+
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                (RectTransform)handCanvas.transform,
+                screenPosition + handOffset,
+                uiCam,
+                out Vector3 world))
+        {
+            hand.position = world;
+        }
+    }
+
+    private void HideHand()
+    {
+        if (hand != null && hand.gameObject.activeSelf)
+            hand.gameObject.SetActive(false);
+    }
+
+    public bool IsTouchingDino(Vector2 screenPosition)
     {
         Ray ray = Camera.main.ScreenPointToRay(screenPosition);
 
@@ -102,6 +146,10 @@ public class DinoPetting : MonoBehaviour
 
     private void PetDino()
     {
+        PetDino(happinessPerRub);
+    }
+    public void PetDino(float happiness)
+    {
         Debug.Log("Petting");
 
         cuddleTimer = cuddleLingerTime;
@@ -113,7 +161,7 @@ public class DinoPetting : MonoBehaviour
         if (dinoStats == null)
             return;
 
-        dinoStats.Play(happinessPerRub);
+        dinoStats.Play(happiness);
     }
 
     private void SetCuddleAnimation(bool value)

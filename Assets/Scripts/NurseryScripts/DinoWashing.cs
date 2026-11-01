@@ -16,7 +16,7 @@ public class DinoWashing : MonoBehaviour
     [SerializeField] private Sprite[] dirtSprites;
     [SerializeField] private int minDirt = 4;
     [SerializeField] private int maxDirt = 12;
-    [SerializeField] private float dirtSize = 0.4f;
+    [SerializeField] private float dirtSize = 0.6f;
     [SerializeField] private float surfaceOffset = 0.05f;
     [SerializeField] private float minDirtSpacing = 0.15f;
     [SerializeField] private int sortingOrder = 10;
