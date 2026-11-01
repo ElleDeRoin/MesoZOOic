@@ -24,7 +24,7 @@ public class DinoData : ScriptableObject
     [Range(0f, 1f)] public float hungerMoneyFloor = 0.7f;
 
     [Header("Cleanliness")]
-    public float dirtyCheckInterval = 40f;
+    public float dirtyCheckInterval = 300f;
     [Range(0f, 1f)] public float dirtyChance = 0.3f;
     public float cleanlinessDecayRate = 2f;
     public float cleanHappinessPerSecond = 0.25f;
