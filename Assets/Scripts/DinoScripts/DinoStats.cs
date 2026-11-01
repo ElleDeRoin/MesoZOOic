@@ -12,6 +12,11 @@ public class DinoStats : MonoBehaviour
 
     public Slider happinessSlider;
     public Slider hungerSlider;
+    public Slider cleanlinessSlider;
+
+    [Header("Cleanliness")]
+    public GameObject dirtVisual;
+    public UnityEvent onCleaned;
 
     [Header("Diet")]
     public Diet diet = Diet.Herbivore;
@@ -47,6 +52,8 @@ public class DinoStats : MonoBehaviour
 
     public float happiness => state != null ? state.happiness : 0f;
     public float hunger => state != null ? state.hunger : 0f;
+    public float cleanliness => state != null ? state.cleanliness : 100f;
+    public bool isDirty => state != null && state.isDirty;
     public float currentMoneyRate =>
         state != null ? state.currentMoneyRate : 0f;
 
@@ -102,6 +109,12 @@ public class DinoStats : MonoBehaviour
 
         if (hungerSlider != null)
             hungerSlider.value = state.hunger;
+
+        if (cleanlinessSlider != null)
+            cleanlinessSlider.value = state.cleanliness;
+
+        if (dirtVisual != null && dirtVisual.activeSelf != state.isDirty)
+            dirtVisual.SetActive(state.isDirty);
     }
 
     public void Initialize(string instanceId, DinoData data)
@@ -210,6 +223,19 @@ public class DinoStats : MonoBehaviour
             0f,
             100f
         );
+
+        UpdateUI();
+    }
+
+    public void Clean(float amount)
+    {
+        if (state == null) return;
+
+        bool wasDirty = state.isDirty;
+        state.Clean(amount);
+
+        if (wasDirty && !state.isDirty)
+            onCleaned?.Invoke();
 
         UpdateUI();
     }

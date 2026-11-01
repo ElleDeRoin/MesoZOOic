@@ -9,6 +9,9 @@ public class DinoStateSave
     public string instanceId;
     public float happiness;
     public float hunger;
+    public float cleanliness = 100f;
+    public bool isDirty;
+    public float dirtyCheckTimer;
 }
 
 [Serializable]
@@ -97,7 +100,10 @@ public static class SaveSystem
                 {
                     instanceId = owned.instanceId,
                     happiness = state.happiness,
-                    hunger = state.hunger
+                    hunger = state.hunger,
+                    cleanliness = state.cleanliness,
+                    isDirty = state.isDirty,
+                    dirtyCheckTimer = state.dirtyCheckTimer
                 });
             }
         }
