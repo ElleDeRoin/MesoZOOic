@@ -13,6 +13,7 @@ public class DinoData : ScriptableObject
     public Diet diet;
     public Rarity rarity;
     public Sprite icon;
+    public GameObject hatchModel;
     public GameObject penPrefab;
 
     [Header("Stats")]
@@ -21,6 +22,13 @@ public class DinoData : ScriptableObject
     public float hungerImpactOnHappiness = 1f;
     public float baseMoneyPerSecond = 1f;
     [Range(0f, 1f)] public float hungerMoneyFloor = 0.7f;
+
+    [Header("Cleanliness")]
+    public float dirtyCheckInterval = 300f;
+    [Range(0f, 1f)] public float dirtyChance = 0.3f;
+    public float cleanlinessDecayRate = 2f;
+    public float cleanHappinessPerSecond = 0.25f;
+    public float dirtyHappinessPerSecond = 0.5f;
 
     [Header("Food Preferences")]
     public List<FoodData> favoriteFoods = new List<FoodData>();
@@ -47,6 +55,11 @@ public class DinoData : ScriptableObject
         hungerImpactOnHappiness = hungerImpactOnHappiness,
         baseMoneyPerSecond = baseMoneyPerSecond,
         hungerMoneyFloor = hungerMoneyFloor,
+        dirtyCheckInterval = dirtyCheckInterval,
+        dirtyChance = dirtyChance,
+        cleanlinessDecayRate = cleanlinessDecayRate,
+        cleanHappinessPerSecond = cleanHappinessPerSecond,
+        dirtyHappinessPerSecond = dirtyHappinessPerSecond,
         data = this
     };
     

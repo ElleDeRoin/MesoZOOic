@@ -15,7 +15,9 @@ MonoBehaviour:
   id: triceratops
   displayName: Triceratops
   diet: 0
+  rarity: 0
   icon: {fileID: 21300000, guid: b8ca090ae32407b47a36d297c8f205bf, type: 3}
+  hatchModel: {fileID: 3052595333339061257, guid: bfef01751c147724188e29fc3512ce89, type: 3}
   penPrefab: {fileID: 4936181797622902649, guid: 1639c4a9da0eca24abc936e40ed134ec, type: 3}
   happinessDecayRate: 0.1
   hungerDecayRate: 0.15
