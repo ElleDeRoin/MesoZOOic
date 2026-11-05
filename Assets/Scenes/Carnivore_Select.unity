@@ -1960,6 +1960,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1541306840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1541306842}
+  - component: {fileID: 1541306841}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1541306841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541306840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae61310979161974bb5bad81ff4da8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialDialogue
+  dialoguePanel: {fileID: 0}
+  dialogueText: {fileID: 0}
+  lines:
+  - Behold! Your first dinosaur. This is Dave. He is now yours to keep!
+  - He is precious to me, but alas, I am growing old. My knees are not what they
+    used to be.
+  - Regardless! You can see how he is doing based on his happiness and hunger. The
+    lower they are, the less money he will earn you.!
+  - You are also able to search for dinosaurs by name and return to the zoo or pause
+    at any time.
+  - "Now! Let\u2019s move on to care. Tap on your raptor, Dave."
+  secondsPerLetter: 0.03
+--- !u!4 &1541306842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541306840}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1125.0276, y: 535.9812, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1684151703
 GameObject:
   m_ObjectHideFlags: 0
@@ -2362,3 +2418,4 @@ SceneRoots:
   - {fileID: 1016732156}
   - {fileID: 1488730402}
   - {fileID: 256253900}
+  - {fileID: 1541306842}
