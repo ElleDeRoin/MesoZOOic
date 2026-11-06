@@ -12,6 +12,7 @@ public class OwnedDino
 
 public class DinoCollection : MonoBehaviour
 {
+
     private static DinoCollection instance;
     public static DinoCollection Instance
     {
@@ -27,12 +28,12 @@ public class DinoCollection : MonoBehaviour
             return instance;
         }
     }
+    public const string StarterDinoId = "raptor";
 
     public event Action OnChanged;
 
     private readonly List<OwnedDino> owned = new List<OwnedDino>();
     private Dictionary<string, DinoData> catalog;
-
     public IReadOnlyList<OwnedDino> Owned => owned;
     public IReadOnlyCollection<DinoData> AllSpecies => Catalog.Values;
 
@@ -45,6 +46,8 @@ public class DinoCollection : MonoBehaviour
             return catalog;
         }
     }
+
+
 
     public DinoData GetData(string dataId) => Catalog[dataId];
 
@@ -60,7 +63,6 @@ public class DinoCollection : MonoBehaviour
         OnChanged?.Invoke();
         return dino;
     }
-
     private void Load()
     {
         SaveFile save = SaveSystem.Data;
@@ -85,6 +87,23 @@ public class DinoCollection : MonoBehaviour
 
             DinoRegistry.Instance.Register(d.instanceId, state);
         }
+
+        EnsureStarterDino();
+    }
+
+
+    public void EnsureStarterDino()
+    {
+        if (SaveSystem.StarterDinoGiven) return;
+
+        if (!Catalog.TryGetValue(StarterDinoId, out DinoData starter))
+        {
+            Debug.LogError($"Coudn't find the starting raptor oops");
+            return;
+        }
+
+        SaveSystem.StarterDinoGiven = true;
+        Add(starter);
     }
 
     public void ClearAll()

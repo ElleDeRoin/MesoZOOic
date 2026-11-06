@@ -14,13 +14,13 @@ public class DinoStateSave
     public float dirtyCheckTimer;
 }
 
+
 [Serializable]
 public class DecorationSave
 {
     public string slotKey;
     public string decorationId;
 }
-
 [Serializable]
 public class SaveFile
 {
@@ -28,7 +28,8 @@ public class SaveFile
     public bool hasMoney;
     public float money;
     public int amber;
-
+    public int tutorialState;
+    public bool starterDinoGiven;
     public List<OwnedDino> dinos = new List<OwnedDino>();
     public List<DinoStateSave> dinoStates = new List<DinoStateSave>();
     public List<DecorationSave> decorations = new List<DecorationSave>();
@@ -37,6 +38,10 @@ public class SaveFile
 public static class SaveSystem
 {
     private const string LegacyDinoKey = "OwnedDinos";
+    private const int TutorialNotDone = 1;
+    private const int TutorialDone = 2;
+    private static bool tutorialComplete;
+    private static bool starterGiven;
     private static SaveFile data;
     private static bool moneyReady;
 
@@ -54,6 +59,26 @@ public static class SaveSystem
         }
     }
 
+
+    public static bool TutorialComplete
+    {
+        get => tutorialComplete;
+        set
+        {
+            if (tutorialComplete == value) return;
+
+            tutorialComplete = value;
+            Save();
+        }
+    }
+
+
+
+    public static bool StarterDinoGiven
+    {
+        get => starterGiven;
+        set => starterGiven = value;
+    }
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Initialize()
     {
@@ -61,6 +86,17 @@ public static class SaveSystem
         moneyReady = false;
 
         SaveFile save = Data;
+
+        if (save.tutorialState == 0)
+        {
+            bool existingPlayer = save.hasMoney || save.dinos.Count > 0;
+            save.tutorialState = existingPlayer ? TutorialDone : TutorialNotDone;
+
+            if (existingPlayer)
+                save.starterDinoGiven = true;
+        }
+        tutorialComplete = save.tutorialState == TutorialDone;
+        starterGiven = save.starterDinoGiven;
 
         if (save.hasMoney)
         {
@@ -74,7 +110,6 @@ public static class SaveSystem
         runner.AddComponent<SaveRunner>();
         UnityEngine.Object.DontDestroyOnLoad(runner);
     }
-
     public static void Save()
     {
 
@@ -87,12 +122,15 @@ public static class SaveSystem
         {
             hasMoney = moneyReady,
             money = moneyReady ? PlayerMoney.Balance : 0f,
-            amber = moneyReady ? PlayerMoney.Amber : 0
+            amber = moneyReady ? PlayerMoney.Amber : 0,
+            tutorialState = tutorialComplete ? TutorialDone : TutorialNotDone,
+            starterDinoGiven = starterGiven
         };
 
         foreach (OwnedDino owned in collection.Owned)
         {
             file.dinos.Add(owned);
+
 
             if (DinoRegistry.Instance.TryGet(owned.instanceId, out DinoState state))
             {
@@ -113,7 +151,6 @@ public static class SaveSystem
         {
             if (pair.Value == null)
                 continue;
-
             file.decorations.Add(new DecorationSave
             {
                 slotKey = pair.Key,
@@ -124,6 +161,7 @@ public static class SaveSystem
         data = file;
         WriteToDisk(file);
     }
+
 
     public static void ResetAll()
     {
@@ -140,6 +178,7 @@ public static class SaveSystem
                 Wallet.Instance.StartingMoney,
                 Wallet.Instance.StartingAmber
             );
+            
             moneyReady = true;
         }
 
@@ -147,9 +186,12 @@ public static class SaveSystem
 
         PlayerPrefs.DeleteKey(LegacyDinoKey);
 
-        Save();
-    }
+        tutorialComplete = false;
+        starterGiven = false;
 
+        Save();
+        DinoCollection.Instance.EnsureStarterDino();
+    }
     private static void ApplyDecorations(SaveFile save)
     {
         if (save.decorations.Count == 0)
@@ -159,6 +201,7 @@ public static class SaveSystem
 
         foreach (DecorationData deco in Resources.LoadAll<DecorationData>("Decorations"))
             catalog[deco.name] = deco;
+
 
         foreach (DecorationSave entry in save.decorations)
         {
@@ -173,6 +216,7 @@ public static class SaveSystem
                 );
             }
         }
+
     }
 
     private static SaveFile ReadFromDisk()
@@ -185,6 +229,7 @@ public static class SaveSystem
 
                 if (loaded != null)
                     return loaded;
+
             }
             catch (Exception e)
             {
@@ -194,7 +239,6 @@ public static class SaveSystem
                 catch { }
             }
         }
-
         SaveFile fresh = new SaveFile();
         MigrateLegacyDinos(fresh);
         return fresh;
@@ -205,6 +249,7 @@ public static class SaveSystem
     {
         public List<OwnedDino> dinos = new List<OwnedDino>();
     }
+
 
     private static void MigrateLegacyDinos(SaveFile target)
     {
@@ -217,7 +262,6 @@ public static class SaveSystem
         if (legacy != null && legacy.dinos != null)
             target.dinos.AddRange(legacy.dinos);
     }
-
     private static void WriteToDisk(SaveFile file)
     {
         try
@@ -236,7 +280,6 @@ public static class SaveSystem
             Debug.LogError("Failed to save game dawg: " + e.Message);
         }
     }
-
 #if UNITY_EDITOR
     [UnityEditor.MenuItem("Delete Save File")]
     private static void DeleteSaveFile()

@@ -79,7 +79,7 @@ public class UIControl : MonoBehaviour
     public void resetSaveData()
     {
         SaveSystem.ResetAll();
-        SceneManager.LoadScene("Home");
+        SceneManager.LoadScene(TutorialRouter.TutorialSceneName);
     }
 
 }

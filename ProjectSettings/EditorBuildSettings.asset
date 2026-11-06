@@ -44,5 +44,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Omnivore_Select.unity
     guid: d22f7a095cb140b43a758572a9338cab
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/TutorialStart.unity
+    guid: d4716978a67bf594fbf8ef2451ed1058
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/IntroScene.unity
+    guid: ebb5710996a4e6b449fe65b9c7efc892
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/ZooTut.unity
+    guid: 258a1666f15fc0c45bfea11f8e32cb7e
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/CarnoTut.unity
+    guid: ca09461eba21c8a44b19933341fd1c47
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
