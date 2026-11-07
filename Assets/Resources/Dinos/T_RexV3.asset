@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4736a43b05ee5b94a9b905b08defd7e0, type: 3}
+  m_Name: T_RexV3
+  m_EditorClassIdentifier: Assembly-CSharp::DinoData
+  id: trexV3
+  displayName: Rose T-Rex
+  diet: 1
+  rarity: 2
+  icon: {fileID: 21300000, guid: 4576cc4ab9699994eb990950fd5e34a9, type: 3}
+  hatchModel: {fileID: 7743972756919327269, guid: 522f0b12a1fe3704c8dd9284fc6a3b8a, type: 3}
+  penPrefab: {fileID: 4936181797622902649, guid: 3847c4dc5575fcd43ae0fa33358dc007, type: 3}
+  happinessDecayRate: 0.5
+  hungerDecayRate: 0.75
+  hungerImpactOnHappiness: 1
+  baseMoneyPerSecond: 1
+  hungerMoneyFloor: 0.7
+  dirtyCheckInterval: 300
+  dirtyChance: 0.3
+  cleanlinessDecayRate: 2
+  cleanHappinessPerSecond: 0.25
+  dirtyHappinessPerSecond: 0.5
+  favoriteFoods:
+  - {fileID: 11400000, guid: 1424e3bd300cdf54d81efc9f86fd32d8, type: 2}
+  dislikedFoods:
+  - {fileID: 11400000, guid: a378c089be956454093f78b1db3e7279, type: 2}
+  favoriteFoodHungerMultiplier: 1.5
+  favoriteFoodExtraHappiness: 10
+  dislikedFoodHungerMultiplier: 0.5
+  dislikedFoodHappinessPenalty: 5
+  favoriteDecorations:
+  - {fileID: 11400000, guid: 1a9d38a7b868562409ba0590e6330711, type: 2}
+  dislikedDecorations:
+  - {fileID: 11400000, guid: 148371ac964fd0f4d9a10989953a2a86, type: 2}
+  favoriteDecorationMultiplier: 2
+  dislikedDecorationMultiplier: 0.25
