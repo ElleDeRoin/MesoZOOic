@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1864324373675708164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6705746543184446782}
+  - component: {fileID: 3937545641112678937}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6705746543184446782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864324373675708164}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1225.4281, y: 503.1615, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3937545641112678937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864324373675708164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b990c73577b27c49afceca5909a659c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
+  tracks:
+  - label: Pen
+    clip: {fileID: 8300000, guid: dacf6bb5852210d4b8236144643c52c7, type: 3}
+    scenes:
+    - Pen
+  - label: Free
+    clip: {fileID: 8300000, guid: e01e604973029284480d03339f1bfb69, type: 3}
+    scenes:
+    - Minigame_Blockout
+    - TutMini
+  - label: Paid
+    clip: {fileID: 8300000, guid: bc8c1120805baf84eb485c34e2584e76, type: 3}
+    scenes:
+    - Minigame_Paid
+  defaultClip: {fileID: 8300000, guid: 2ab278c5be089074384d43cf5adecdbf, type: 3}
+  volume: 0.6
+  fadeSeconds: 1

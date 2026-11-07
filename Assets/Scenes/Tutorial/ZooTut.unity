@@ -1355,7 +1355,7 @@ MonoBehaviour:
   bobHeight: 30
   bobDuration: 0.5
   audioSource: {fileID: 0}
-  talkClip: {fileID: 0}
+  talkClip: {fileID: 8300000, guid: d15fe4a2e261020479ba2b86a3e47735, type: 3}
   talkVolume: 1
   completesTutorial: 0
   nextSceneName: 

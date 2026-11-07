@@ -801,6 +801,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
+      propertyPath: talkClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d15fe4a2e261020479ba2b86a3e47735, type: 3}
+    - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 1097520654}
