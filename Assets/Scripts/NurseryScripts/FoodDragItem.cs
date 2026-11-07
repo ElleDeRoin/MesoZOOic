@@ -16,6 +16,7 @@ public class FoodDragItem : WorldDragSource
 
         if (priceLabel != null)
             priceLabel.text = food.price > 0 ? "$" + food.price : "Free";
+
     }
 
     private void Start()
@@ -37,13 +38,13 @@ public class FoodDragItem : WorldDragSource
         if (iconImage == null) return;
         bool affordable = food.price <= 0f || money >= food.price;
         iconImage.color = affordable ? Color.white : unaffordableTint;
+
     }
 
     protected override bool CanBeginDrag()
     {
         return food.price <= 0f || (Wallet.Instance != null && Wallet.Instance.CanAfford(food.price));
     }
-
     protected override void OnDroppedOnWorld(RaycastHit hit)
     {
         var dino = hit.collider.GetComponentInParent<DinoStats>();
@@ -53,5 +54,9 @@ public class FoodDragItem : WorldDragSource
 
         if (result == FeedResult.Ate && food.price > 0f && Wallet.Instance != null)
             Wallet.Instance.TrySpend(food.price);
+
+        if (result == FeedResult.Ate)
+            TutorialEvents.Raise(TutorialAction.FoodFed);
+            
     }
 }

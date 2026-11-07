@@ -1598,58 +1598,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274419295}
   m_CullTransparentMesh: 1
---- !u!1 &1276516435
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1276516437}
-  - component: {fileID: 1276516436}
-  m_Layer: 0
-  m_Name: DialogueManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1276516436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276516435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae61310979161974bb5bad81ff4da8f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialDialogue
-  dialoguePanel: {fileID: 0}
-  dialogueText: {fileID: 0}
-  lines:
-  - "Here, you will find your zoo. Your dinosaurs are divided into regions according
-    to their eating preferences. Let\u2019s look at the carnivores!"
-  - "[MINIGAME INTRO]Let\u2019s get some more dinosaurs!"
-  - '[MINIGAME INTRO]Press excavate to go on a dinosaur collecting expedition.'
-  secondsPerLetter: 0.03
---- !u!4 &1276516437
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276516435}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1125.0276, y: 535.9812, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1343683944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2803,4 +2751,3 @@ SceneRoots:
   - {fileID: 1116641124}
   - {fileID: 1719167288}
   - {fileID: 149998694}
-  - {fileID: 1276516437}

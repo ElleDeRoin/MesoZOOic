@@ -29,6 +29,7 @@ public class DinoPetting : MonoBehaviour
     private bool isPetting;
     [SerializeField] ParticleSystem heartVFX = null;
 
+
     void Awake()
     {
         if (animator == null)
@@ -57,7 +58,6 @@ public class DinoPetting : MonoBehaviour
             HideHand();
             return;
         }
-
         if (Input.touchCount == 0)
         {
             isPetting = false;
@@ -75,7 +75,6 @@ public class DinoPetting : MonoBehaviour
                 lastTouchPosition = touch.position;
             }
         }
-
         if (isPetting && touch.phase == TouchPhase.Moved)
         {
             float distance = Vector2.Distance(
@@ -91,7 +90,6 @@ public class DinoPetting : MonoBehaviour
                 cooldownTimer = petCooldown;
             }
         }
-
         if (touch.phase == TouchPhase.Ended ||
             touch.phase == TouchPhase.Canceled)
         {
@@ -125,11 +123,14 @@ public class DinoPetting : MonoBehaviour
         }
     }
 
+
     private void HideHand()
     {
         if (hand != null && hand.gameObject.activeSelf)
             hand.gameObject.SetActive(false);
+
     }
+
 
     public bool IsTouchingDino(Vector2 screenPosition)
     {
@@ -147,6 +148,7 @@ public class DinoPetting : MonoBehaviour
     private void PetDino()
     {
         PetDino(happinessPerRub);
+        TutorialEvents.Raise(TutorialAction.DinoPetted);
     }
     public void PetDino(float happiness)
     {
@@ -164,6 +166,7 @@ public class DinoPetting : MonoBehaviour
         dinoStats.Play(happiness);
     }
 
+
     private void SetCuddleAnimation(bool value)
     {
         if (animator != null)
@@ -177,4 +180,5 @@ public class DinoPetting : MonoBehaviour
                 dinoStats.StopPetting();
         }
     }
+    
 }

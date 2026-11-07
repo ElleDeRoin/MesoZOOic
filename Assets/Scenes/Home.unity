@@ -706,58 +706,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClickSoundOnButton
   clickSound: {fileID: 8300000, guid: afb07f9282f0c794486bbac19a9f3be9, type: 3}
   volume: 1
---- !u!1 &1254142889
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1254142891}
-  - component: {fileID: 1254142890}
-  m_Layer: 0
-  m_Name: DialogueManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1254142890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254142889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae61310979161974bb5bad81ff4da8f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialDialogue
-  dialoguePanel: {fileID: 0}
-  dialogueText: {fileID: 0}
-  lines:
-  - Yoo-hoo! Good day, Zookeeper!
-  - This is your zoo. There is much to be done!
-  - I am Dr. Walter T. Fossil, and I will be walking you through your new responsibilities!
-  - There is no time to waste. Follow me!
-  secondsPerLetter: 0.03
---- !u!4 &1254142891
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254142889}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1125.0276, y: 535.9812, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1316082345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,4 +1425,3 @@ SceneRoots:
   - {fileID: 8346127327203707681}
   - {fileID: 7145095191163103691}
   - {fileID: 1316082348}
-  - {fileID: 1254142891}

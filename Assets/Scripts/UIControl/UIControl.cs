@@ -60,7 +60,10 @@ public class UIControl : MonoBehaviour
     {
         SceneManager.LoadScene("Carno_Blockout");
     }
-    
+    public void carnoTut()
+    {
+        SceneManager.LoadScene("CarnoTut");
+    }
     public void gachaScreen()
     {
         SceneManager.LoadScene("Gacha_Screen");
@@ -74,6 +77,14 @@ public class UIControl : MonoBehaviour
     public void paidGacha()
     {
         SceneManager.LoadScene("Minigame_Paid");
+    }
+    public void miniSelectTut()
+    {
+        SceneManager.LoadScene("MiniSelectTut");
+    }
+    public void tutMini()
+    {
+        SceneManager.LoadScene("TutMini");
     }
     
     public void resetSaveData()

@@ -56,5 +56,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial/CarnoTut.unity
     guid: ca09461eba21c8a44b19933341fd1c47
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/ZooTut2.unity
+    guid: 48a4f8684b092a1499916afcd61e617d
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/MiniSelectTut.unity
+    guid: b37404492cd85e844b43ce4ebc1b31cb
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/TutMini.unity
+    guid: 620603833f1158d42a8dd00107caa1c9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

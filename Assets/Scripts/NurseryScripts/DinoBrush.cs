@@ -60,6 +60,7 @@ public class DinoBrush : MonoBehaviour
     private float strokeTimer;
     private int strokes;
 
+
     private bool OnCooldown => Time.time < nextReadyTime;
 
     private Camera UICamera =>
@@ -67,6 +68,7 @@ public class DinoBrush : MonoBehaviour
 
     private void Awake()
     {
+
         rect = (RectTransform)transform;
 
         if (canvas == null) canvas = GetComponentInParent<Canvas>();
@@ -89,7 +91,6 @@ public class DinoBrush : MonoBehaviour
         if (brushImage == null) brushImage = GetComponent<Image>();
         if (readySprite == null && brushImage != null) readySprite = brushImage.sprite;
     }
-
     private void OnEnable()
     {
         wasOnCooldown = OnCooldown;
@@ -100,7 +101,6 @@ public class DinoBrush : MonoBehaviour
     {
         if (dragging) EndSession();
     }
-
     private void Update()
     {
         Camera uiCam = UICamera;
@@ -115,6 +115,8 @@ public class DinoBrush : MonoBehaviour
         }
 
         strokeTimer -= Time.deltaTime;
+
+
 
         if (pressed && began && !dragging && !onCooldown)
         {
@@ -132,6 +134,7 @@ public class DinoBrush : MonoBehaviour
             }
         }
 
+
         if (!pressed && dragging)
             EndSession();
 
@@ -148,7 +151,6 @@ public class DinoBrush : MonoBehaviour
             rect.anchoredPosition = Vector2.Lerp(rect.anchoredPosition, restAnchoredPosition, t);
         }
     }
-
     private void HandleBrushing(Camera uiCam)
     {
         DinoPetting petting = FindPetting();
@@ -162,6 +164,7 @@ public class DinoBrush : MonoBehaviour
 
         wasOverDino = overDino;
         if (!overDino) return;
+
 
         if (Vector2.Distance(tip, lastStrokePosition) >= movementRequired && strokeTimer <= 0f)
         {
@@ -177,7 +180,6 @@ public class DinoBrush : MonoBehaviour
                 EndSession();
         }
     }
-
     private void EndSession()
     {
         dragging = false;
@@ -188,11 +190,13 @@ public class DinoBrush : MonoBehaviour
             nextReadyTime = Time.time + cooldownSeconds;
             wasOnCooldown = true;
             onSessionEnded?.Invoke();
+            TutorialEvents.Raise(TutorialAction.DinoBrushed);
         }
 
         strokes = 0;
         RefreshSprite();
     }
+
 
     private void PlayStrokeSound()
     {
@@ -218,6 +222,7 @@ public class DinoBrush : MonoBehaviour
         if (wanted != null)
             brushImage.sprite = wanted;
     }
+
 
     private DinoPetting FindPetting()
     {
@@ -246,7 +251,6 @@ public class DinoBrush : MonoBehaviour
         return RectTransformUtility.ScreenPointToWorldPointInRectangle(
             canvasRect, screenPos, uiCam, out worldPoint);
     }
-
     private static void ReadPointer(out Vector2 pos, out bool pressed, out bool began)
     {
         if (Input.touchCount > 0)

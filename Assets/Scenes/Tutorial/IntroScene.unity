@@ -293,6 +293,10 @@ PrefabInstance:
       propertyPath: characterImage
       value: 
       objectReference: {fileID: 659489649}
+    - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
+      propertyPath: completesTutorial
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

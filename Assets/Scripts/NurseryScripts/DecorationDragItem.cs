@@ -17,6 +17,7 @@ public class DecorationDragItem : WorldDragSource
         if (priceLabel != null) priceLabel.text = "$" + decoration.price;
     }
 
+
     private void Start()
     {
         if (Wallet.Instance != null) Wallet.Instance.Changed += Refresh;
@@ -40,6 +41,7 @@ public class DecorationDragItem : WorldDragSource
     protected override bool CanBeginDrag()
     {
         return Wallet.Instance != null && Wallet.Instance.CanAfford(decoration.price);
+
     }
 
     protected override void OnDragStarted() => DecorationSlot.ShowMarkersFor(decoration);
@@ -51,6 +53,10 @@ public class DecorationDragItem : WorldDragSource
         if (slot == null || !slot.CanAccept(decoration)) return;
 
         if (Wallet.Instance.TrySpend(decoration.price))
+        {
             slot.Place(decoration);
+            TutorialEvents.Raise(TutorialAction.DecorationPlaced);
+            
+        }
     }
 }

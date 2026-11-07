@@ -813,6 +813,10 @@ PrefabInstance:
       value: IntroScene
       objectReference: {fileID: 0}
     - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
+      propertyPath: completesTutorial
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
       propertyPath: 'lines.Array.data[0]'
       value: Hello, Zookeeper! Welcome to MesoZOOic
       objectReference: {fileID: 0}

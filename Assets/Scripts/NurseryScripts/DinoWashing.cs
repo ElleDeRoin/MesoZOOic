@@ -9,7 +9,7 @@ public class DinoWashing : MonoBehaviour
 
     public static bool IsWashing { get; set; }
 
-    [Header("Setup")]
+    [Header("rooot")]
     [SerializeField] private Transform dinoRoot;
 
     [Header("Dirt")]
@@ -57,6 +57,7 @@ public class DinoWashing : MonoBehaviour
         public float health = 1f;
     }
 
+
     private readonly List<Dirt> dirts = new List<Dirt>();
     private readonly List<GameObject> bubbles = new List<GameObject>();
 
@@ -77,7 +78,6 @@ public class DinoWashing : MonoBehaviour
         if (dino == null) dino = GetComponentInChildren<DinoStats>(true);
         if (dino == null) dino = GetComponentInParent<DinoStats>();
     }
-
     private void OnEnable()
     {
         Active = this;
@@ -94,6 +94,7 @@ public class DinoWashing : MonoBehaviour
             if (b != null) Destroy(b);
     }
 
+
     private void Update()
     {
         if (dino == null) return;
@@ -107,7 +108,6 @@ public class DinoWashing : MonoBehaviour
             if (dirty) SpawnDirt(DirtCountForCleanliness(dino.cleanliness));
             return;
         }
-
         if (dirty && !wasDirty)
         {
             decayAccum = 0f;
@@ -136,7 +136,6 @@ public class DinoWashing : MonoBehaviour
 
         lastCleanliness = dino.cleanliness;
     }
-
     private void LateUpdate()
     {
         if (dirts.Count == 0) return;
@@ -150,6 +149,7 @@ public class DinoWashing : MonoBehaviour
                 d.t.rotation = cam.transform.rotation * Quaternion.Euler(0f, 0f, d.roll);
         }
     }
+
 
     private void GrowDirt()
     {
@@ -171,6 +171,7 @@ public class DinoWashing : MonoBehaviour
         float dirtiness = 1f - cleanliness / DinoState.MaxCleanliness;
         return Mathf.Clamp(Mathf.CeilToInt(Mathf.Lerp(minDirt, maxDirt, dirtiness)), 1, maxDirt);
     }
+
 
     public void Wash(Vector2 sprayScreenPoint, Camera cam, float radiusPixels, float dt)
     {
@@ -199,6 +200,7 @@ public class DinoWashing : MonoBehaviour
                     return;
             }
         }
+
     }
 
     private bool OnDirtWashed()
@@ -210,6 +212,7 @@ public class DinoWashing : MonoBehaviour
             SpawnShine();
             PlayFullyCleanSound();
             onWashed?.Invoke();
+            TutorialEvents.Raise(TutorialAction.DinoWashed);
             return true;
         }
 
@@ -224,6 +227,7 @@ public class DinoWashing : MonoBehaviour
 
         cleanAudioSource.PlayOneShot(fullyCleanClip, fullyCleanVolume);
     }
+
 
     private static float WorldSizeToScale(Sprite sprite, float worldWidth)
     {
@@ -242,7 +246,6 @@ public class DinoWashing : MonoBehaviour
             }
             return;
         }
-
         Camera cam = Camera.main;
         if (cam == null || !TryGetScreenRect(cam, out Rect rect)) return;
 
@@ -288,7 +291,6 @@ public class DinoWashing : MonoBehaviour
             roll = roll
         });
     }
-
     private void ClearDirt()
     {
         foreach (Dirt d in dirts)
@@ -300,7 +302,6 @@ public class DinoWashing : MonoBehaviour
     {
         result = default;
         bool found = false;
-
         for (int attempt = 0; attempt < 30; attempt++)
         {
             Vector2 p = new Vector2(
@@ -322,6 +323,7 @@ public class DinoWashing : MonoBehaviour
 
         return found;
     }
+
 
     private bool FarFromOtherDirt(Vector3 point)
     {
@@ -362,6 +364,8 @@ public class DinoWashing : MonoBehaviour
             any = true;
         }
 
+
+
         if (!any) return false;
 
         min = Vector2.Max(min, Vector2.zero);
@@ -375,7 +379,6 @@ public class DinoWashing : MonoBehaviour
     private void SpawnShine()
     {
         if (shineSprites == null || shineSprites.Length == 0) return;
-
         Camera cam = Camera.main;
         if (cam == null || !TryGetScreenRect(cam, out Rect rect)) return;
 
@@ -435,6 +438,7 @@ public class DinoWashing : MonoBehaviour
         if (t != null) Destroy(t.gameObject);
     }
 
+
     private void SpawnBubbles()
     {
         if (bubbleSprites == null || bubbleSprites.Length == 0) return;
@@ -467,7 +471,6 @@ public class DinoWashing : MonoBehaviour
                 Random.Range(0f, 6.28f)));
         }
     }
-
     private IEnumerator FloatBubble(Transform t, SpriteRenderer sr, Vector3 baseScale, float phase)
     {
         Vector3 start = t.position;

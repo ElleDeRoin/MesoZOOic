@@ -1,8 +1,19 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+[Serializable]
+public class LineGate
+{
+    public int lineIndex;
+
+    public TutorialAction waitFor = TutorialAction.None;
+    public GameObject highlight;
+    public bool makeDirtyOnNext;
+    public float setHungerOnShow = 0f;
+}
 public class TutorialDialogue : MonoBehaviour
 {
     [Header("UI")]
@@ -13,6 +24,10 @@ public class TutorialDialogue : MonoBehaviour
     [TextArea(2, 5)]
     [SerializeField] private string[] lines;
     [SerializeField] private float secondsPerLetter = 0.03f;
+
+    [Header("Action gates")]
+    [SerializeField] private LineGate[] gates;
+    [SerializeField] private float advanceDelayAfterAction = 0.8f;
 
     [Header("Walter Bob")]
     [SerializeField] private RectTransform characterImage;
@@ -32,8 +47,17 @@ public class TutorialDialogue : MonoBehaviour
     private bool isTyping;
     private Coroutine typingRoutine;
     private Coroutine bobRoutine;
+    private Coroutine advanceRoutine;
     private Vector2 characterRestPosition;
     private bool talkPaused;
+
+    private CanvasGroup panelGroup;
+    private LineGate currentGate;
+    private bool highlightIsIndicator;
+    private Coroutine pulseRoutine;
+    private Transform pulseTarget;
+    private Vector3 pulseBaseScale;
+    private bool waitingForAction;
 
     private void Awake()
     {
@@ -51,7 +75,25 @@ public class TutorialDialogue : MonoBehaviour
             audioSource.volume = talkVolume;
             if (talkClip != null) audioSource.clip = talkClip;
         }
+
+        if (dialoguePanel != null)
+        {
+            panelGroup = dialoguePanel.GetComponent<CanvasGroup>();
+            if (panelGroup == null)
+                panelGroup = dialoguePanel.AddComponent<CanvasGroup>();
+        }
     }
+
+
+    private void OnEnable()
+    {
+        TutorialEvents.Raised += OnTutorialAction;
+    }
+    private void OnDisable()
+    {
+        TutorialEvents.Raised -= OnTutorialAction;
+    }
+
     private void Start()
     {
         StartDialogue();
@@ -64,11 +106,11 @@ public class TutorialDialogue : MonoBehaviour
             dialoguePanel.SetActive(false);
             return;
         }
-
         index = 0;
         dialoguePanel.SetActive(true);
         ShowLine();
     }
+
     public void NextLine()
     {
         if (isTyping)
@@ -76,7 +118,17 @@ public class TutorialDialogue : MonoBehaviour
             FinishTyping();
             return;
         }
+        if (waitingForAction) return;
 
+        if (currentGate != null && currentGate.makeDirtyOnNext)
+            MakeDinoDirty();
+
+
+        Advance();
+    }
+    private void Advance()
+    {
+        HideHighlight();
         index++;
 
         if (index < lines.Length)
@@ -84,15 +136,141 @@ public class TutorialDialogue : MonoBehaviour
         else
             EndDialogue();
     }
-
-
     private void ShowLine()
     {
+        EnterGate();
+
         if (typingRoutine != null) StopCoroutine(typingRoutine);
         typingRoutine = StartCoroutine(TypeLine(lines[index]));
         StartBob();
     }
+    private LineGate FindGate(int lineIndex)
+    {
+        if (gates == null) return null;
 
+        foreach (LineGate g in gates)
+            if (g != null && g.lineIndex == lineIndex)
+                return g;
+
+        return null;
+    }
+
+
+    private void EnterGate()
+    {
+        currentGate = FindGate(index);
+        waitingForAction = currentGate != null && currentGate.waitFor != TutorialAction.None;
+
+        if (currentGate != null)
+        {
+            ShowHighlight(currentGate.highlight);
+
+            if (currentGate.setHungerOnShow > 0f)
+            {
+                DinoStats dino = FindDino();
+                if (dino != null) dino.SetHunger(currentGate.setHungerOnShow);
+            }
+        }
+
+        SetPanelBlocking(!waitingForAction);
+    }
+
+
+    private void ShowHighlight(GameObject target)
+    {
+        if (target == null) return;
+
+        if (!target.activeSelf)
+        {
+            highlightIsIndicator = true;
+            target.SetActive(true);
+            return;
+        }
+
+        highlightIsIndicator = false;
+        pulseTarget = target.transform;
+        pulseBaseScale = pulseTarget.localScale;
+        pulseRoutine = StartCoroutine(Pulse());
+    }
+
+
+    private void HideHighlight()
+    {
+        if (pulseRoutine != null)
+        {
+            StopCoroutine(pulseRoutine);
+            pulseRoutine = null;
+        }
+
+        if (pulseTarget != null)
+        {
+            pulseTarget.localScale = pulseBaseScale;
+            pulseTarget = null;
+        }
+
+        if (highlightIsIndicator && currentGate != null && currentGate.highlight != null)
+            currentGate.highlight.SetActive(false);
+
+        highlightIsIndicator = false;
+    }
+    private IEnumerator Pulse()
+    {
+        float time = 0f;
+
+        while (pulseTarget != null)
+        {
+            time += Time.unscaledDeltaTime;
+            float k = 1f + Mathf.Sin(time * 6f) * 0.08f;
+            pulseTarget.localScale = pulseBaseScale * k;
+            yield return null;
+        }
+    }
+
+
+    private void SetPanelBlocking(bool blocking)
+    {
+        if (panelGroup == null) return;
+
+        panelGroup.blocksRaycasts = blocking;
+        panelGroup.interactable = blocking;
+    }
+
+    private void OnTutorialAction(TutorialAction action)
+    {
+        if (!waitingForAction || currentGate == null) return;
+        if (action != currentGate.waitFor) return;
+
+        waitingForAction = false;
+        HideHighlight();
+
+        if (advanceRoutine != null) StopCoroutine(advanceRoutine);
+        advanceRoutine = StartCoroutine(AdvanceAfterDelay());
+    }
+
+    private IEnumerator AdvanceAfterDelay()
+    {
+        yield return new WaitForSeconds(advanceDelayAfterAction);
+
+        if (isTyping) FinishTyping();
+
+        if (currentGate != null && currentGate.makeDirtyOnNext)
+            MakeDinoDirty();
+
+        Advance();
+    }
+    private static DinoStats FindDino()
+    {
+        foreach (DinoStats d in DinoStats.All)
+            if (d != null) return d;
+
+        return null;
+    }
+
+    private void MakeDinoDirty()
+    {
+        DinoStats dino = FindDino();
+        if (dino != null) dino.ForceDirty();
+    }
     private IEnumerator TypeLine(string line)
     {
         isTyping = true;
@@ -112,6 +290,8 @@ public class TutorialDialogue : MonoBehaviour
         isTyping = false;
         PauseTalking();
     }
+
+
     private void StartTalking()
     {
         if (audioSource == null || talkClip == null) return;
@@ -135,6 +315,7 @@ public class TutorialDialogue : MonoBehaviour
         talkPaused = true;
     }
 
+
     private void FinishTyping()
     {
         if (typingRoutine != null) StopCoroutine(typingRoutine);
@@ -142,8 +323,6 @@ public class TutorialDialogue : MonoBehaviour
         isTyping = false;
         PauseTalking();
     }
-
-
 
     private void StartBob()
     {
@@ -170,7 +349,7 @@ public class TutorialDialogue : MonoBehaviour
 
         characterImage.anchoredPosition = characterRestPosition;
     }
-    
+
 
     private void EndDialogue()
     {
@@ -178,6 +357,7 @@ public class TutorialDialogue : MonoBehaviour
             audioSource.Stop();
         talkPaused = false;
 
+        SetPanelBlocking(true);
         dialoguePanel.SetActive(false);
 
         if (completesTutorial)

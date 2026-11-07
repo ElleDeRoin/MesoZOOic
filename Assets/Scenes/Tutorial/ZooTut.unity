@@ -1349,14 +1349,16 @@ MonoBehaviour:
   - ' Your dinosaurs are divided into regions according to their eating preferences.'
   - " Let\u2019s look at the carnivores!"
   secondsPerLetter: 0.03
+  gates: []
+  advanceDelayAfterAction: 0.8
   characterImage: {fileID: 1424123103}
-  bobHeight: 40
+  bobHeight: 30
   bobDuration: 0.5
   audioSource: {fileID: 0}
   talkClip: {fileID: 0}
   talkVolume: 1
-  completesTutorial: 1
-  nextSceneName: CarnoTut
+  completesTutorial: 0
+  nextSceneName: 
 --- !u!4 &1276516437
 Transform:
   m_ObjectHideFlags: 0
@@ -2519,7 +2521,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 149998691}
         m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
-        m_MethodName: carnoSelect
+        m_MethodName: carnoTut
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

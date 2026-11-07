@@ -65,12 +65,14 @@ public class DinoStats : MonoBehaviour
             audioSource = GetComponent<AudioSource>();
     }
 
+
     private void OnEnable()
     {
         if (!All.Contains(this))
             All.Add(this);
 
         DecorationSlot.HappinessGenerated += OnDecorationHappiness;
+
     }
 
     private void OnDisable()
@@ -94,6 +96,7 @@ public class DinoStats : MonoBehaviour
         if (GameSession.SelectedDino == null) return;
 
         if (GameSession.SelectedDino.instanceId != instanceId)
+
             return;
 
         if (data != null && data.GetPreference(deco) == Preference.Disliked)
@@ -116,7 +119,6 @@ public class DinoStats : MonoBehaviour
         if (dirtVisual != null && dirtVisual.activeSelf != state.isDirty)
             dirtVisual.SetActive(state.isDirty);
     }
-
     public void Initialize(string instanceId, DinoData data)
     {
         this.instanceId = instanceId;
@@ -146,6 +148,7 @@ public class DinoStats : MonoBehaviour
                 return true;
         }
     }
+
 
     public FeedResult TryFeed(FoodData food)
     {
@@ -212,6 +215,22 @@ public class DinoStats : MonoBehaviour
         UpdateUI();
 
         return FeedResult.Ate;
+
+    }
+
+    public void SetHunger(float value)
+    {
+        if (state == null) return;
+        state.hunger = Mathf.Clamp(value, 0f, 100f);
+        UpdateUI();
+    }
+
+    public void ForceDirty()
+    {
+        if (state == null) return;
+        state.isDirty = true;
+        state.cleanliness = Mathf.Min(state.cleanliness, 50f);
+        UpdateUI();
     }
 
     public void Play(float amount)
@@ -226,6 +245,7 @@ public class DinoStats : MonoBehaviour
 
         UpdateUI();
     }
+
 
     public void Clean(float amount)
     {
@@ -252,7 +272,6 @@ public class DinoStats : MonoBehaviour
         pettingAudioSource.loop = true;
         pettingAudioSource.Play();
     }
-
     public void StopPetting()
     {
         if (pettingAudioSource == null)
