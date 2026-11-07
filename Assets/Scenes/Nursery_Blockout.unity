@@ -2593,6 +2593,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DinoStats
   happinessSlider: {fileID: 828013287}
   hungerSlider: {fileID: 782560007}
+  cleanlinessSlider: {fileID: 0}
+  dirtVisual: {fileID: 0}
+  onCleaned:
+    m_PersistentCalls:
+      m_Calls: []
   diet: 0
   fullThreshold: 99
   wrongFoodHappinessPenalty: 5
@@ -2681,6 +2686,8 @@ MonoBehaviour:
   petCooldown: 2
   animator: {fileID: 0}
   cuddleLingerTime: 0.5
+  hand: {fileID: 0}
+  handOffset: {x: 0, y: 0}
   heartVFX: {fileID: 0}
 --- !u!1 &716322675
 GameObject:
