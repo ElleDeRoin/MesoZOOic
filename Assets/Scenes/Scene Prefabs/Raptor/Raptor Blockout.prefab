@@ -15321,6 +15321,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text Popup
       objectReference: {fileID: 0}
+    - target: {fileID: 5358899485580961638, guid: d3ec5b2dec33fcb41af4691a047a6717, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358899485580961638, guid: d3ec5b2dec33fcb41af4691a047a6717, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7132631981692707818, guid: d3ec5b2dec33fcb41af4691a047a6717, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15455,6 +15463,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8164449512202004475}
     m_Modifications:
+    - target: {fileID: 1107921091585589651, guid: f91878bdc06983e4a8a4adb473f53b60, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3590412971979304187, guid: f91878bdc06983e4a8a4adb473f53b60, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -16177,6 +16189,10 @@ PrefabInstance:
     - target: {fileID: 2328255811574638316, guid: 05b08f1cd6d0d244fb0c49ecb2eaaf24, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281889699399028323, guid: 05b08f1cd6d0d244fb0c49ecb2eaaf24, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6372290851696322739, guid: 05b08f1cd6d0d244fb0c49ecb2eaaf24, type: 3}
       propertyPath: m_Pivot.x
