@@ -15827,6 +15827,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
+      propertyPath: tutorialId
+      value: raptorD
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 5315025068929844410}
@@ -15926,6 +15930,14 @@ PrefabInstance:
       propertyPath: 'lines.Array.data[14]'
       value: "Now! Let\u2019s return to our zoo."
       objectReference: {fileID: 0}
+    - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
+      propertyPath: hideWhenDone.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
+      propertyPath: 'hideWhenDone.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8949657482939144978}
     - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
       propertyPath: gates.Array.data[0].waitFor
       value: 1

@@ -8,12 +8,12 @@ using TMPro;
 public class LineGate
 {
     public int lineIndex;
-
     public TutorialAction waitFor = TutorialAction.None;
     public GameObject highlight;
     public bool makeDirtyOnNext;
     public float setHungerOnShow = 0f;
 }
+
 public class TutorialDialogue : MonoBehaviour
 {
     [Header("UI")]
@@ -25,7 +25,7 @@ public class TutorialDialogue : MonoBehaviour
     [SerializeField] private string[] lines;
     [SerializeField] private float secondsPerLetter = 0.03f;
 
-    [Header("Action gates")]
+    [Header("Gates")]
     [SerializeField] private LineGate[] gates;
     [SerializeField] private float advanceDelayAfterAction = 0.8f;
 
@@ -38,6 +38,12 @@ public class TutorialDialogue : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip talkClip;
     [SerializeField] private float talkVolume = 1f;
+
+    [Header("Hide")]
+    [SerializeField] private GameObject[] hideWhenDone;
+
+    [Header("Play Once")]
+    [SerializeField] private string tutorialId = "";
 
     [Header("Load Sccene")]
     [SerializeField] private bool completesTutorial = true;
@@ -89,6 +95,7 @@ public class TutorialDialogue : MonoBehaviour
     {
         TutorialEvents.Raised += OnTutorialAction;
     }
+
     private void OnDisable()
     {
         TutorialEvents.Raised -= OnTutorialAction;
@@ -96,6 +103,13 @@ public class TutorialDialogue : MonoBehaviour
 
     private void Start()
     {
+        if (SaveSystem.IsTutorialDone(tutorialId))
+        {
+            HideTutorialObjects();
+            enabled = false;
+            return;
+        }
+
         StartDialogue();
     }
 
@@ -106,11 +120,11 @@ public class TutorialDialogue : MonoBehaviour
             dialoguePanel.SetActive(false);
             return;
         }
+
         index = 0;
         dialoguePanel.SetActive(true);
         ShowLine();
     }
-
     public void NextLine()
     {
         if (isTyping)
@@ -118,14 +132,16 @@ public class TutorialDialogue : MonoBehaviour
             FinishTyping();
             return;
         }
+
+        // Player still has something to do on this line.
         if (waitingForAction) return;
 
         if (currentGate != null && currentGate.makeDirtyOnNext)
             MakeDinoDirty();
 
-
         Advance();
     }
+
     private void Advance()
     {
         HideHighlight();
@@ -136,6 +152,7 @@ public class TutorialDialogue : MonoBehaviour
         else
             EndDialogue();
     }
+
     private void ShowLine()
     {
         EnterGate();
@@ -155,7 +172,6 @@ public class TutorialDialogue : MonoBehaviour
         return null;
     }
 
-
     private void EnterGate()
     {
         currentGate = FindGate(index);
@@ -171,10 +187,8 @@ public class TutorialDialogue : MonoBehaviour
                 if (dino != null) dino.SetHunger(currentGate.setHungerOnShow);
             }
         }
-
         SetPanelBlocking(!waitingForAction);
     }
-
 
     private void ShowHighlight(GameObject target)
     {
@@ -192,7 +206,6 @@ public class TutorialDialogue : MonoBehaviour
         pulseBaseScale = pulseTarget.localScale;
         pulseRoutine = StartCoroutine(Pulse());
     }
-
 
     private void HideHighlight()
     {
@@ -213,6 +226,7 @@ public class TutorialDialogue : MonoBehaviour
 
         highlightIsIndicator = false;
     }
+
     private IEnumerator Pulse()
     {
         float time = 0f;
@@ -226,7 +240,6 @@ public class TutorialDialogue : MonoBehaviour
         }
     }
 
-
     private void SetPanelBlocking(bool blocking)
     {
         if (panelGroup == null) return;
@@ -234,6 +247,7 @@ public class TutorialDialogue : MonoBehaviour
         panelGroup.blocksRaycasts = blocking;
         panelGroup.interactable = blocking;
     }
+
 
     private void OnTutorialAction(TutorialAction action)
     {
@@ -258,6 +272,7 @@ public class TutorialDialogue : MonoBehaviour
 
         Advance();
     }
+
     private static DinoStats FindDino()
     {
         foreach (DinoStats d in DinoStats.All)
@@ -291,7 +306,6 @@ public class TutorialDialogue : MonoBehaviour
         PauseTalking();
     }
 
-
     private void StartTalking()
     {
         if (audioSource == null || talkClip == null) return;
@@ -306,7 +320,6 @@ public class TutorialDialogue : MonoBehaviour
             audioSource.Play();
         }
     }
-
     private void PauseTalking()
     {
         if (audioSource == null || !audioSource.isPlaying) return;
@@ -314,7 +327,6 @@ public class TutorialDialogue : MonoBehaviour
         audioSource.Pause();
         talkPaused = true;
     }
-
 
     private void FinishTyping()
     {
@@ -351,6 +363,15 @@ public class TutorialDialogue : MonoBehaviour
     }
 
 
+    private void HideTutorialObjects()
+    {
+        if (dialoguePanel != null) dialoguePanel.SetActive(false);
+        if (characterImage != null) characterImage.gameObject.SetActive(false);
+
+        if (hideWhenDone != null)
+            foreach (GameObject go in hideWhenDone)
+                if (go != null) go.SetActive(false);
+    }
     private void EndDialogue()
     {
         if (audioSource != null)
@@ -358,7 +379,9 @@ public class TutorialDialogue : MonoBehaviour
         talkPaused = false;
 
         SetPanelBlocking(true);
-        dialoguePanel.SetActive(false);
+        HideTutorialObjects();
+
+        SaveSystem.MarkTutorialDone(tutorialId);
 
         if (completesTutorial)
             SaveSystem.TutorialComplete = true;
