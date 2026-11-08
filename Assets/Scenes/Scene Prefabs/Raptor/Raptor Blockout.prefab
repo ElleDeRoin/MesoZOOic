@@ -15996,7 +15996,7 @@ PrefabInstance:
     - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
       propertyPath: 'lines.Array.data[13]'
       value: You can also use the brush to pet your dino more effectively, but it
-        has a cooldown!
+        has a 30 second cooldown!
       objectReference: {fileID: 0}
     - target: {fileID: 8149554947420847925, guid: f988d51f4eb0a7a44839ae8c52d8963e, type: 3}
       propertyPath: 'lines.Array.data[14]'
