@@ -572,7 +572,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6726873441872022243}
   m_HandleRect: {fileID: 5468367932769943623}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5866,7 +5866,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4277556396955280752}
-  - component: {fileID: 5379797926827257125}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -5898,30 +5897,6 @@ RectTransform:
   m_AnchoredPosition: {x: 288.2879, y: -24.50049}
   m_SizeDelta: {x: 289.4241, y: 346.3971}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!223 &5379797926827257125
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5905483573870457423}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
 --- !u!1 &6078251465573877309
 GameObject:
   m_ObjectHideFlags: 0
@@ -7829,7 +7804,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6363648135538759610}
   m_Direction: 2
   m_Value: 1.000001
-  m_Size: 0.32579243
+  m_Size: 0.32579026
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
