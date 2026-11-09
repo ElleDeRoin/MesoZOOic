@@ -128,6 +128,7 @@ public class ShowerHose : MonoBehaviour
             Vector2 hoseScreen = RectTransformUtility.WorldToScreenPoint(uiCam, rect.position);
 
             if (Vector2.Distance(pos, hoseScreen) <= grabRadius &&
+                !IsCoveredByOtherUI(pos) &&
                 TryGetCanvasPoint(pos, uiCam, out Vector3 point))
             {
                 dragging = true;
@@ -236,6 +237,31 @@ public class ShowerHose : MonoBehaviour
         if (wanted != null)
             hoseImage.sprite = wanted;
     }
+
+    private static readonly System.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult> uiHits =
+        new System.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult>();
+
+    private bool IsCoveredByOtherUI(Vector2 screenPos)
+    {
+        if (UnityEngine.EventSystems.EventSystem.current == null) return false;
+
+        var data = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current)
+        {
+            position = screenPos
+        };
+
+        uiHits.Clear();
+        UnityEngine.EventSystems.EventSystem.current.RaycastAll(data, uiHits);
+
+        foreach (var hit in uiHits)
+        {
+            if (hit.gameObject == null) continue;
+            return !hit.gameObject.transform.IsChildOf(transform);
+        }
+
+        return false;
+    }
+
     private bool TryGetCanvasPoint(Vector2 screenPos, Camera uiCam, out Vector3 worldPoint)
     {
         return RectTransformUtility.ScreenPointToWorldPointInRectangle(

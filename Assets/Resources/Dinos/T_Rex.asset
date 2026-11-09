@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: T-Rex
   diet: 1
   rarity: 1
-  icon: {fileID: 21300000, guid: fd058b21a3dbe6147b90ceacb040d37c, type: 3}
+  icon: {fileID: 21300000, guid: 4576cc4ab9699994eb990950fd5e34a9, type: 3}
   hatchModel: {fileID: 919132149155446097, guid: 63098ce782e024b4bb02dcc57e80d182, type: 3}
   penPrefab: {fileID: 4936181797622902649, guid: 8ab8fa36f4a0d1949bc36da6cdb11702, type: 3}
   happinessDecayRate: 0.5
@@ -24,6 +24,11 @@ MonoBehaviour:
   hungerImpactOnHappiness: 1
   baseMoneyPerSecond: 1
   hungerMoneyFloor: 0.7
+  dirtyCheckInterval: 300
+  dirtyChance: 0.3
+  cleanlinessDecayRate: 2
+  cleanHappinessPerSecond: 0.25
+  dirtyHappinessPerSecond: 0.5
   favoriteFoods:
   - {fileID: 11400000, guid: 078a429d1a1579b49919b98947360c2d, type: 2}
   dislikedFoods:

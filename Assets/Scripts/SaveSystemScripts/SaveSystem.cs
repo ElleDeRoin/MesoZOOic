@@ -30,6 +30,7 @@ public class SaveFile
     public int amber;
     public int tutorialState;
     public bool starterDinoGiven;
+    public List<string> completedTutorials = new List<string>();
     public List<OwnedDino> dinos = new List<OwnedDino>();
     public List<DinoStateSave> dinoStates = new List<DinoStateSave>();
     public List<DecorationSave> decorations = new List<DecorationSave>();
@@ -42,6 +43,7 @@ public static class SaveSystem
     private const int TutorialDone = 2;
     private static bool tutorialComplete;
     private static bool starterGiven;
+    private static readonly HashSet<string> completedTutorials = new HashSet<string>();
     private static SaveFile data;
     private static bool moneyReady;
 
@@ -59,7 +61,6 @@ public static class SaveSystem
         }
     }
 
-
     public static bool TutorialComplete
     {
         get => tutorialComplete;
@@ -72,7 +73,17 @@ public static class SaveSystem
         }
     }
 
+    public static bool IsTutorialDone(string id)
+    {
+        return !string.IsNullOrEmpty(id) && completedTutorials.Contains(id);
+    }
 
+    public static void MarkTutorialDone(string id)
+    {
+        if (string.IsNullOrEmpty(id)) return;
+        if (completedTutorials.Add(id))
+            Save();
+    }
 
     public static bool StarterDinoGiven
     {
@@ -97,6 +108,11 @@ public static class SaveSystem
         }
         tutorialComplete = save.tutorialState == TutorialDone;
         starterGiven = save.starterDinoGiven;
+
+        completedTutorials.Clear();
+        if (save.completedTutorials != null)
+            foreach (string id in save.completedTutorials)
+                completedTutorials.Add(id);
 
         if (save.hasMoney)
         {
@@ -126,6 +142,7 @@ public static class SaveSystem
             tutorialState = tutorialComplete ? TutorialDone : TutorialNotDone,
             starterDinoGiven = starterGiven
         };
+        file.completedTutorials.AddRange(completedTutorials);
 
         foreach (OwnedDino owned in collection.Owned)
         {
@@ -188,6 +205,7 @@ public static class SaveSystem
 
         tutorialComplete = false;
         starterGiven = false;
+        completedTutorials.Clear();
 
         Save();
         DinoCollection.Instance.EnsureStarterDino();
