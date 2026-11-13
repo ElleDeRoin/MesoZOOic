@@ -84,5 +84,11 @@ public class DinoRegistry : MonoBehaviour
         bonusesDirty = true;
     }
 
+    public void Clear()
+    {
+        states.Clear();
+        bonusesDirty = true;
+    }
+
     public bool TryGet(string id, out DinoState state) => states.TryGetValue(id, out state);
 }

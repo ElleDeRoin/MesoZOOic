@@ -12,8 +12,6 @@ public class OwnedDino
 
 public class DinoCollection : MonoBehaviour
 {
-    private const string SaveKey = "OwnedDinos";
-
     private static DinoCollection instance;
     public static DinoCollection Instance
     {
@@ -58,28 +56,37 @@ public class DinoCollection : MonoBehaviour
         var dino = new OwnedDino { instanceId = Guid.NewGuid().ToString(), dataId = data.id };
         owned.Add(dino);
         DinoRegistry.Instance.Register(dino.instanceId, data.CreateState());
-        Save();
+        SaveSystem.Save();
         OnChanged?.Invoke();
         return dino;
     }
 
-    [Serializable] private class SaveData { public List<OwnedDino> dinos = new List<OwnedDino>(); }
-
-    private void Save()
-    {
-        PlayerPrefs.SetString(SaveKey, JsonUtility.ToJson(new SaveData { dinos = owned }));
-        PlayerPrefs.Save();
-    }
-
     private void Load()
     {
-        if (!PlayerPrefs.HasKey(SaveKey)) return;
-        var data = JsonUtility.FromJson<SaveData>(PlayerPrefs.GetString(SaveKey));
-        foreach (var d in data.dinos)
+        SaveFile save = SaveSystem.Data;
+
+        foreach (var d in save.dinos)
         {
             if (!Catalog.TryGetValue(d.dataId, out var species)) continue;
+
             owned.Add(d);
-            DinoRegistry.Instance.Register(d.instanceId, species.CreateState());
+            
+            DinoState state = species.CreateState();
+
+            DinoStateSave saved = save.dinoStates.Find(s => s.instanceId == d.instanceId);
+            if (saved != null)
+            {
+                state.happiness = saved.happiness;
+                state.hunger = saved.hunger;
+            }
+
+            DinoRegistry.Instance.Register(d.instanceId, state);
         }
+    }
+
+    public void ClearAll()
+    {
+        owned.Clear();
+        OnChanged?.Invoke();
     }
 }

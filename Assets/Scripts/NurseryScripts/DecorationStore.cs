@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public static class DecorationStore
 {
     private static readonly Dictionary<string, DecorationData> placed = new Dictionary<string, DecorationData>();
+    
+    public static IEnumerable<KeyValuePair<string, DecorationData>> GetAll() => placed;
 
     public static event Action Changed;
 
@@ -17,6 +19,12 @@ public static class DecorationStore
     {
         if (placed.Remove(key))
             Changed?.Invoke();
+    }
+    
+    public static void ClearAll()
+    {
+        placed.Clear();
+        Changed?.Invoke();
     }
 
     public static bool TryGet(string key, out DecorationData data) => placed.TryGetValue(key, out data);

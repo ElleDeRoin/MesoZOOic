@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeinocheriusV3
   m_EditorClassIdentifier: Assembly-CSharp::DinoData
   id: deinocheriusV3
-  displayName: DeinocheriusV3
+  displayName: Blush Deinocherius
   diet: 2
   rarity: 2
   icon: {fileID: 21300000, guid: adc455ddcc799914db217705875a5e4f, type: 3}

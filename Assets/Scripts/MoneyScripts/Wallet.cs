@@ -10,6 +10,8 @@ public class Wallet : MonoBehaviour
 
     public float Money => PlayerMoney.Balance;
     public int Amber => PlayerMoney.Amber;
+    public float StartingMoney => startingMoney;
+    public int StartingAmber => startingAmber;
 
     public event Action<float> Changed;
     public event Action<int> AmberChanged;

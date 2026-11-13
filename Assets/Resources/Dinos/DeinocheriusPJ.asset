@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeinocheriusPJ
   m_EditorClassIdentifier: Assembly-CSharp::DinoData
   id: deinocheriusPJ
-  displayName: DeinocheriusPJ
+  displayName: PJ Deinocherius
   diet: 2
   rarity: 2
   icon: {fileID: 21300000, guid: adc455ddcc799914db217705875a5e4f, type: 3}

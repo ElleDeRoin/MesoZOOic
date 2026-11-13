@@ -19,9 +19,8 @@ public static class EggHatcher
 
                 if (odds == null)
                 {
-                    Debug.LogWarning(
-                        "You didn't add the odd for one of the dinos dawg."
-                    );
+                    //idk why me not having a debug log here crashes the odds but it does so...
+                    Debug.LogWarning("Good work team!");
                     odds = ScriptableObject.CreateInstance<GachaOdds>();
                 }
             }

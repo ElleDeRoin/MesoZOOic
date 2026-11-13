@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4736a43b05ee5b94a9b905b08defd7e0, type: 3}
+  m_Name: DeinocheriusSkel
+  m_EditorClassIdentifier: Assembly-CSharp::DinoData
+  id: deinocheriusSkel
+  displayName: Skeleton Deinocherius
+  diet: 2
+  rarity: 2
+  icon: {fileID: 21300000, guid: adc455ddcc799914db217705875a5e4f, type: 3}
+  penPrefab: {fileID: 4936181797622902649, guid: b53f483004aaae64ab7950f19c1544c3, type: 3}
+  happinessDecayRate: 0.1
+  hungerDecayRate: 0.15
+  hungerImpactOnHappiness: 1
+  baseMoneyPerSecond: 1
+  hungerMoneyFloor: 0.7
+  favoriteFoods:
+  - {fileID: 11400000, guid: 952205927500e8e4ab36da9714f4ff67, type: 2}
+  dislikedFoods:
+  - {fileID: 11400000, guid: 6a4e4918d16175245a1f2ae0c7395007, type: 2}
+  favoriteFoodHungerMultiplier: 1.5
+  favoriteFoodExtraHappiness: 10
+  dislikedFoodHungerMultiplier: 0.5
+  dislikedFoodHappinessPenalty: 5
+  favoriteDecorations:
+  - {fileID: 11400000, guid: 311df108f28aa2b49a315d7f925d1475, type: 2}
+  dislikedDecorations:
+  - {fileID: 11400000, guid: 9f2e7d15bd8e09341a6b5e779d8d7d17, type: 2}
+  favoriteDecorationMultiplier: 2
+  dislikedDecorationMultiplier: 0.25
