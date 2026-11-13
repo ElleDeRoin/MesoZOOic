@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 using UnityEngine.UI;
 
 public class DinoBrush : MonoBehaviour
@@ -17,6 +18,8 @@ public class DinoBrush : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform brushPoint;
     [SerializeField] private Canvas canvas;
+    [SerializeField] private TMP_Text cooldownText;
+    [SerializeField] private GameObject cooldownTextObj;
 
     [Header("Sprites")]
     [SerializeField] private Image brushImage;
@@ -35,6 +38,7 @@ public class DinoBrush : MonoBehaviour
     [SerializeField] private float strokeCooldown = 0.1f;
     [SerializeField] private int maxStrokesPerUse = 15;
     [SerializeField] private float cooldownSeconds = 30f;
+    [SerializeField] private float visibleTimer;
 
     [Header("Audio")]
     [SerializeField] private AudioSource brushAudioSource;
@@ -90,6 +94,8 @@ public class DinoBrush : MonoBehaviour
         if (brushPoint == null) brushPoint = transform;
         if (brushImage == null) brushImage = GetComponent<Image>();
         if (readySprite == null && brushImage != null) readySprite = brushImage.sprite;
+
+        visibleTimer = cooldownSeconds;
     }
     private void OnEnable()
     {
@@ -150,6 +156,25 @@ public class DinoBrush : MonoBehaviour
             float t = 1f - Mathf.Exp(-returnSpeed * Time.deltaTime);
             rect.anchoredPosition = Vector2.Lerp(rect.anchoredPosition, restAnchoredPosition, t);
         }
+
+        if (OnCooldown)
+        {
+            cooldownTextObj.SetActive(true);
+            if (visibleTimer != 0) //Updates Cooldown Text
+            {
+	            visibleTimer -= Time.deltaTime;
+
+                int whole = Mathf.CeilToInt(visibleTimer);
+                cooldownText.text = whole.ToString();
+            }
+        }
+        else
+        {
+            cooldownTextObj.SetActive(false);
+            visibleTimer = cooldownSeconds;
+	        cooldownText.text = visibleTimer.ToString();
+        }
+
     }
     private void HandleBrushing(Camera uiCam)
     {
