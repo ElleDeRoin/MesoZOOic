@@ -18,8 +18,6 @@ public class DecorationSlot : MonoBehaviour
     [Header("Happiness per sec")]
     [SerializeField] private float minTickInterval = 3f;
     [SerializeField] private float maxTickInterval = 10f;
-
-    [Tooltip("Chance to add happiness")]
     [SerializeField] private float chancePerHappiness = 2f;
 
     [Header("Audio")]
@@ -31,6 +29,11 @@ public class DecorationSlot : MonoBehaviour
     private GameObject instance;
     private float tickTimer;
     private float currentInterval;
+
+    public static IReadOnlyList<DecorationSlot> AllSlots => All;
+
+    private Vector3 itemTop;
+    public Vector3 ItemTopWorldPosition => itemTop;
 
     public PropSize Size => size;
     public DecorationData Current { get; private set; }
@@ -180,8 +183,7 @@ public class DecorationSlot : MonoBehaviour
         if (data.prefab == null)
         {
             Debug.LogWarning(
-                $"Decoration '{data.name}' has no prefab assigned.",
-                this
+                $"missing prefab dawg"
             );
 
             return false;
@@ -189,10 +191,30 @@ public class DecorationSlot : MonoBehaviour
 
         instance = Instantiate(data.prefab, pos, rot);
         Current = data;
+        CacheItemTop();
 
         RollNextInterval();
 
         return true;
+    }
+
+    private void CacheItemTop()
+    {
+        Renderer[] renderers = instance != null
+            ? instance.GetComponentsInChildren<Renderer>()
+            : null;
+
+        if (renderers == null || renderers.Length == 0)
+        {
+            itemTop = instance != null ? instance.transform.position : transform.position;
+            return;
+        }
+
+        Bounds b = renderers[0].bounds;
+        for (int i = 1; i < renderers.Length; i++)
+            b.Encapsulate(renderers[i].bounds);
+
+        itemTop = new Vector3(b.center.x, b.max.y, b.center.z);
     }
 
     public void Clear()

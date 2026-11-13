@@ -84,6 +84,12 @@ public class DinoRegistry : MonoBehaviour
         bonusesDirty = true;
     }
 
+    public void Remove(string id)
+    {
+        if (states.Remove(id))
+            bonusesDirty = true;
+    }
+
     public void Clear()
     {
         states.Clear();

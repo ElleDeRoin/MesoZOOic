@@ -10,23 +10,45 @@ public class DinoCard : MonoBehaviour
     public Slider happinessSlider;
     public Slider hungerSlider;
     public Button button;
+    public Button deleteButton;
+    public Button renameButton;
 
     public OwnedDino Owned { get; private set; }
     public string DisplayName { get; private set; }
+    public string SearchText { get; private set; }
 
     private DinoState state;
 
-    public void Bind(OwnedDino owned, System.Action<OwnedDino> onClick)
+    public void Bind(OwnedDino owned, System.Action<OwnedDino> onClick, System.Action<OwnedDino> onDelete = null, System.Action<OwnedDino> onRename = null)
     {
         Owned = owned;
         var data = DinoCollection.Instance.GetData(owned.dataId);
-        DisplayName = data.displayName;
-        nameText.text = data.displayName;
+        DisplayName = DinoCollection.Instance.GetDisplayName(owned);
+        SearchText = (DisplayName + " " + data.displayName).ToLowerInvariant();
+        nameText.text = DisplayName;
         icon.sprite = data.icon;
         DinoRegistry.Instance.TryGet(owned.instanceId, out state);
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => onClick(owned));
+
+        if (renameButton != null)
+        {
+            renameButton.onClick.RemoveAllListeners();
+            renameButton.gameObject.SetActive(onRename != null);
+
+            if (onRename != null)
+                renameButton.onClick.AddListener(() => onRename(owned));
+        }
+
+        if (deleteButton != null)
+        {
+            deleteButton.onClick.RemoveAllListeners();
+            deleteButton.gameObject.SetActive(onDelete != null);
+
+            if (onDelete != null)
+                deleteButton.onClick.AddListener(() => onDelete(owned));
+        }
     }
 
     private void Update()
