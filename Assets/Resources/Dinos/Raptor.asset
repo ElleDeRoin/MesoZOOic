@@ -17,13 +17,18 @@ MonoBehaviour:
   diet: 1
   rarity: 0
   icon: {fileID: 21300000, guid: 45d40bef8c6789a4d9d9f7280fe4d5f0, type: 3}
-  hatchModel: {fileID: 8632310817165149947, guid: 0fcf76339f42a984485dfb4107354894, type: 3}
+  hatchModel: {fileID: 919132149155446097, guid: fc436201c2aa6d046982b1287d5e826d, type: 3}
   penPrefab: {fileID: 4936181797622902649, guid: 71cf52415fa6a444da8700d79a568bdb, type: 3}
   happinessDecayRate: 0.1
   hungerDecayRate: 0.15
   hungerImpactOnHappiness: 1
   baseMoneyPerSecond: 1
   hungerMoneyFloor: 0.7
+  dirtyCheckInterval: 300
+  dirtyChance: 0.3
+  cleanlinessDecayRate: 2
+  cleanHappinessPerSecond: 0.25
+  dirtyHappinessPerSecond: 0.5
   favoriteFoods:
   - {fileID: 11400000, guid: a378c089be956454093f78b1db3e7279, type: 2}
   dislikedFoods:
