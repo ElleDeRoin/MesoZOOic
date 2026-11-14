@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4736a43b05ee5b94a9b905b08defd7e0, type: 3}
   m_Name: T_RexPJ
   m_EditorClassIdentifier: Assembly-CSharp::DinoData
-  id: trex
+  id: trexpj
   displayName: T-Rex
   diet: 1
   rarity: 2
