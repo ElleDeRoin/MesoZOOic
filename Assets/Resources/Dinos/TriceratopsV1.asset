@@ -24,8 +24,14 @@ MonoBehaviour:
   hungerImpactOnHappiness: 1
   baseMoneyPerSecond: 1
   hungerMoneyFloor: 0.7
+  dirtyCheckInterval: 300
+  dirtyChance: 0.3
+  cleanlinessDecayRate: 2
+  cleanHappinessPerSecond: 0.25
+  dirtyHappinessPerSecond: 0.5
   favoriteFoods:
   - {fileID: 11400000, guid: 5c4191e10f5c3b34aaf031f405ca9b31, type: 2}
+  - {fileID: 11400000, guid: 3a008b615ecf02140a313f88359c5590, type: 2}
   dislikedFoods:
   - {fileID: 11400000, guid: e1021415ce847084d89b547f620988af, type: 2}
   favoriteFoodHungerMultiplier: 1.5
@@ -33,8 +39,9 @@ MonoBehaviour:
   dislikedFoodHungerMultiplier: 0.5
   dislikedFoodHappinessPenalty: 5
   favoriteDecorations:
-  - {fileID: 11400000, guid: 50fd8c51d5a62f54d8e57dc2703916b5, type: 2}
+  - {fileID: 11400000, guid: 148371ac964fd0f4d9a10989953a2a86, type: 2}
+  - {fileID: 11400000, guid: fed30c1f98ef261488f85fea36fa8c57, type: 2}
   dislikedDecorations:
-  - {fileID: 11400000, guid: 85862f132ac1d6d46abc0b341510904e, type: 2}
+  - {fileID: 11400000, guid: 2a69399f3e0bf204a91be556c0e54fbc, type: 2}
   favoriteDecorationMultiplier: 2
   dislikedDecorationMultiplier: 0.25

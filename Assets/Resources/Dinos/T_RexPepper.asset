@@ -30,15 +30,17 @@ MonoBehaviour:
   cleanHappinessPerSecond: 0.25
   dirtyHappinessPerSecond: 0.5
   favoriteFoods:
-  - {fileID: 11400000, guid: 078a429d1a1579b49919b98947360c2d, type: 2}
-  dislikedFoods:
   - {fileID: 11400000, guid: 8d8a50c3513f3654b9b6982dd37411b5, type: 2}
+  - {fileID: 11400000, guid: 1424e3bd300cdf54d81efc9f86fd32d8, type: 2}
+  dislikedFoods:
+  - {fileID: 11400000, guid: 952205927500e8e4ab36da9714f4ff67, type: 2}
   favoriteFoodHungerMultiplier: 1.5
   favoriteFoodExtraHappiness: 10
   dislikedFoodHungerMultiplier: 0.5
   dislikedFoodHappinessPenalty: 5
   favoriteDecorations:
   - {fileID: 11400000, guid: 9f2e7d15bd8e09341a6b5e779d8d7d17, type: 2}
+  - {fileID: 11400000, guid: 8f952a6b93c5ea149a53bbc13d7f059c, type: 2}
   dislikedDecorations:
   - {fileID: 11400000, guid: 85862f132ac1d6d46abc0b341510904e, type: 2}
   favoriteDecorationMultiplier: 2
