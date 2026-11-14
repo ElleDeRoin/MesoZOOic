@@ -165,9 +165,9 @@ RectTransform:
   - {fileID: 5207246326483508696}
   m_Father: {fileID: 6582989236357012474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -77.700195, y: 60.000008}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 359.2998, y: -187.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &3913193985577861802
@@ -14280,7 +14280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinoBrush
   brushPoint: {fileID: 4837358102664051307}
-  canvas: {fileID: 0}
+  canvas: {fileID: 1415464054764291286}
   cooldownText: {fileID: 7556993710491248984}
   cooldownTextObj: {fileID: 3893927743908740705}
   brushImage: {fileID: 4715486865697753046}
