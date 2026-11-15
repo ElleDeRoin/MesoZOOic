@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: T_RexPJ
   m_EditorClassIdentifier: Assembly-CSharp::DinoData
   id: trexpj
-  displayName: T-Rex
+  displayName: PJ T-Rex
   diet: 1
   rarity: 2
   icon: {fileID: 21300000, guid: 4576cc4ab9699994eb990950fd5e34a9, type: 3}
-  hatchModel: {fileID: 919132149155446097, guid: 63098ce782e024b4bb02dcc57e80d182, type: 3}
-  penPrefab: {fileID: 4936181797622902649, guid: 8ab8fa36f4a0d1949bc36da6cdb11702, type: 3}
+  hatchModel: {fileID: 721322369905655876, guid: ca19c3ced0fc6894e8f4be4d8687d20e, type: 3}
+  penPrefab: {fileID: 4936181797622902649, guid: b6d5eefa7b5d29b4da292c4d8ec91c6a, type: 3}
   happinessDecayRate: 0.5
   hungerDecayRate: 0.75
   hungerImpactOnHappiness: 1
