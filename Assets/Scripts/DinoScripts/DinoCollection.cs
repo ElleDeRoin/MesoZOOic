@@ -10,6 +10,7 @@ public class OwnedDino
     public string instanceId;
     public string dataId;
     public string nickname;
+    public bool isStarter;
 }
 public class DinoCollection : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class DinoCollection : MonoBehaviour
     public IReadOnlyList<OwnedDino> Owned => owned;
     public IReadOnlyCollection<DinoData> AllSpecies => Catalog.Values;
 
+
     private Dictionary<string, DinoData> Catalog
     {
         get
@@ -46,22 +48,20 @@ public class DinoCollection : MonoBehaviour
             return catalog;
         }
     }
-
-
     public DinoData GetData(string dataId) => Catalog[dataId];
 
     public IEnumerable<OwnedDino> GetByDiet(Diet diet) =>
         owned.Where(o => GetData(o.dataId).diet == diet);
 
-    public OwnedDino Add(DinoData data, string nickname = null)
+    public OwnedDino Add(DinoData data, string nickname = null, bool isStarter = false)
     {
         var dino = new OwnedDino
         {
             instanceId = Guid.NewGuid().ToString(),
             dataId = data.id,
-            nickname = nickname
+            nickname = nickname,
+            isStarter = isStarter
         };
-
         owned.Add(dino);
         DinoRegistry.Instance.Register(dino.instanceId, data.CreateState());
         SaveSystem.Save();
@@ -79,6 +79,7 @@ public class DinoCollection : MonoBehaviour
 
         return GetData(dino.dataId).displayName;
     }
+
 
     public static string CleanName(string raw)
     {
@@ -102,10 +103,12 @@ public class DinoCollection : MonoBehaviour
         OnChanged?.Invoke();
         return true;
     }
-
     public bool Remove(OwnedDino dino)
     {
         if (dino == null) return false;
+
+        OwnedDino existing = owned.Find(o => o.instanceId == dino.instanceId);
+        if (existing != null && existing.isStarter) return false; // Dave stays
 
         int removed = owned.RemoveAll(o => o.instanceId == dino.instanceId);
         if (removed == 0) return false;
@@ -140,6 +143,11 @@ public class DinoCollection : MonoBehaviour
 
             DinoRegistry.Instance.Register(d.instanceId, state);
         }
+        if (SaveSystem.StarterDinoGiven && !owned.Any(o => o.isStarter))
+        {
+            OwnedDino first = owned.FirstOrDefault(o => o.dataId == StarterDinoId);
+            if (first != null) first.isStarter = true;
+        }
 
         EnsureStarterDino();
     }
@@ -156,7 +164,7 @@ public class DinoCollection : MonoBehaviour
         }
 
         SaveSystem.StarterDinoGiven = true;
-        Add(starter, "Dave");
+        Add(starter, "Dave", true);
     }
 
     public void ClearAll()
