@@ -397,7 +397,6 @@ Transform:
   - {fileID: 2839401213407276339}
   - {fileID: 1163660390420603747}
   - {fileID: 5939712722518059573}
-  - {fileID: 3064745934405375153}
   m_Father: {fileID: 4322511724483179286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &687356115559120143
@@ -13176,15 +13175,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6306905494480460823}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10228.816}
-  m_LocalScale: {x: 2.1968, y: 2.1968, z: 2.1968}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5020440198647618193}
+  m_Father: {fileID: 2839401213407276339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.461792, y: 539.9999}
+  m_AnchoredPosition: {x: -0, y: -0.000061035156}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7593952259352206663
@@ -13266,6 +13265,7 @@ RectTransform:
   - {fileID: 2557200269557316100}
   - {fileID: 537340038850917818}
   - {fileID: 560029487553560801}
+  - {fileID: 3064745934405375153}
   - {fileID: 4087505504275801703}
   m_Father: {fileID: 5020440198647618193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15577,22 +15577,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4322511724483179286}
     m_Modifications:
-    - target: {fileID: 1133435696505635068, guid: 522f0b12a1fe3704c8dd9284fc6a3b8a, type: 3}
-      propertyPath: hungerSlider
-      value: 
-      objectReference: {fileID: 6471735277716333069}
-    - target: {fileID: 1133435696505635068, guid: 522f0b12a1fe3704c8dd9284fc6a3b8a, type: 3}
-      propertyPath: happinessSlider
-      value: 
-      objectReference: {fileID: 4662141979067040147}
-    - target: {fileID: 1133435696505635068, guid: 522f0b12a1fe3704c8dd9284fc6a3b8a, type: 3}
-      propertyPath: cleanlinessSlider
-      value: 
-      objectReference: {fileID: 4244759687427479629}
-    - target: {fileID: 8548351396724595480, guid: 522f0b12a1fe3704c8dd9284fc6a3b8a, type: 3}
-      propertyPath: hand
-      value: 
-      objectReference: {fileID: 3064745934405375153}
     - target: {fileID: 4576818303743611, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -15765,6 +15749,30 @@ PrefabInstance:
       propertyPath: 'dirtSpots.Array.data[2]'
       value: 
       objectReference: {fileID: 4101162341438904467}
+    - target: {fileID: 7719565420283548354, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
+      propertyPath: m_Size.y
+      value: 2.751939
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719565420283548354, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
+      propertyPath: m_Size.z
+      value: 1.4140215
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719565420283548354, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
+      propertyPath: m_Center.x
+      value: 0.000000011519138
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719565420283548354, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
+      propertyPath: m_Center.y
+      value: 0.8759695
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719565420283548354, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
+      propertyPath: m_Center.z
+      value: 0.20701092
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719565420283548354, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7922098326315724850, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -15785,6 +15793,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1133435696505635068, guid: 522f0b12a1fe3704c8dd9284fc6a3b8a, type: 3}
+      propertyPath: hungerSlider
+      value: 
+      objectReference: {fileID: 6471735277716333069}
+    - target: {fileID: 1133435696505635068, guid: 522f0b12a1fe3704c8dd9284fc6a3b8a, type: 3}
+      propertyPath: happinessSlider
+      value: 
+      objectReference: {fileID: 4662141979067040147}
+    - target: {fileID: 1133435696505635068, guid: 522f0b12a1fe3704c8dd9284fc6a3b8a, type: 3}
+      propertyPath: cleanlinessSlider
+      value: 
+      objectReference: {fileID: 4244759687427479629}
+    - target: {fileID: 8548351396724595480, guid: 522f0b12a1fe3704c8dd9284fc6a3b8a, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 3064745934405375153}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8309410567930150695, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
