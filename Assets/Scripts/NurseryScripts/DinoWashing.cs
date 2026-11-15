@@ -12,15 +12,11 @@ public class DinoWashing : MonoBehaviour
     [Header("rooot")]
     [SerializeField] private Transform dinoRoot;
 
-    [Header("Dirt")]
-    [SerializeField] private Sprite[] dirtSprites;
-    [SerializeField] private int minDirt = 4;
-    [SerializeField] private int maxDirt = 12;
-    [SerializeField] private float dirtSize = 0.6f;
-    [SerializeField] private float surfaceOffset = 0.05f;
-    [SerializeField] private float minDirtSpacing = 0.15f;
-    [SerializeField] private int sortingOrder = 10;
-    [SerializeField] private float secondsToWashDirt = 0.6f;
+    [SerializeField] private GameObject[] dirtSpots;
+    [SerializeField] private int minSpots = 2;
+    [SerializeField] private float secondsToWashSpot = 0.6f;
+    [Range(0.05f, 1f)]
+    [SerializeField] private float shrinkTo = 0.4f;
 
     [Header("Bubbles 030")]
     [SerializeField] private Sprite[] bubbleSprites;
@@ -29,6 +25,7 @@ public class DinoWashing : MonoBehaviour
     [SerializeField] private float bubbleRiseSpeed = 0.5f;
     [SerializeField] private float bubbleSway = 0.1f;
     [SerializeField] private Vector2 bubbleSizeRange = new Vector2(0.2f, 0.45f);
+    [SerializeField] private int sortingOrder = 10;
 
     [Header("Shine!!!")]
     [SerializeField] private Sprite[] shineSprites;
@@ -47,27 +44,24 @@ public class DinoWashing : MonoBehaviour
     [Header("Events")]
     public UnityEvent onWashed;
 
-    private class Dirt
+    private class Spot
     {
+        public GameObject go;
         public Transform t;
-        public SpriteRenderer sr;
+        public Renderer[] renderers;
         public Vector3 baseScale;
-        public Color baseColor;
-        public float roll;
         public float health = 1f;
+        public bool visible;
     }
 
-
-    private readonly List<Dirt> dirts = new List<Dirt>();
+    private readonly List<Spot> spots = new List<Spot>();
     private readonly List<GameObject> bubbles = new List<GameObject>();
 
     private DinoStats dino;
     private bool synced;
     private bool wasDirty;
-    private bool warnedNoSprites;
     private float lastCleanliness = DinoState.MaxCleanliness;
     private float decayAccum;
-    private float retryTimer;
 
     private void Awake()
     {
@@ -77,7 +71,47 @@ public class DinoWashing : MonoBehaviour
         dino = GetComponent<DinoStats>();
         if (dino == null) dino = GetComponentInChildren<DinoStats>(true);
         if (dino == null) dino = GetComponentInParent<DinoStats>();
+
+        BuildSpots();
     }
+    private void BuildSpots()
+    {
+        var found = new List<GameObject>();
+
+        if (dirtSpots != null && dirtSpots.Length > 0)
+        {
+            foreach (GameObject g in dirtSpots)
+                if (g != null) found.Add(g);
+        }
+        else
+
+        {
+            foreach (Transform child in dinoRoot.GetComponentsInChildren<Transform>(true))
+            {
+                if (child == dinoRoot) continue;
+                if (child.name.StartsWith("Dirt", System.StringComparison.OrdinalIgnoreCase))
+                    found.Add(child.gameObject);
+            }
+        }
+
+        if (found.Count == 0)
+            Debug.LogWarning("No dirt found oops");
+
+        foreach (GameObject g in found)
+        {
+            var spot = new Spot
+            {
+                go = g,
+                t = g.transform,
+                renderers = g.GetComponentsInChildren<Renderer>(true),
+                baseScale = g.transform.localScale
+            };
+
+            spots.Add(spot);
+            HideSpot(spot);
+        }
+    }
+
     private void OnEnable()
     {
         Active = this;
@@ -94,28 +128,29 @@ public class DinoWashing : MonoBehaviour
             if (b != null) Destroy(b);
     }
 
-
     private void Update()
     {
-        if (dino == null) return;
+        if (dino == null || spots.Count == 0) return;
 
         bool dirty = dino.isDirty;
+
         if (!synced)
         {
             synced = true;
             wasDirty = dirty;
             lastCleanliness = dino.cleanliness;
-            if (dirty) SpawnDirt(DirtCountForCleanliness(dino.cleanliness));
+            if (dirty) Reveal(SpotCountForCleanliness(dino.cleanliness));
             return;
         }
+
         if (dirty && !wasDirty)
         {
             decayAccum = 0f;
-            SpawnDirt(minDirt);
+            Reveal(Mathf.Min(minSpots, spots.Count));
         }
         else if (!dirty && wasDirty)
         {
-            ClearDirt();
+            HideAll();
             decayAccum = 0f;
         }
         wasDirty = dirty;
@@ -123,33 +158,62 @@ public class DinoWashing : MonoBehaviour
         if (dirty)
         {
             GrowDirt();
-            if (dirts.Count == 0)
-            {
-                retryTimer -= Time.deltaTime;
-                if (retryTimer <= 0f)
-                {
-                    retryTimer = 1f;
-                    SpawnDirt(minDirt);
-                }
-            }
+
+            if (VisibleCount() == 0)
+                Reveal(Mathf.Min(minSpots, spots.Count));
         }
 
         lastCleanliness = dino.cleanliness;
     }
-    private void LateUpdate()
+    private int VisibleCount()
     {
-        if (dirts.Count == 0) return;
-
-        Camera cam = Camera.main;
-        if (cam == null) return;
-
-        foreach (Dirt d in dirts)
-        {
-            if (d.t != null)
-                d.t.rotation = cam.transform.rotation * Quaternion.Euler(0f, 0f, d.roll);
-        }
+        int n = 0;
+        foreach (Spot s in spots)
+            if (s.visible) n++;
+        return n;
     }
 
+    private void ShowSpot(Spot s)
+    {
+        s.visible = true;
+        s.health = 1f;
+        s.t.localScale = s.baseScale;
+        s.go.SetActive(true);
+    }
+
+    private void HideSpot(Spot s)
+    {
+        s.visible = false;
+        s.health = 1f;
+        s.t.localScale = s.baseScale;
+        s.go.SetActive(false);
+    }
+
+    private void HideAll()
+    {
+        foreach (Spot s in spots)
+            HideSpot(s);
+    }
+
+    private void Reveal(int count)
+    {
+        var hidden = new List<Spot>();
+        foreach (Spot s in spots)
+            if (!s.visible) hidden.Add(s);
+
+        for (int i = 0; i < count && hidden.Count > 0; i++)
+        {
+            int pick = Random.Range(0, hidden.Count);
+            ShowSpot(hidden[pick]);
+            hidden.RemoveAt(pick);
+        }
+    }
+    private int SpotCountForCleanliness(float cleanliness)
+    {
+        float dirtiness = 1f - cleanliness / DinoState.MaxCleanliness;
+        int min = Mathf.Min(minSpots, spots.Count);
+        return Mathf.Clamp(Mathf.CeilToInt(Mathf.Lerp(min, spots.Count, dirtiness)), 1, spots.Count);
+    }
 
     private void GrowDirt()
     {
@@ -157,55 +221,70 @@ public class DinoWashing : MonoBehaviour
         if (c < lastCleanliness)
             decayAccum += lastCleanliness - c;
 
-        float step = DinoState.MaxCleanliness / Mathf.Max(1, maxDirt - minDirt);
+        int min = Mathf.Min(minSpots, spots.Count);
+        float step = DinoState.MaxCleanliness / Mathf.Max(1, spots.Count - min);
 
         while (decayAccum >= step)
         {
             decayAccum -= step;
-            if (dirts.Count < maxDirt) SpawnDirt(1);
+            if (VisibleCount() < spots.Count) Reveal(1);
         }
     }
-
-    private int DirtCountForCleanliness(float cleanliness)
-    {
-        float dirtiness = 1f - cleanliness / DinoState.MaxCleanliness;
-        return Mathf.Clamp(Mathf.CeilToInt(Mathf.Lerp(minDirt, maxDirt, dirtiness)), 1, maxDirt);
-    }
-
 
     public void Wash(Vector2 sprayScreenPoint, Camera cam, float radiusPixels, float dt)
     {
-        for (int i = dirts.Count - 1; i >= 0; i--)
+        for (int i = spots.Count - 1; i >= 0; i--)
         {
-            Dirt d = dirts[i];
-            Vector3 dirtScreen = cam.WorldToScreenPoint(d.t.position);
+            Spot s = spots[i];
+            if (!s.visible) continue;
+            if (!SprayTouchesSpot(s, cam, sprayScreenPoint, radiusPixels)) continue;
 
-            if (dirtScreen.z <= 0f) continue;
-            if (Vector2.Distance(sprayScreenPoint, dirtScreen) > radiusPixels) continue;
+            s.health -= dt / secondsToWashSpot;
 
-            d.health -= dt / secondsToWashDirt;
+            float h = Mathf.Clamp01(s.health);
+            s.t.localScale = s.baseScale * Mathf.Lerp(shrinkTo, 1f, h);
 
-            float h = Mathf.Clamp01(d.health);
-            Color c = d.baseColor;
-            c.a = d.baseColor.a * h;
-            d.sr.color = c;
-            d.t.localScale = d.baseScale * Mathf.Lerp(0.6f, 1f, h);
-
-            if (d.health <= 0f)
+            if (s.health <= 0f)
             {
-                Destroy(d.t.gameObject);
-                dirts.RemoveAt(i);
+                HideSpot(s);
 
-                if (OnDirtWashed())
+                if (OnSpotWashed())
                     return;
             }
         }
+    }
+    private bool SprayTouchesSpot(Spot s, Camera cam, Vector2 point, float radius)
+    {
+        Bounds b = default;
+        bool has = false;
 
+        foreach (Renderer r in s.renderers)
+        {
+            if (r == null || !r.enabled) continue;
+
+            if (!has) { b = r.bounds; has = true; }
+            else b.Encapsulate(r.bounds);
+        }
+
+        if (!has)
+        {
+            Vector3 sp = cam.WorldToScreenPoint(s.t.position);
+            return sp.z > 0f && Vector2.Distance(point, sp) <= radius;
+        }
+
+        if (!ProjectBounds(b, cam, out Rect rect))
+            return false;
+
+        float dx = Mathf.Max(rect.xMin - point.x, 0f, point.x - rect.xMax);
+        float dy = Mathf.Max(rect.yMin - point.y, 0f, point.y - rect.yMax);
+        return dx * dx + dy * dy <= radius * radius;
     }
 
-    private bool OnDirtWashed()
+    private bool OnSpotWashed()
     {
-        if (dirts.Count == 0)
+        int left = VisibleCount();
+
+        if (left == 0)
         {
             dino.Clean(DinoState.MaxCleanliness);
             SpawnBubbles();
@@ -216,8 +295,7 @@ public class DinoWashing : MonoBehaviour
             return true;
         }
 
-        int countBefore = dirts.Count + 1;
-        dino.Clean((DinoState.MaxCleanliness - dino.cleanliness) / countBefore);
+        dino.Clean((DinoState.MaxCleanliness - dino.cleanliness) / (left + 1));
         return false;
     }
 
@@ -227,123 +305,15 @@ public class DinoWashing : MonoBehaviour
 
         cleanAudioSource.PlayOneShot(fullyCleanClip, fullyCleanVolume);
     }
-
-
     private static float WorldSizeToScale(Sprite sprite, float worldWidth)
     {
         float natural = sprite != null ? sprite.bounds.size.x : 1f;
         return worldWidth / Mathf.Max(natural, 0.0001f);
     }
 
-    private void SpawnDirt(int count)
-    {
-        if (dirtSprites == null || dirtSprites.Length == 0)
-        {
-            if (!warnedNoSprites)
-            {
-                Debug.LogWarning("forgot dino washing sprite silly!", this);
-                warnedNoSprites = true;
-            }
-            return;
-        }
-        Camera cam = Camera.main;
-        if (cam == null || !TryGetScreenRect(cam, out Rect rect)) return;
-
-        for (int i = 0; i < count && dirts.Count < maxDirt; i++)
-        {
-            if (TrySampleSurface(cam, rect, true, out RaycastHit hit))
-                CreateDirt(hit, cam);
-        }
-    }
-
-    private void CreateDirt(RaycastHit hit, Camera cam)
-    {
-        GameObject go = new GameObject("Dirt");
-        Transform t = go.transform;
-
-        t.SetParent(hit.collider.transform, true);
-
-        Vector3 toCamera = (cam.transform.position - hit.point).normalized;
-        t.position = hit.point + toCamera * surfaceOffset;
-
-        float roll = Random.Range(0f, 360f);
-        t.rotation = cam.transform.rotation * Quaternion.Euler(0f, 0f, roll);
-
-        Sprite sprite = dirtSprites[Random.Range(0, dirtSprites.Length)];
-        float s = WorldSizeToScale(sprite, dirtSize * Random.Range(0.7f, 1.2f));
-        Vector3 ps = t.parent.lossyScale;
-        Vector3 localScale = new Vector3(
-            ps.x != 0f ? s / ps.x : s,
-            ps.y != 0f ? s / ps.y : s,
-            ps.z != 0f ? s / ps.z : s);
-        t.localScale = localScale;
-
-        SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
-        sr.sprite = sprite;
-        sr.sortingOrder = sortingOrder;
-
-        dirts.Add(new Dirt
-        {
-            t = t,
-            sr = sr,
-            baseScale = localScale,
-            baseColor = sr.color,
-            roll = roll
-        });
-    }
-    private void ClearDirt()
-    {
-        foreach (Dirt d in dirts)
-            if (d.t != null) Destroy(d.t.gameObject);
-        dirts.Clear();
-    }
-
-    private bool TrySampleSurface(Camera cam, Rect rect, bool keepSpaced, out RaycastHit result)
-    {
-        result = default;
-        bool found = false;
-        for (int attempt = 0; attempt < 30; attempt++)
-        {
-            Vector2 p = new Vector2(
-                Random.Range(rect.xMin, rect.xMax),
-                Random.Range(rect.yMin, rect.yMax));
-
-            if (!Physics.Raycast(cam.ScreenPointToRay(p), out RaycastHit hit, Mathf.Infinity))
-                continue;
-
-            if (!hit.collider.transform.IsChildOf(dinoRoot))
-                continue;
-
-            result = hit;
-            found = true;
-
-            if (!keepSpaced || FarFromOtherDirt(hit.point))
-                break;
-        }
-
-        return found;
-    }
-
-
-    private bool FarFromOtherDirt(Vector3 point)
-    {
-        float sqr = minDirtSpacing * minDirtSpacing;
-        foreach (Dirt d in dirts)
-            if ((d.t.position - point).sqrMagnitude < sqr)
-                return false;
-        return true;
-    }
-
-    private bool TryGetScreenRect(Camera cam, out Rect rect)
+    private static bool ProjectBounds(Bounds b, Camera cam, out Rect rect)
     {
         rect = default;
-
-        Collider[] colliders = dinoRoot.GetComponentsInChildren<Collider>();
-        if (colliders.Length == 0) return false;
-
-        Bounds b = colliders[0].bounds;
-        for (int i = 1; i < colliders.Length; i++)
-            b.Encapsulate(colliders[i].bounds);
 
         Vector2 min = new Vector2(float.MaxValue, float.MaxValue);
         Vector2 max = new Vector2(float.MinValue, float.MinValue);
@@ -364,12 +334,49 @@ public class DinoWashing : MonoBehaviour
             any = true;
         }
 
-
-
         if (!any) return false;
 
-        min = Vector2.Max(min, Vector2.zero);
-        max = Vector2.Min(max, new Vector2(Screen.width, Screen.height));
+        rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+        return true;
+    }
+
+    private bool TrySampleSurface(Camera cam, Rect rect, out RaycastHit result)
+    {
+        result = default;
+
+        for (int attempt = 0; attempt < 30; attempt++)
+        {
+            Vector2 p = new Vector2(
+                Random.Range(rect.xMin, rect.xMax),
+                Random.Range(rect.yMin, rect.yMax));
+
+            if (!Physics.Raycast(cam.ScreenPointToRay(p), out RaycastHit hit, Mathf.Infinity))
+                continue;
+
+            if (!hit.collider.transform.IsChildOf(dinoRoot))
+                continue;
+
+            result = hit;
+            return true;
+        }
+
+        return false;
+    }
+    private bool TryGetScreenRect(Camera cam, out Rect rect)
+    {
+        rect = default;
+
+        Collider[] colliders = dinoRoot.GetComponentsInChildren<Collider>();
+        if (colliders.Length == 0) return false;
+
+        Bounds b = colliders[0].bounds;
+        for (int i = 1; i < colliders.Length; i++)
+            b.Encapsulate(colliders[i].bounds);
+
+        if (!ProjectBounds(b, cam, out Rect full)) return false;
+
+        Vector2 min = Vector2.Max(new Vector2(full.xMin, full.yMin), Vector2.zero);
+        Vector2 max = Vector2.Min(new Vector2(full.xMax, full.yMax), new Vector2(Screen.width, Screen.height));
         if (max.x <= min.x || max.y <= min.y) return false;
 
         rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
@@ -379,12 +386,13 @@ public class DinoWashing : MonoBehaviour
     private void SpawnShine()
     {
         if (shineSprites == null || shineSprites.Length == 0) return;
+
         Camera cam = Camera.main;
         if (cam == null || !TryGetScreenRect(cam, out Rect rect)) return;
 
         for (int i = 0; i < shineCount; i++)
         {
-            if (!TrySampleSurface(cam, rect, true, out RaycastHit hit))
+            if (!TrySampleSurface(cam, rect, out RaycastHit hit))
                 continue;
 
             GameObject go = new GameObject("Shine");
@@ -438,7 +446,6 @@ public class DinoWashing : MonoBehaviour
         if (t != null) Destroy(t.gameObject);
     }
 
-
     private void SpawnBubbles()
     {
         if (bubbleSprites == null || bubbleSprites.Length == 0) return;
@@ -448,7 +455,7 @@ public class DinoWashing : MonoBehaviour
 
         for (int i = 0; i < bubbleCount; i++)
         {
-            if (!TrySampleSurface(cam, rect, false, out RaycastHit hit))
+            if (!TrySampleSurface(cam, rect, out RaycastHit hit))
                 continue;
 
             GameObject go = new GameObject("Bubble");
@@ -471,6 +478,7 @@ public class DinoWashing : MonoBehaviour
                 Random.Range(0f, 6.28f)));
         }
     }
+
     private IEnumerator FloatBubble(Transform t, SpriteRenderer sr, Vector3 baseScale, float phase)
     {
         Vector3 start = t.position;
