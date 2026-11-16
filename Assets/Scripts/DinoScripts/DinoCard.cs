@@ -12,11 +12,9 @@ public class DinoCard : MonoBehaviour
     public Button button;
     public Button deleteButton;
     public Button renameButton;
-
     public OwnedDino Owned { get; private set; }
     public string DisplayName { get; private set; }
     public string SearchText { get; private set; }
-
     private DinoState state;
 
     public void Bind(OwnedDino owned, System.Action<OwnedDino> onClick, System.Action<OwnedDino> onDelete = null, System.Action<OwnedDino> onRename = null)
@@ -44,9 +42,10 @@ public class DinoCard : MonoBehaviour
         if (deleteButton != null)
         {
             deleteButton.onClick.RemoveAllListeners();
-            deleteButton.gameObject.SetActive(onDelete != null);
+            bool canDelete = onDelete != null && !owned.isStarter;
+            deleteButton.gameObject.SetActive(canDelete);
 
-            if (onDelete != null)
+            if (canDelete)
                 deleteButton.onClick.AddListener(() => onDelete(owned));
         }
     }

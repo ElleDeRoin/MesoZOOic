@@ -57,7 +57,6 @@ public class DinoListScreen : MonoBehaviour
     {
         DinoCollection.Instance.OnChanged += OnCollectionChanged;
     }
-
     private void OnDisable()
     {
         if (DinoCollection.Instance != null)
@@ -71,12 +70,13 @@ public class DinoListScreen : MonoBehaviour
 
     private void OnDeleteRequested(OwnedDino owned)
     {
+        if (owned.isStarter) return;
+
         if (confirmPanel == null)
         {
             DeleteDino(owned);
             return;
         }
-
         pendingDelete = owned;
 
         if (confirmText != null)
@@ -88,7 +88,6 @@ public class DinoListScreen : MonoBehaviour
 
         confirmPanel.SetActive(true);
     }
-
     private void ConfirmDelete()
     {
         if (confirmPanel != null) confirmPanel.SetActive(false);
@@ -104,7 +103,6 @@ public class DinoListScreen : MonoBehaviour
         pendingDelete = null;
         if (confirmPanel != null) confirmPanel.SetActive(false);
     }
-
     private void DeleteDino(OwnedDino owned)
     {
         if (GameSession.SelectedDino != null && GameSession.SelectedDino.instanceId == owned.instanceId)
