@@ -1355,6 +1355,7 @@ MonoBehaviour:
   soundVolume: 1
   startingHeightMin: 1
   startingHeightMax: 2
+  slideSpeed: 8
   eggSpawnChance: 0.06
 --- !u!4 &877054922
 Transform:

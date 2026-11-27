@@ -127,6 +127,8 @@ namespace DinoDig
         {
             while (true)
             {
+                while (grid.IsAnySliding())
+                    yield return null;
                 List<GridPiece> matches = MatchResolver.FindAllMatches(grid);
 
                 if (matches.Count == 0)

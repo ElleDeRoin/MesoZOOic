@@ -24,6 +24,7 @@ public class DinoCard : MonoBehaviour
         DisplayName = DinoCollection.Instance.GetDisplayName(owned);
         SearchText = (DisplayName + " " + data.displayName).ToLowerInvariant();
         nameText.text = DisplayName;
+        nameText.color = RarityColors.Get(data.rarity);
         icon.sprite = data.icon;
         DinoRegistry.Instance.TryGet(owned.instanceId, out state);
 

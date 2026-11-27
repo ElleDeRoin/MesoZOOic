@@ -102,11 +102,13 @@ public class HatchResultScreen : MonoBehaviour
             Debug.LogWarning("You forgot to assign the frames Dawg.");
 
         nameText.text = "[???]!";
+        nameText.color = Color.white;
         nextButtonLabel.text = "Reveal";
         revealed = false;
 
         if (rarityText != null)
             rarityText.text = "";
+            rarityText.color = Color.white;
     }
 
     private IEnumerator HatchRoutine()
@@ -147,10 +149,14 @@ public class HatchResultScreen : MonoBehaviour
         eggImage.gameObject.SetActive(false);
         ShowDino(dino);
 
+        Color rarityColor = RarityColors.Get(dino.rarity);
+
         nameText.text = $"[{dino.displayName}]!";
+        nameText.color = rarityColor;
 
         if (rarityText != null)
             rarityText.text = dino.rarity.ToString();
+            rarityText.color = rarityColor;
 
         bool last = index >= EggHatcher.LastHatch.Count - 1;
         nextButtonLabel.text = last ? "Done" : "Next";

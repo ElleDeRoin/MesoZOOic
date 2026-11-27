@@ -23,6 +23,13 @@ public class DinoNameLabel : MonoBehaviour
         if (label == null) return;
 
         OwnedDino selected = GameSession.SelectedDino;
-        label.text = selected != null ? DinoCollection.Instance.GetDisplayName(selected) : "";
+        if (selected == null)
+        {
+            label.text = "";
+            return;
+        }
+
+        label.text = DinoCollection.Instance.GetDisplayName(selected);
+        label.color = RarityColors.Get(DinoCollection.Instance.GetData(selected.dataId).rarity);
     }
 }

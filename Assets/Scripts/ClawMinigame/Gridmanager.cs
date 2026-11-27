@@ -34,6 +34,7 @@ namespace DinoDig
         [Header("Initial Fill")]
         [SerializeField] private int startingHeightMin = 1;
         [SerializeField] private int startingHeightMax = 2;
+        [SerializeField] private float slideSpeed = 8f;
 
         [Header("Egg Settings")]
         [Range(0f, 1f)]
@@ -147,27 +148,18 @@ namespace DinoDig
             return piece;
         }
 
-        public void SpawnNewBottomRow()
+       public void SpawnNewBottomRow()
         {
             for (int col = 0; col < columnCount; col++)
             {
                 List<GridPiece> list = _stacks[col];
 
-                for (int i = 0; i < list.Count; i++)
-                {
-                    list[i].RowIndex = i + 1;
-                }
-
                 bool isEgg = ShouldSpawnEgg();
-
                 BlockType type = GetRandomBlockType();
 
-                GridPiece newPiece = SpawnPiece(
-                    col,
-                    0,
-                    isEgg,
-                    type
-                );
+                GridPiece newPiece = SpawnPiece(col, 0, isEgg, type);
+
+                newPiece.transform.position = GetWorldPosition(col, -1);
 
                 list.Insert(0, newPiece);
 
@@ -177,15 +169,11 @@ namespace DinoDig
 
                     piece.Column = col;
                     piece.RowIndex = row;
-
-                    piece.transform.position =
-                        GetWorldPosition(col, row);
-
                     piece.SetSortingOrder(row);
+                    piece.SlideTo(GetWorldPosition(col, row), slideSpeed);
                 }
             }
         }
-
         public Vector3 GetWorldPosition(int col, int row)
         {
             Vector3 origin = gridOrigin != null
@@ -216,7 +204,7 @@ namespace DinoDig
                 return null;
 
             GridPiece piece = list[list.Count - 1];
-
+            piece.StopSliding();
             list.RemoveAt(list.Count - 1);
 
             return piece;
@@ -229,8 +217,7 @@ namespace DinoDig
             if (list.Count >= rowCount)
                 return false;
 
-            piece.transform.position =
-                GetWorldPosition(col, list.Count);
+        piece.SnapTo(GetWorldPosition(col, list.Count));
 
             piece.Column = col;
             piece.RowIndex = list.Count;
@@ -327,14 +314,22 @@ namespace DinoDig
             for (int i = 0; i < list.Count; i++)
             {
                 list[i].RowIndex = i;
-
                 list[i].SetSortingOrder(i);
-
-                list[i].transform.position =
-                    GetWorldPosition(col, i);
+                list[i].SlideTo(GetWorldPosition(col, i), slideSpeed);
             }
         }
 
+
+        public bool IsAnySliding()
+        {
+            foreach (var stack in _stacks)
+                foreach (var piece in stack)
+                    if (piece != null && piece.IsSliding)
+                        return true;
+
+            return false;
+        }
+        
 #if UNITY_EDITOR
         [ContextMenu("Generate Column Click Zones")]
         private void GenerateColumnClickZones()
