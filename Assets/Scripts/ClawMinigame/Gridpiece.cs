@@ -17,6 +17,12 @@ namespace DinoDig
         private Vector3 _slideTarget;
         private float _slideSpeed;
 
+        public bool IsShaking { get; private set; }
+
+        private Vector3 _shakeOrigin;
+        private float _shakeTimeLeft;
+        private float _shakeMagnitude;
+
         void Awake()
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -24,6 +30,24 @@ namespace DinoDig
 
         void Update()
         {
+            if (IsShaking)
+            {
+                _shakeTimeLeft -= Time.deltaTime;
+
+                if (_shakeTimeLeft <= 0f)
+                {
+                    transform.position = _shakeOrigin;
+                    IsShaking = false;
+                }
+                else
+                {
+                    Vector2 offset = Random.insideUnitCircle * _shakeMagnitude;
+                    transform.position = _shakeOrigin + (Vector3)offset;
+                }
+
+                return;
+            }
+
             if (!IsSliding) return;
 
             transform.position = Vector3.MoveTowards(
@@ -37,6 +61,15 @@ namespace DinoDig
                 transform.position = _slideTarget;
                 IsSliding = false;
             }
+        }
+
+        public void Shake(float duration, float magnitude)
+        {
+            IsSliding = false;
+            _shakeOrigin = transform.position;
+            _shakeTimeLeft = duration;
+            _shakeMagnitude = magnitude;
+            IsShaking = true;
         }
 
         public void SlideTo(Vector3 target, float speed)

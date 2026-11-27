@@ -31,6 +31,10 @@ namespace DinoDig
         [SerializeField] private GridManager grid;
         [SerializeField] private ClawController claw;
         [SerializeField] private float cascadeStepDelay = 0.15f;
+        
+        [Header("Match Animation")]
+        [SerializeField] private float matchShakeDuration = 0.5f;
+        [SerializeField] private float matchShakeMagnitude = 0.2f;
 
         [Header("Audio")]
         [SerializeField] private AudioSource audioSource;
@@ -129,10 +133,16 @@ namespace DinoDig
             {
                 while (grid.IsAnySliding())
                     yield return null;
+
                 List<GridPiece> matches = MatchResolver.FindAllMatches(grid);
 
                 if (matches.Count == 0)
                     break;
+
+                foreach (GridPiece piece in matches)
+                    piece.Shake(matchShakeDuration, matchShakeMagnitude);
+
+                yield return new WaitForSeconds(matchShakeDuration);
 
                 _score += matches.Count * 10;
                 OnScoreChanged?.Invoke(_score);
