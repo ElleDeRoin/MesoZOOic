@@ -15710,6 +15710,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3064745934405375153}
     - target: {fileID: 6618568940111059538, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 8598348174320991081}
+    - target: {fileID: 6618568940111059538, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
       propertyPath: dinoStats
       value: 
       objectReference: {fileID: 5391233885940397008}
@@ -15801,7 +15805,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8309410567930150695, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2951277408506759632, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8598348174320991081}
   m_SourcePrefab: {fileID: 100100000, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
 --- !u!1 &2429487974882476810 stripped
 GameObject:
@@ -15818,6 +15825,33 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 6098272200624841079, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
   m_PrefabInstance: {fileID: 8047445501549642689}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5141789305269701137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2951277408506759632, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
+  m_PrefabInstance: {fileID: 8047445501549642689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8598348174320991081
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5141789305269701137}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7575cb9ceb0e71945aa8f40db836b433, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5191247638081354764 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2856761226300637133, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
@@ -15828,7 +15862,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2702097843625668625, guid: f54f516934a77c54083ef96a81e8cfd6, type: 3}
   m_PrefabInstance: {fileID: 8047445501549642689}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5141789305269701137}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c1bd426e1507e24aacad0daef0e007f, type: 3}

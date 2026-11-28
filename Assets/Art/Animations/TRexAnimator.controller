@@ -61,7 +61,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isPetting
+    m_ConditionEvent: IsPetting
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4210216239365057203}
@@ -86,7 +86,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isPetting
+    m_ConditionEvent: IsPetting
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8585243454462107625}
@@ -111,7 +111,7 @@ AnimatorController:
   m_Name: TRexAnimator
   serializedVersion: 6
   m_AnimatorParameters:
-  - m_Name: isPetting
+  - m_Name: IsPetting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
